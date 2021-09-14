@@ -1,0 +1,22 @@
+ Schema:
+ - Users (Username, Password, ContactInfoID)
+    - Foreign Key ContactInfoID references ContactInfo
+ - ContactInfo (ContactInfoID, FirstName, LastName, BirthDate, Email, Phone)
+ - FollowedUsers (FollowedUserID, Username, FollowedUser)
+    - Foreign Key Username references Users
+    - Foreign Key FollowedUser references Users
+ - FollowedSales (FollowedSalesID, Username, FollowedSale)
+    - Foreign Key Username references Users
+    - Foreign Key FollowedSale references Users
+ - YardSales (SaleID, Date, LocationID, Description, Type)
+    - Foreign Key LocationID references Location
+ - Location (LocationID, City, State, Address)
+ - Items (ItemID, SaleID, Title, Description, Price)
+    - Foreign Key SaleID references YardSales
+ - Images (ImageID, SaleID, Url)
+    - Foreign Key SaleID references YardSales
+
+
+# Notes:
+# I need a refresh on one-to-many, many-to-one, and many-to-many construction. Please help me structure this right!
+#YardSales.Types: yard sale, potluck, estate sale, open house, farmers' market, etc.
