@@ -32,3 +32,9 @@ Schema:
 # I need a refresh on one-to-many, many-to-one, and many-to-many construction. Please help me structure this right!
 #YardSales.Types: yard sale, potluck, estate sale, open house, farmers' market, etc.
 #YardSales.Status: scheduled, in progress, canceled, postponed, finished.
+
+# Notes From Benjamin:
+# It's likely unnecessary to have FollowedUserID and FollowedSalesID fields in the FollowedUsers and FollowedSales tables.
+# Because they each represent a unique one-to-one relationship we can set the pairing of the ForeignKey IDs as a the Primary Key.
+# There are a few other things that we should probably have a meeting to discuss what the vision of the app is in more detail to
+# determine what sort of functionality we may need to know what more or less we need for this schema.
