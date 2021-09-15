@@ -1,4 +1,8 @@
- Schema:
+(The Pitch instructions say that we shouldn't have more than six tables. If we add location items to the yardsale
+table and image to the items table then we get back into an ok range.)
+***We could ask the teacher about this, cuz ideally we would have those things on other tables.
+
+Schema:
  - Users (Username, Password, ContactInfoID)
     - Foreign Key ContactInfoID references ContactInfo
 
@@ -12,9 +16,15 @@
     - Foreign Key Username references Users
     - Foreign Key FollowedSale references YardSales
 
- - YardSales (SaleID, Date, Description, Type, City, State, Address, startDateTime, endDateTime, status)
+ - YardSales (SaleID, Date, LocationID, Description, Type, startDateTime, endDateTime, status)
+    - Foreign Key LocationID references Location
 
- - Items (ItemID, SaleID, Title, Description, Price, imageUrl)
+ - Location (LocationID, City, State, Address)
+
+ - Items (ItemID, SaleID, Title, Description, Price)
+    - Foreign Key SaleID references YardSales
+
+ - Images (ImageID, SaleID, Url)
     - Foreign Key SaleID references YardSales
 
 
@@ -22,7 +32,3 @@
 # I need a refresh on one-to-many, many-to-one, and many-to-many construction. Please help me structure this right!
 #YardSales.Types: yard sale, potluck, estate sale, open house, farmers' market, etc.
 #YardSales.Status: scheduled, in progress, canceled, postponed, finished.
-
-(The Pitch instructions say that we shouldn't have more than six tables. If we add location items to the yardsale
-table and image to the items table then we get back into an ok range.)
-***We could ask the teacher about this, cuz ideally we would have those things on other tables.
