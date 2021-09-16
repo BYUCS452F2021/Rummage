@@ -32,3 +32,6 @@
 # Because they each represent a unique one-to-one relationship we can set the pairing of the ForeignKey IDs as a the Primary Key.
 # There are a few other things that we should probably have a meeting to discuss what the vision of the app is in more detail to 
 # determine what sort of functionality we may need to know what more or less we need for this schema.
+# Notes from Caleb:
+# I'm not seeing where the Yard sale is linked to the user who posted the sale. That is likely something we will need to look 
+# up. Currently you can only see what sales a user has followed. I think we could add the UserID to YardSales for looking up this.
