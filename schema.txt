@@ -1,5 +1,5 @@
  Schema:
- - Users (Username, Password, ContactInfoID)
+ - Users (Username, Password, ContactInfo)
     - Foreign Key ContactInfoID references ContactInfo
 
  - ContactInfo (ContactInfoID, FirstName, LastName, BirthDate, Email, Phone)
@@ -12,17 +12,96 @@
     - Foreign Key Username references Users
     - Foreign Key FollowedSale references YardSales
 
- - YardSales (SaleID, Username, Date, LocationID, Description, Type)
+ - YardSales (SaleID, Username, Date, Location, Description, Type)
     - Foreign Key LocationID references Location
     - Foreign Key Username references Users
 
  - Location (LocationID, City, State, Address)
 
- - Items (ItemID, SaleID, Title, Description, Price)
+ - Items (ItemID, Sale, Title, Description, Price)
     - Foreign Key SaleID references YardSales
 
- - Images (ImageID, SaleID, Url)
+ - Images (ImageID, Item, Sale, Url)
     - Foreign Key SaleID references YardSales
+    - Foreign Key ItemID references Items
+
+# TODO - REVIEW TABLE NAME EXPLANATIONS #######################################
+Table name explanations:
+ - Users:
+    - each row contains information specific to an app user
+    - Username is the unique primary key for each user
+    - Username is referenced by content created and/or followed by the user
+    - this table references the ContactInfo table
+ - ContactInfo:
+    - each row contains the contact information for the single user that contains a reference to it
+ - FollowedUser
+    - each row contains a user and a single user whose content they prefer to view
+    - Username and FollowedUser are a composite key but neither are uniqe alone in this table
+    - Username and FollowedUser both reference a separate unique primary key in Users
+ - FollowedSales
+    - each row contains a user and a SaleID from the YardSale table
+    - Username and FollowedSale are a composite key but neither are uniqe alone in this table
+    - Username references a unique primary key in Users
+    - FollowedSale references a unique primary key in YardSales
+ - YardSales:
+    - each row contains information specific to a sale
+    - each sale references the Username primary key of the user that created it.
+    - many sales can reference the same Username but each has a uniqe SaleID
+    - each sale primary key is referenced by tables with information unique to that sale.
+ - Location:
+    - each row contains the location information for the single sale that contains a reference to it
+ - Items:
+    - each row contains information specific to an item
+    - each item references the YardSales primary key of the sale for which it was created.
+    - many items can reference the same SaleID but each has a uniqe ItemID
+    - each item primary key is referenced by tables with information unique to that sale.
+ - Images:
+    - each row contains information specific to an image
+    - each image references either the Items or YardSales primary key of the sale for which it was created.
+    - many images can reference the same SaleID or ItemID but each has a uniqe ImageID
+
+# TODO - ADD COLUMN NAME EXPLANATIONS #########################################
+Column name explanations:
+ - Users.Username
+ - Users.Password
+ - Users.ContactInfo
+ - ContactInfo.ContactInfoID
+ - ContactInfo.FirstName
+ - ContactInfo.LastName
+ - ContactInfo.BirthDate
+ - ContactInfo.Email
+ - ContactInfo.Phone
+ - FollowedUsers.Username
+ - FollowedUsers.FollowedUser
+ - FollowedSale.Username
+ - FollowedSale.FollowedSale
+ - YardSales.SaleID
+ - YardSales.Username
+ - YardSales.Date
+ - YardSales.Location
+ - YardSales.Description
+ - YardSales.Type
+ - Location.LocationID
+ - Location.City
+ - Location.State
+ - Location.Address
+ - Items.ItemID
+ - Items.Sale
+ - Items.Title
+ - Items.Description
+ - Items.Price
+ - Images.ImageID
+ - Images.Item
+ - Images.Sale
+ - Images.Url
+
+# TODO - ADD EVIDENCE OF NORMALIZATION ########################################
+Evidence of Normalization:
+
+
+
+
+
 
 
 # Notes:
@@ -40,3 +119,17 @@
 # I'm not seeing where the Yard sale is linked to the user who posted the sale. That is likely something we will need to look
 # up. Currently you can only see what sales a user has followed. I think we could add the UserID to YardSales for looking up this.
 #^^ Good catch, fixed this. - Nathan
+
+# Notes from Nathan:
+# I'd like to make it so that images must reference either a yard sale or an item.
+# This would prevent images from being removed from an item/sale but not being removed from the database.
+# Is it possible within a database to allow one or the other to be null but not both?
+# If not, should we approach the images table differently?
+# I thought of combining the two foreign key columns but there's no guarantee
+# that ItemIDs are unique from SaleIDs
+# Also, I thought of making urls the primary key, but it seems like that would
+# be problematic. There are multiple reasons why a url might need to be changed
+# even for the same image.
+#
+# I added TODOs: review table name explanations, add column name explanations,
+# add evidence of normalization.
