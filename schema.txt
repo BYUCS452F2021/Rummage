@@ -4,16 +4,17 @@
 
  - ContactInfo (ContactInfoID, FirstName, LastName, BirthDate, Email, Phone)
 
- - FollowedUsers (FollowedUserID, Username, FollowedUser)
+ - FollowedUsers (Username, FollowedUser)
     - Foreign Key Username references Users
     - Foreign Key FollowedUser references Users
 
- - FollowedSales (FollowedSalesID, Username, FollowedSale)
+ - FollowedSales (Username, FollowedSale)
     - Foreign Key Username references Users
     - Foreign Key FollowedSale references YardSales
 
- - YardSales (SaleID, Date, LocationID, Description, Type)
+ - YardSales (SaleID, Username, Date, LocationID, Description, Type)
     - Foreign Key LocationID references Location
+    - Foreign Key Username references Users
 
  - Location (LocationID, City, State, Address)
 
@@ -25,13 +26,17 @@
 
 
 # Notes:
-# I need a refresh on one-to-many, many-to-one, and many-to-many construction. Please help me structure this right!
 #YardSales.Types: yard sale, potluck, estate sale, open house, farmers' market, etc.
+
 # Notes From Benjamin:
-# It's likely unnecessary to have FollowedUserID and FollowedSalesID fields in the FollowedUsers and FollowedSales tables. 
+# It's likely unnecessary to have FollowedUserID and FollowedSalesID fields in the FollowedUsers and FollowedSales tables.
 # Because they each represent a unique one-to-one relationship we can set the pairing of the ForeignKey IDs as a the Primary Key.
-# There are a few other things that we should probably have a meeting to discuss what the vision of the app is in more detail to 
+#^^ Good catch, fixed this. - Nathan
+
+# There are a few other things that we should probably have a meeting to discuss what the vision of the app is in more detail to
 # determine what sort of functionality we may need to know what more or less we need for this schema.
+
 # Notes from Caleb:
-# I'm not seeing where the Yard sale is linked to the user who posted the sale. That is likely something we will need to look 
+# I'm not seeing where the Yard sale is linked to the user who posted the sale. That is likely something we will need to look
 # up. Currently you can only see what sales a user has followed. I think we could add the UserID to YardSales for looking up this.
+#^^ Good catch, fixed this. - Nathan
