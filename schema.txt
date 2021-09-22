@@ -1,5 +1,5 @@
  Schema:
- - Users (Username, Password, ContactInfo)
+ - Users (Username, Password, ContactInfoID)
     - Foreign Key ContactInfoID references ContactInfo
 
  - ContactInfo (ContactInfoID, FirstName, LastName, BirthDate, Email, Phone)
