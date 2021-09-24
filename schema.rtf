@@ -62,39 +62,69 @@ Table name explanations:\par
     - each image references either the Items or YardSales primary key of the sale for which it was created.\par
     - many images can reference the same SaleID or ItemID but each has a uniqe ImageID\par
 \par
-# TODO - ADD COLUMN NAME EXPLANATIONS #########################################\par
 Column name explanations:\par
  - Users.Username\par
+    - Primary key used to identify unique users\par
  - Users.Password\par
+    - unique identifier used to authenticate user and log them in to their account\par
  - Users.ContactInfo\par
+    - foreign key linking the user to their contact info\par
  - ContactInfo.ContactInfoID\par
+    - primary key for the users contact information table\par
  - ContactInfo.FirstName\par
+    - users first name\par
  - ContactInfo.LastName\par
+    - users last name\par
  - ContactInfo.BirthDate\par
+    - users birth date\par
  - ContactInfo.Email\par
+    - users email address\par
  - ContactInfo.Phone\par
+    - users phone number\par
  - FollowedUsers.Username\par
+    - a foreign key referencing the user who is following another user\par
  - FollowedUsers.FollowedUser\par
+    - a foreign key referencing the user who is being followed by another user\par
  - FollowedSale.Username\par
+    - a foreign key referencing the user following a sale\par
  - FollowedSale.FollowedSale\par
+    - a foreign key referencing the yard sale being followed\par
  - YardSales.SaleID\par
+    - the primary key identifying a unique yard sale\par
  - YardSales.Username\par
+    - a foreign key referencing the user who posted the yard sale\par
  - YardSales.Date\par
+    - the date the yard sale was posted\par
  - YardSales.Location\par
+    - a foreign key to the id for the location of the yard sale\par
  - YardSales.Description\par
+    - a description of the yard sale\par
  - YardSales.Type\par
+    - the type of sale being posted (yard sale, estate sale, etc)\par
  - Location.LocationID\par
+    - the primary key for the location of the sale\par
  - Location.City\par
+    - the city the sale is located in\par
  - Location.State\par
+    - the state the sale is located in\par
  - Location.Address\par
+    - the address of the sale\par
  - Items.ItemID\par
+    - the primary key for an item\par
  - Items.Sale\par
+    - a foreign key referencing the item to the sale it is sold at\par
  - Items.Title\par
+    - a name or title for the item\par
  - Items.Description\par
+    - a description of the item\par
  - Items.Price\par
+    - the items price\par
  - Images.ImageID\par
+    - a primary key for a given image\par
  - Images.Item\par
+    - an optional foreign key for the item being displayed\par
  - Images.Sale\par
+    - a foreign key for the sale associated with the image\par
  - Images.Url\par
 \par
 # TODO - ADD EVIDENCE OF NORMALIZATION ########################################\par
