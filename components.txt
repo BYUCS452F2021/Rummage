@@ -1,0 +1,13 @@
+list the servers/machines used:
+    -
+
+which relational database software are you using:
+    - mySQL
+
+what implementation languages are using for each part:
+    - database server, SQL
+    - web server, C++/Java
+    - client machine, Java
+
+what is the nature of the connections between the pieces (bandwidth, latency, protocol, etc.):
+
