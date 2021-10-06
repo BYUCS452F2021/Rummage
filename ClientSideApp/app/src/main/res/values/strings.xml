@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Tweeter</string>
+
+    <string name="logoutMenuTitle">Logout</string>
+
+    <string name="homePageTitle">Home</string>
+    <string name="userImageContentDescription">The user\'s image</string>
+
+    <string name="title_activity_main">Tweeter</string>
+    <string name="title_activity_user_view">Tweeter</string>
+    <string name="loadingData">Loading More Data…</string>
+    <string name="feedTabTitle">Feed</string>
+    <string name="storyTabTitle">Story</string>
+    <string name="followingTabTitle">Following</string>
+    <string name="followersTabTitle">Followers</string>
+
+    <string name="sampleAlias">"@UserAlias"</string>
+    <string name="sampleUserName">The User</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="followeeCount">Following: %d</string>
+    <string name="followerCount">Followers: %d</string>
+    <string name="samplePost">Post mention: url: </string>
+    <string name="sampleTime">Sep 41 2020 10:49 PM</string>
+
+    <!--  SignIn/SignUp Strings  -->
+    <string name="titleActivityLogin">Tweeter</string>
+    <string name="signInTabTitle">Sign In</string>
+    <string name="signInButton">Sign In</string>
+    <string name="signUpTabTitle">Sign Up</string>
+    <string name="signUpButton">Sign Up</string>
+    <string name="hintAlias">\@alias</string>
+    <string name="sampleSignInAlias">\@testMickey</string>
+    <string name="hintPassword">password</string>
+    <string name="samplePassword">badPassword</string>
+    <string name="hintFirstName">First Name</string>
+    <string name="sampleFirstName">Mickey</string>
+    <string name="hintLastName">Last Name</string>
+    <string name="sampleLastName">Mouse</string>
+    <string name="hintImageUrl">https://imageurl.com/duck.png</string>
+    <string name="sampleImageUrl">https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png</string>
+    <string name="signInSuccess">Signed in!</string>
+    <string name="signUpSuccess">Signed up and logged it!</string>
+    <string name="signInFailure">Sign in failed:</string>
+    <string name="signUpFailure">Sign up failed:</string>
+
+
+    <!--Sign Out Strings-->
+    <string name="signOutConfirmTitle">Sign Out</string>
+    <string name="signOutConfirmText">Are you sure you want to sign out?</string>
+    <string name="signOutConfirmYes">Yes</string>
+    <string name="signOutConfirmNo">No</string>
+    <string name="signOutSuccess">Signing out!</string>
+    <string name="signOutFail">Unable to sign out.</string>
+
+    <!--Post Status Strings-->
+    <string name="postTitle">Create New Post</string>
+    <string name="postFullMessage">Use @ to mention users.\n(%d/%d characters used)</string>
+    <string name="postPosButton">Post</string>
+    <string name="postNegButton">Cancel</string>
+    <string name="postCancelMessage">New post discarded.</string>
+    <string name="postSuccessMessage">Your recent status was posted successfully!</string>
+    <string name="postFailMessage">New post was lost, sorry about that.</string>
+    <string name="postStatusHint">Your status here…</string>
+
+    <!--Get User Strings-->
+    <string name="userRetrieved">User was retrieved</string>
+
+    <string name="followButtonText">Follow</string>
+    <string name="unfollowButtonText">Unfollow</string>
+
+</resources>
