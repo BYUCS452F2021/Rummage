@@ -1,13 +1,16 @@
 list the servers/machines used:
-    -
+    - a server (currently run locally. Would upgrade to Amazon cloud)
+    - client (android phone)
 
 which relational database software are you using:
-    - mySQL
+    - sqlite3
 
 what implementation languages are using for each part:
     - database server, SQL
-    - web server, C++/Java
-    - client machine, Java
+    - web server, Java
+    - client machine, Android (Java)
 
 what is the nature of the connections between the pieces (bandwidth, latency, protocol, etc.):
-
+    - require bandwidth capable of api calls to our server from a client app
+    - via http protocol
+    - latency 500ms acceptable. Slower would not break the product, but feels worse.
