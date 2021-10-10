@@ -4,9 +4,9 @@ The original code here is for an app called Tweeter (a Twitter clone). Below I w
 
 * edu.byu.cs.tweeter.client:
     * model:
-     * net: Each of these files help make the actual HTTP requests to the server. The server facade is used as an interface over this logic
+      * net: Each of these files help make the actual HTTP requests to the server. The server facade is used as an interface over this logic
       * service: These services provide abstraction to the server facade functions. They are principally created in and used by the presenters. They can also call other8 services.
-      * presenter: Presenters check authorization to perform functions and call various services. They are typically created by and used in Tasks and Activities.
+    * presenter: Presenters check authorization to perform functions and call various services. They are typically created by and used in Tasks and Activities.
       * utils: Some helpful functions and classes that format data
       * view:
           * asyncTasks: an async task is a task that requires a call to the backend. These are abstracted as tasks that have both presenters (the task requesters) and Observers (some other interested class that will need to know when this task finishes in order to update what the user is seeing.)
