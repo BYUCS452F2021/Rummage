@@ -5,7 +5,7 @@ package edu.byu.cs.tweeter.shared.model.service.request;
  */
 public class SignInRequest {
 
-    private String alias;
+    private String username;
     private String password;
 
     public SignInRequest() {}
@@ -13,24 +13,24 @@ public class SignInRequest {
     /**
      * Creates an instance.
      *
-     * @param alias    the alias of the user to be logged in.
+     * @param username the username of the user to be logged in.
      * @param password the password of the user to be logged in.
      */
-    public SignInRequest(String alias, String password) {
-        this.alias = alias;
+    public SignInRequest(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

@@ -41,7 +41,9 @@ import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
 
 
 /**
- * The user view activity for the application. Contains tabs for story, following, and followers.
+ * The user view activity for the application.
+ *
+ * This could be used to show a list of sales
  */
 public class UserViewActivity  extends AppCompatActivity
         implements Presenter.View, SignOutTask.Observer, GetCountTask.Observer, RelationshipChangeTask.Observer {

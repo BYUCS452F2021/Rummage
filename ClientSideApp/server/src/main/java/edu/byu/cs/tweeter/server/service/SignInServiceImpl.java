@@ -1,12 +1,5 @@
 package edu.byu.cs.tweeter.server.service;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
-
-import edu.byu.cs.tweeter.server.dao.AuthTokenDAO;
-import edu.byu.cs.tweeter.server.dao.DaoUtil;
 import edu.byu.cs.tweeter.server.dao.UserDAO;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.service.LoginService;
@@ -27,16 +20,12 @@ public class SignInServiceImpl implements LoginService {
      */
     @Override
     public LoginResponse doLoginOperation(SignInRequest request) throws Exception {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX");
-        String date = ZonedDateTime.now().format(formatter);
-        List<Object> pair = getUserDAO().readUser(request.getAlias());
-        byte[] hashedPassword = (byte[]) pair.get(2);
-        byte[] hash = DaoUtil.hash(request.getPassword());
-        if (!Arrays.equals(hash, hashedPassword)) {
+        User user = getUserDAO().getUser(request.getUsername());
+        if (!user.getUsername().equals(request.getPassword())) {
             return new LoginResponse("Incorrect Password");
         }
 
-        return new LoginResponse((User) pair.get(0), getAuthTokenDAO().create(date, request.getAlias()));
+        return new LoginResponse(user);
     }
 
     /**
@@ -47,14 +36,4 @@ public class SignInServiceImpl implements LoginService {
     UserDAO getUserDAO() {
         return new UserDAO();
     }
-
-    /**
-     * Returns an instance, helps with mocking.
-     *
-     * @return the DAO instance
-     */
-    AuthTokenDAO getAuthTokenDAO() {
-        return new AuthTokenDAO();
-    }
-
 }

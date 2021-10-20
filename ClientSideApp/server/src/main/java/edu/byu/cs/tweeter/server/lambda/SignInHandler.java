@@ -1,8 +1,5 @@
 package edu.byu.cs.tweeter.server.lambda;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-
 import java.io.IOException;
 
 import edu.byu.cs.tweeter.server.service.SignInServiceImpl;
@@ -15,10 +12,9 @@ import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
  * An AWS lambda function that logs a user in and returns the user object and an auth code for
  * a successful login.
  */
-public class SignInHandler implements RequestHandler<SignInRequest, LoginResponse> {
+public class SignInHandler {
 
-    @Override
-    public LoginResponse handleRequest(SignInRequest loginRequest, Context context) {
+    public LoginResponse handleRequest(SignInRequest loginRequest) {
         LoginService signInService = new SignInServiceImpl();
         try {
             return signInService.doLoginOperation(loginRequest);
@@ -27,5 +23,4 @@ public class SignInHandler implements RequestHandler<SignInRequest, LoginRespons
             return new LoginResponse(e.getMessage());
         }
     }
-
 }

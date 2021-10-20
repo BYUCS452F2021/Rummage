@@ -8,67 +8,40 @@ import java.util.Objects;
  */
 public class User implements Comparable<User>, Serializable {
 
-    private String firstName;
-    private String lastName;
-    private String alias;
-    private String imageUrl;
-    private transient byte [] imageBytes; //transient means don't serialize this
+    private String username;
+    private String password;
+    private String contactID;
 
     public User() {}
 
-    public User(String firstName, String lastName, String imageURL) {
-        this(firstName, lastName, String.format("@%s%s", firstName, lastName), imageURL);
+    public User(String username, String password, String contactID) {
+        this.username = username;
+        this.password = password;
+        this.contactID = contactID;
     }
 
-    public User(String firstName, String lastName, String alias, String imageURL) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.alias = alias;
-        this.imageUrl = imageURL;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public String getContactID() {
+        return contactID;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getName() {
-        return String.format("%s %s", firstName, lastName);
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public byte [] getImageBytes() {
-        return imageBytes;
-    }
-
-    public void setImageBytes(byte[] imageBytes) {
-        this.imageBytes = imageBytes;
+    public void setContactID(String contactID) {
+        this.contactID = contactID;
     }
 
     @Override
@@ -76,26 +49,24 @@ public class User implements Comparable<User>, Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return alias.equals(user.alias);
+        return username.equals(user.getUsername());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(alias);
+        return Objects.hash(username);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", alias='" + alias + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
+                "username='" + username + '\'' +
+                ", lastName='" + password + '\'' +
                 '}';
     }
 
     @Override
     public int compareTo(User user) {
-        return this.getAlias().compareTo(user.getAlias());
+        return username.compareTo(user.getUsername());
     }
 }

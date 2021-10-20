@@ -1,6 +1,5 @@
 package edu.byu.cs.tweeter.shared.model.service.response;
 
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
 
@@ -10,16 +9,11 @@ import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
 public class LoginResponse extends Response {
 
     private User user;
-    private AuthToken authToken;
 
     public LoginResponse() {}
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void setAuthToken(AuthToken authToken) {
-        this.authToken = authToken;
     }
 
     /**
@@ -35,12 +29,10 @@ public class LoginResponse extends Response {
      * Creates a response indicating that the corresponding request was successful.
      *
      * @param user the now logged in user.
-     * @param authToken the auth token representing this user's session with the server.
      */
-    public LoginResponse(User user, AuthToken authToken) {
+    public LoginResponse(User user) {
         super(true, null);
         this.user = user;
-        this.authToken = authToken;
     }
 
     /**
@@ -50,14 +42,5 @@ public class LoginResponse extends Response {
      */
     public User getUser() {
         return user;
-    }
-
-    /**
-     * Returns the auth token.
-     *
-     * @return the auth token.
-     */
-    public AuthToken getAuthToken() {
-        return authToken;
     }
 }

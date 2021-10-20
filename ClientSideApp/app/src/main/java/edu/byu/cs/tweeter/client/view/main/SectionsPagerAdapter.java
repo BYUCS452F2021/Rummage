@@ -18,6 +18,7 @@ import edu.byu.cs.tweeter.shared.model.domain.User;
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to one of the sections/tabs/pages
  * of the Main Activity.
+ * This controls the switching between different fragments or pages
  */
 class SectionsPagerAdapter extends FragmentPagerAdapter {
 

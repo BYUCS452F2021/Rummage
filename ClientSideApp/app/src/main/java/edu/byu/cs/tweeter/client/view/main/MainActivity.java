@@ -41,7 +41,7 @@ import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
 
 /**
- * The main activity for the application. Contains tabs for feed, story, following, and followers.
+ * The main activity for the application.
  */
 public class MainActivity extends AppCompatActivity
         implements Presenter.View, PostTask.Observer, SignOutTask.Observer, GetCountTask.Observer {
@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity
         tabs.setupWithViewPager(viewPager);
 
         FloatingActionButton postFab = findViewById(R.id.fab);
+
+        // postFab could be used as a createNewSale Fab
         postFab.setOnClickListener(fabView -> {
 
             EditText statusInput = new EditText(MainActivity.this);
