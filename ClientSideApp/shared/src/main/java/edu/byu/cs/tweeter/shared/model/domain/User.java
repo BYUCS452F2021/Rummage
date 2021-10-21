@@ -61,7 +61,7 @@ public class User implements Comparable<User>, Serializable {
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", lastName='" + password + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 

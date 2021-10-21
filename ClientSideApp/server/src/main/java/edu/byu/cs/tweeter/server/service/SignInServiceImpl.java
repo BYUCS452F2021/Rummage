@@ -21,7 +21,7 @@ public class SignInServiceImpl implements LoginService {
     @Override
     public LoginResponse doLoginOperation(SignInRequest request) throws Exception {
         User user = getUserDAO().getUser(request.getUsername());
-        if (!user.getUsername().equals(request.getPassword())) {
+        if (!user.getPassword().equals(request.getPassword())) {
             return new LoginResponse("Incorrect Password");
         }
 

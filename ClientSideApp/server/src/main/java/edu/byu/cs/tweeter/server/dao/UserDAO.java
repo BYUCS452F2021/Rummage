@@ -1,15 +1,14 @@
 package edu.byu.cs.tweeter.server.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 import edu.byu.cs.tweeter.server.DBManager;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 
 public class UserDAO {
 
-    private static final String tableName = "Users";
     private DBManager dbManager;
 
     public UserDAO() {
@@ -17,21 +16,15 @@ public class UserDAO {
     }
 
     public User getUser(String username) throws Exception {
-        System.out.println("hello");
         Connection conn = dbManager.getConnection();
-        String query = "select * from users where username = '" + username + "'";
+        String query = "select * from users where username = ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setString(1, username);
+        ResultSet result = stmt.executeQuery();
 
-        Statement stmt = conn.prepareStatement(query);
-        ResultSet result = stmt.executeQuery(query);
-
-        return new User(username, result.getString("password"), result.getString("connectID"));
+        return new User(username, result.getString("password"), result.getString("contactID"));
     }
 
-//    /**
-//     * Creates a new table entry from the info from request.
-//     *
-//     * @return the user if successful
-//     */
 //    public List<Object> createUser(SignUpRequest request) throws Exception {
 //        byte[] hashedPass = DaoUtil.hash(request.getPassword());
 //
@@ -64,7 +57,7 @@ public class UserDAO {
 //
 //        return makePair(userRetVal, countRetVal);
 //    }
-//
+
 //    public FollowCount updateUserCounts(String userAlias, int newNumFollowers, int newNumFollowing) {
 //        // ValueMap vMap = new ValueMap().withNumber("followerCount", newNumFollowers)
 //        //         .withNumber("followeeCount", newNumFollowing);
