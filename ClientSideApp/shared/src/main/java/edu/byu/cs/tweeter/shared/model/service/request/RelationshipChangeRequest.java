@@ -1,6 +1,6 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 
 /**
  * Contains all of the information needed to make a request to the server to
@@ -15,7 +15,9 @@ public class RelationshipChangeRequest {
 
     private String currUserAlias;
     private String otherUser;
+/*
     private AuthToken authToken;
+*/
 
     public RelationshipChangeRequest() {}
 
@@ -71,11 +73,11 @@ public class RelationshipChangeRequest {
         this.otherUser = otherUser;
     }
 
-    public AuthToken getAuthToken() {
+    /*public AuthToken getAuthToken() {
         return authToken;
     }
 
     public void setAuthToken(AuthToken authToken) {
         this.authToken = authToken;
-    }
+    }*/
 }

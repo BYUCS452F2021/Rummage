@@ -5,7 +5,9 @@ import java.io.IOException;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.shared.model.service.CheckAuthorizedService;
 import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
+/*
 import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
+*/
 import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
 
 public class CheckAuthorizedProxyService extends ProxyService implements CheckAuthorizedService {

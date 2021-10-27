@@ -426,7 +426,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          */
         @Override
         public void statusesRetrieved(StatusListResponse statusListResponse) {
-            List<Status> statuses = statusListResponse.getStatusList();
+            List<Status> statuses = statusListResponse.getYardSaleList();
 
             lastStatus = (statuses.size() > 0) ? statuses.get(statuses.size() -1) : null;
             hasMorePages = statusListResponse.getHasMorePages();

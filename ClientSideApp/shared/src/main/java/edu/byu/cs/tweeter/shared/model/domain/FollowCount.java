@@ -6,7 +6,7 @@ import java.util.Objects;
  * Represents a relationship between a user, the number of users they are following,
  * and the number of users who are following them.
  */
-public class FollowCount {
+/*public class FollowCount {
 
     //private final User currUser;
     String userAlias;
@@ -18,16 +18,16 @@ public class FollowCount {
     /*
      * Constructor to create a FollowsCount object
      */
-    public FollowCount(String userAlias) { this.userAlias = userAlias; }
+    //public FollowCount(String userAlias) { this.userAlias = userAlias; }
 
     // Getters and Setters
 
 
-    public void setUserAlias(String userAlias) {
-        this.userAlias = userAlias;
-    }
+    //public void setUserAlias(String userAlias) {
+    //    this.userAlias = userAlias;
+    //}
 
-    public String getUserAlias() { return userAlias; }
+    /*public String getUserAlias() { return userAlias; }
 
     public int getNumFollowing() { return numFollowing; }
 
@@ -51,3 +51,4 @@ public class FollowCount {
         return Objects.hash(getUserAlias(), getNumFollowing(), getNumFollowers());
     }
 }
+*/

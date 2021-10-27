@@ -26,7 +26,7 @@ import edu.byu.cs.tweeter.client.presenter.UserPresenter;
 import edu.byu.cs.tweeter.client.view.asyncTasks.GetFollowingFollowersTask;
 import edu.byu.cs.tweeter.client.view.asyncTasks.GetUserTask;
 import edu.byu.cs.tweeter.client.view.util.ImageUtils;
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.client.presenter.FollowingFollowerPresenter;
 import edu.byu.cs.tweeter.client.view.main.UserViewActivity;
@@ -51,7 +51,7 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
     private static final int PAGE_SIZE = 10;
 
     private User user;
-    private AuthToken authToken;
+    //private AuthToken authToken;
     private FollowingFollowerPresenter presenter;
     private boolean isFollowing;
 
@@ -62,16 +62,17 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
      * bundle assigned to the fragment.
      *
      * @param user the logged in user.
-     * @param authToken the auth token for this user's session.
+     * @ param authToken the auth token for this user's session.
      * @param isFollowing whether this fragment displays Followers or Following
      * @return the fragment.
      */
-    public static FollowingFollowerFragment newInstance(User user, AuthToken authToken, boolean isFollowing) {
+    //public static FollowingFollowerFragment newInstance(User user, AuthToken authToken, boolean isFollowing) {
+    public static FollowingFollowerFragment newInstance(User user, boolean isFollowing) {
         FollowingFollowerFragment fragment = new FollowingFollowerFragment();
 
         Bundle args = new Bundle(2);
         args.putSerializable(USER_KEY, user);
-        args.putSerializable(AUTH_TOKEN_KEY, authToken);
+        //args.putSerializable(AUTH_TOKEN_KEY, authToken);
         args.putBoolean(IS_FOLLOWING_KEY, isFollowing);
 
         fragment.setArguments(args);
@@ -85,7 +86,7 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
 
         //noinspection ConstantConditions
         user = (User) getArguments().getSerializable(USER_KEY);
-        authToken = (AuthToken) getArguments().getSerializable(AUTH_TOKEN_KEY);
+        //authToken = (AuthToken) getArguments().getSerializable(AUTH_TOKEN_KEY);
         isFollowing = getArguments().getBoolean(IS_FOLLOWING_KEY);
 
         presenter = new FollowingFollowerPresenter(this);
@@ -107,10 +108,10 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
     public void userRetrieved(UserResponse userResponse) {
         Intent intent = new Intent(this.getContext(), UserViewActivity.class);
         intent.putExtra(UserViewActivity.USER_KEY, user);
-        intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
+        //intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
         intent.putExtra(UserViewActivity.MENTIONED_KEY, userResponse.getUser());
         intent.putExtra(UserViewActivity.IS_FOLLOWING_KEY, userResponse.getIsFollowing());
-        intent.putExtra(UserViewActivity.USER_IMAGE, userResponse.getUser().getImageBytes());
+        //intent.putExtra(UserViewActivity.USER_IMAGE, userResponse.getUser().getImageBytes());
         startActivity(intent);
     }
 
@@ -148,8 +149,8 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
                 itemView.setOnClickListener(view -> {
                     UserPresenter userPresenter = new UserPresenter(followingFollowerFragment);
                     GetUserTask userTask = new GetUserTask(userPresenter,  followingFollowerFragment);
-                    UserRequest userRequest = new UserRequest((String) userAlias.getText(), user.getAlias());
-                    userRequest.setAuthToken(followingFollowerFragment.authToken);
+                    UserRequest userRequest = new UserRequest((String) userAlias.getText(), user.getUsername());
+                    //userRequest.setAuthToken(followingFollowerFragment.authToken);
                     userTask.execute(userRequest);
 
                     /*Intent intent = new Intent(itemView.getContext(), UserViewActivity.class);
@@ -171,9 +172,9 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
          * @param user the user.
          */
         void bindUser(User user) {
-            userImage.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
-            userAlias.setText(user.getAlias());
-            userName.setText(user.getName());
+            //userImage.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
+            //userAlias.setText(user.getAlias());
+            //userName.setText(user.getName());
         }
     }
 
@@ -303,8 +304,8 @@ public class FollowingFollowerFragment extends Fragment implements FollowingFoll
             addLoadingFooter();
 
             GetFollowingFollowersTask getFollowingTask = new GetFollowingFollowersTask(presenter, this);
-            FollowingFollowersRequest request = new FollowingFollowersRequest(user.getAlias(), PAGE_SIZE, (lastFollowee == null ? null : lastFollowee.getAlias()), this.isFollowing);
-            request.setAuthToken(this.followingFollowerFragment.authToken);
+            FollowingFollowersRequest request = new FollowingFollowersRequest(user.getUsername(), PAGE_SIZE, (lastFollowee == null ? null : lastFollowee.getUsername()), this.isFollowing);
+            //request.setAuthToken(this.followingFollowerFragment.authToken);
             getFollowingTask.execute(request);
         }
 

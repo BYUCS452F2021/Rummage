@@ -102,8 +102,8 @@ public class SignInFragment extends Fragment implements Presenter.View, LoginTas
         Intent intent = new Intent(this.getContext(), MainActivity.class);
 
         intent.putExtra(MainActivity.CURRENT_USER_KEY, loginResponse.getUser());
-        intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
-        intent.putExtra(MainActivity.AUTH_TOKEN_KEY, loginResponse.getAuthToken());
+        //intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
+        //intent.putExtra(MainActivity.AUTH_TOKEN_KEY, loginResponse.getAuthToken()); //FIXME maybe we should do auth tokens
 
         Toast.makeText(SignInFragment.this.getContext(), R.string.signInSuccess,
                 Toast.LENGTH_SHORT).show();

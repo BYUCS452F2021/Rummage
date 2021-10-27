@@ -3,10 +3,10 @@ package edu.byu.cs.tweeter.shared.model.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
+/* *
  * Represents an auth token in the system.
  */
-public class AuthToken implements Serializable {
+/*public class AuthToken implements Serializable {
     private String keyId;
 
     public AuthToken() {}
@@ -31,4 +31,4 @@ public class AuthToken implements Serializable {
     public int hashCode() {
         return Objects.hash(keyId);
     }
-}
+}*/

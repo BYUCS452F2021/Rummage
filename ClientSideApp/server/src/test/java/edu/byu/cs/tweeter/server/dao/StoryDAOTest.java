@@ -7,11 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SQSPostRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
 
@@ -50,7 +47,7 @@ class StoryDAOTest {
     void read_hasCorrectSize() throws Exception {
         // setup
         StatusListResponse statusListResponse = storyDAO.readStatuses(new StatusListRequest(validUserAlias, 10, null, false));
-        Assertions.assertEquals(9, statusListResponse.getStatusList().size());
+        Assertions.assertEquals(9, statusListResponse.getYardSaleList().size());
     }
 
 }

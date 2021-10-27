@@ -57,7 +57,7 @@ class FeedDAOTest {
     void read_hasCorrectSize() throws Exception {
         // setup
         StatusListResponse statusListResponse = feedDAOToTest.readStatuses(new StatusListRequest("guy7644", 10, null, true));
-        Assertions.assertEquals(9, statusListResponse.getStatusList().size());
+        Assertions.assertEquals(9, statusListResponse.getYardSaleList().size());
     }
 
 }

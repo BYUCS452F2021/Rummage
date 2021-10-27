@@ -19,26 +19,26 @@ public abstract class LoginProxyService extends ProxyService {
 
         loginResponse = doLoginOperation(request);
 
-        if (loginResponse.isSuccess()) {
+        /*if (loginResponse.isSuccess()) {
             try {
                 loadImage(loginResponse.getUser());
             } catch (MalformedURLException e) {
                 throw new IOException("Image could not be loaded on login.");
             }
-        }
+        }*/
 
         return loginResponse;
     }
 
-    /**
+    /* *
      * Loads the profile image data for the user.
      *
      * @param user the user whose profile image data is to be loaded.
      */
-    private void loadImage(User user) throws IOException {
+    /*private void loadImage(User user) throws IOException {
         byte[] bytes = ByteArrayUtils.bytesFromUrl(user.getImageUrl());
         user.setImageBytes(bytes);
-    }
+    }*/
 
     public abstract LoginResponse doLoginOperation(SignInRequest request) throws IOException, TweeterRemoteException;
 

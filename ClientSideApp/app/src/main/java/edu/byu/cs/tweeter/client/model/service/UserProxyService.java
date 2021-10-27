@@ -30,24 +30,24 @@ public class UserProxyService extends ProxyService implements UserService {
         if(!userResponse.isSuccess()) {
             throw new AssertionError();
         }
-        else {
+        /*else {
             try {
                 loadImage(userResponse.getUser());
             } catch (MalformedURLException e) {
                 throw new IOException("Image could not be loaded.");
             }
-        }
+        }*/
 
         return userResponse;
     }
 
-    /**
+    /* *
      * Loads the profile image data for the user.
      *
      * @param user the user whose profile image data is to be loaded.
      */
-    private void loadImage(User user) throws IOException {
+    /*private void loadImage(User user) throws IOException {
         byte[] bytes = ByteArrayUtils.bytesFromUrl(user.getImageUrl());
         user.setImageBytes(bytes);
-    }
+    }*/
 }

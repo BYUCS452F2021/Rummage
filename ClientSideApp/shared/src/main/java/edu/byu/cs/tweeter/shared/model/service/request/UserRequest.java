@@ -1,6 +1,8 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
+/*
 import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+*/
 
 /**
  * Contains all the information needed to make a request to have the server return the user
@@ -10,7 +12,9 @@ public class UserRequest {
 
     private String loggedInAlias;
     private String userAlias;
+/*
     private AuthToken authToken;
+*/
 
     public UserRequest() {}
 
@@ -37,13 +41,13 @@ public class UserRequest {
         this.userAlias = userAlias;
     }
 
-    public AuthToken getAuthToken() {
+/*    public AuthToken getAuthToken() {
         return authToken;
     }
 
     public void setAuthToken(AuthToken authToken) {
         this.authToken = authToken;
-    }
+    }*/
 
     public String getLoggedInAlias() {
         return loggedInAlias;

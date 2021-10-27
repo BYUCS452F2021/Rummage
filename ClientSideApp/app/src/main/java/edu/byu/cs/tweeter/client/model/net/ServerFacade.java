@@ -3,22 +3,21 @@ package edu.byu.cs.tweeter.client.model.net;
 import java.io.IOException;
 
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.shared.model.service.request.FollowCountRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.SignUpRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
+/*import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;*/
+import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.FollowingFollowersResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
-import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
 /**
@@ -104,13 +103,13 @@ public class ServerFacade {
         }
     }
 
-    /**
+    /* *
      * Performs a getFollowCount operation on our server.
      *
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
-    public FollowCountResponse getFollowCount(FollowCountRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    /*public FollowCountResponse getFollowCount(FollowCountRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:getFollowCount");
         FollowCountResponse response = clientCommunicator.doPost(urlPath, request, null, FollowCountResponse.class);
 
@@ -119,7 +118,7 @@ public class ServerFacade {
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
         }
-    }
+    }*/
 
     /**
      * Performs a changeRelationship operation on our server.
@@ -161,9 +160,9 @@ public class ServerFacade {
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
-    public StatusListResponse getStatuses(StatusListRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public FollowedSalesResponse getFollowedSales(FollowedSalesRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:getStatuses");
-        StatusListResponse response = clientCommunicator.doPost(urlPath, request, null, StatusListResponse.class);
+        FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
 
         if(response.isSuccess()) {
             return response;
