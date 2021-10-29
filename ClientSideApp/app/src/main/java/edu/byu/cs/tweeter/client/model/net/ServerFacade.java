@@ -2,6 +2,7 @@ package edu.byu.cs.tweeter.client.model.net;
 
 import java.io.IOException;
 
+import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
@@ -43,13 +44,16 @@ public class ServerFacade {
      */
     public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
-        LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
+
+        return new LoginResponse(new User("testMicky","dummypass","1234"));
+
+        /*LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -60,13 +64,15 @@ public class ServerFacade {
      */
     public LoginResponse signUp(RegisterUserRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signUp");
-        LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
+        return new LoginResponse(new User("testMicky","dummypass","1234"));
+
+       /* LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -77,13 +83,15 @@ public class ServerFacade {
      */
     public SignOutResponse signOut(LogoutRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signOut");
-        SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
+        return new SignOutResponse(true);
+
+        /*SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -94,13 +102,15 @@ public class ServerFacade {
      */
     public PostResponse post(PostRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:post");
-        PostResponse response = clientCommunicator.doPost(urlPath, request, null, PostResponse.class);
+        return new PostResponse(true);
+
+        /*PostResponse response = clientCommunicator.doPost(urlPath, request, null, PostResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /* *
