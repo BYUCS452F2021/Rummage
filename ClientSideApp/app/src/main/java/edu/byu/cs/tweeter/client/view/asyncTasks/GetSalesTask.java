@@ -10,7 +10,7 @@ import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
 /*
  * An {@link AsyncTask} for retrieving statuses for a user.
  */
-public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, FollowedSalesResponse> {
+public class GetSalesTask extends AsyncTask<FollowedSalesRequest, Void, FollowedSalesResponse> {
     private final Observer observer;
     private Exception exception;
     private SalesListPresenter salesListPresenter;
@@ -21,7 +21,7 @@ public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, 
      * @param observer          the observer who wants to be notified when this task completes.
      * @param salesListPresenter the presenter from whom this task should retrieve statuses.
      */
-    public GetFollowedSalesTask(Observer observer, SalesListPresenter salesListPresenter) {
+    public GetSalesTask(Observer observer, SalesListPresenter salesListPresenter) {
         if (observer == null) {
             throw new NullPointerException();
         }
@@ -37,7 +37,7 @@ public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, 
      */
     public interface Observer {
 
-        void followedSalesRetrieved(FollowedSalesResponse follwedSalesResponse);
+        void salesRetrieved(FollowedSalesResponse follwedSalesResponse);
 
         void handleException(Exception exception);
 
@@ -74,7 +74,7 @@ public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, 
         if (exception != null) {
             observer.handleException(exception);
         } else {
-            observer.followedSalesRetrieved(followedSalesResponse);
+            observer.salesRetrieved(followedSalesResponse);
         }
     }
 }

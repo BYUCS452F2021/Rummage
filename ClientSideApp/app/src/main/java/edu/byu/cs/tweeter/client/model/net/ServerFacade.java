@@ -1,7 +1,15 @@
 package edu.byu.cs.tweeter.client.model.net;
 
-import java.io.IOException;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
+import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.LinkedList;
+import java.util.List;
+
+import edu.byu.cs.tweeter.shared.model.domain.Sale;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest;
@@ -170,15 +178,25 @@ public class ServerFacade {
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public FollowedSalesResponse getFollowedSales(FollowedSalesRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:getStatuses");
-        FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
+        List<Sale> demo = new LinkedList<>();
+        demo.add(new Sale(1, "UserA", ZonedDateTime.now(), 0, "The best sale ever", "Yard Sale"));
+        demo.add(new Sale(2, "UserB", ZonedDateTime.now(), 0, "The bestest sale ever", "Yard Sale"));
+        demo.add(new Sale(3, "UserD", ZonedDateTime.now(), 0, "The bester sale ever", "Yard Sale"));
+        demo.add(new Sale(4, "UserE", ZonedDateTime.now(), 0, "The bestestest sale ever", "Yard Sale"));
+        demo.add(new Sale(5, "UserH", ZonedDateTime.now(), 0, "The besterest sale ever", "Yard Sale"));
+        demo.add(new Sale(6, "UserN", ZonedDateTime.now(), 0, "The besterier sale ever", "Yard Sale"));
+        demo.add(new Sale(7, "UserB", ZonedDateTime.now(), 0, "The best pie sale ever", "Pie Sale"));
+        return new FollowedSalesResponse(demo, false);
+        /*FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**

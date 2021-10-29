@@ -1,5 +1,6 @@
 package edu.byu.cs.tweeter.client.view.main;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     private AlertDialog postAlertDialog;
     private int charsUsed = 0;
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
