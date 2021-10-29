@@ -38,7 +38,7 @@ import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
 //import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
-import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
+import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 
 /**
  * The main activity for the application.
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity
     // implement methods for signOutTask
     // ---------------------------------
     @Override
-    public void signOutSuccessful(SignOutResponse loginResponse) {
+    public void signOutSuccessful(LogoutResponse loginResponse) {
         Toast.makeText(this,
                 R.string.signOutSuccess,
                 Toast.LENGTH_SHORT).show();
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void signOutUnsuccessful(SignOutResponse loginResponse) {
+    public void signOutUnsuccessful(LogoutResponse loginResponse) {
         Toast.makeText(this,
                 R.string.signOutFail,
                 Toast.LENGTH_SHORT).show();

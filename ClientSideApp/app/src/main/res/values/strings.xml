@@ -29,7 +29,7 @@
     <string name="signUpTabTitle">Sign Up</string>
     <string name="signUpButton">Sign Up</string>
     <string name="hintAlias">\@alias</string>
-    <string name="sampleSignInAlias">\@testMickey</string>
+    <string name="sampleSignInAlias">testUser</string>
     <string name="hintPassword">password</string>
     <string name="samplePassword">badPassword</string>
     <string name="hintFirstName">First Name</string>
@@ -54,13 +54,13 @@
 
     <!--Post Status Strings-->
     <string name="postTitle">Create New Yard Sale</string>
-    <string name="postFullMessage">Use @ to mention users.\n(%d/%d characters used)</string>
+    <string name="postFullMessage">Describe your yard sale</string>
     <string name="postPosButton">Post</string>
     <string name="postNegButton">Cancel</string>
-    <string name="postCancelMessage">New post discarded.</string>
-    <string name="postSuccessMessage">Your recent status was posted successfully!</string>
-    <string name="postFailMessage">New post was lost, sorry about that.</string>
-    <string name="postStatusHint">Your status here…</string>
+    <string name="postCancelMessage">New sale discarded.</string>
+    <string name="postSuccessMessage">Your recent yard sale was posted successfully!</string>
+    <string name="postFailMessage">New yard sale was lost, sorry about that.</string>
+    <string name="postStatusHint">Describe sale here…</string>
 
     <!--Get User Strings-->
     <string name="userRetrieved">User was retrieved</string>

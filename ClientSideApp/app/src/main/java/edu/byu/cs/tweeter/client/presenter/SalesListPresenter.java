@@ -8,14 +8,14 @@ import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
 /**
  * The presenter for the "yardSalelist" functionality of the application.
  */
-public class FollowedSalesPresenter extends Presenter {
+public class SalesListPresenter extends Presenter {
 
     /**
      * Creates an instance.
      *
      * @param view the view for which this class is the presenter.
      */
-    public FollowedSalesPresenter(View view) {
+    public SalesListPresenter(View view) {
         //this.view = view;
         super(view);
     }

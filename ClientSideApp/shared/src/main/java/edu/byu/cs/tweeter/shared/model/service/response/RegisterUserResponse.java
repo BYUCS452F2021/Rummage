@@ -8,7 +8,7 @@ public class RegisterUserResponse extends Response{
 
     public RegisterUserResponse() {    }
 
-    public LogoutResponse(boolean isSuccess, String message) {
+    public RegisterUserResponse(boolean isSuccess, String message) {
         super(isSuccess, message);
     }
 

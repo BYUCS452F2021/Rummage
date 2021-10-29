@@ -7,7 +7,7 @@
         android:id="@+id/authorInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".client.view.main.tabs.StatusListFragment">
+        tools:context=".client.view.main.tabs.SaleListFragment">
 
         <ImageView
             android:id="@+id/authorImage"

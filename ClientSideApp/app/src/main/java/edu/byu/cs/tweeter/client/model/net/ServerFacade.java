@@ -18,7 +18,7 @@ import edu.byu.cs.tweeter.shared.model.service.response.FollowingFollowersRespon
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeResponse;
-import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
+import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
 /**
@@ -81,9 +81,9 @@ public class ServerFacade {
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
-    public SignOutResponse signOut(LogoutRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public LogoutResponse signOut(LogoutRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signOut");
-        return new SignOutResponse(true);
+        return new LogoutResponse(true);
 
         /*SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
 

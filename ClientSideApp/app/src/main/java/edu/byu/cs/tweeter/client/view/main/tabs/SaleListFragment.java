@@ -1,60 +1,44 @@
 package edu.byu.cs.tweeter.client.view.main.tabs;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
-import android.util.Pair;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.StringTokenizer;
 
 import edu.byu.cs.tweeter.R;
-import edu.byu.cs.tweeter.client.presenter.UserPresenter;
+import edu.byu.cs.tweeter.client.presenter.SalesListPresenter;
 import edu.byu.cs.tweeter.client.view.asyncTasks.GetUserTask;
 /*import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.Status;*/
 import edu.byu.cs.tweeter.shared.model.domain.User;
 //import edu.byu.cs.tweeter.client.presenter.StatusListPresenter;
-import edu.byu.cs.tweeter.client.util.SpanningLinksUtils;
 //import edu.byu.cs.tweeter.client.view.asyncTasks.GetStatusTask;
 /*
 import edu.byu.cs.tweeter.client.view.main.UserViewActivity;
 */
 
-import edu.byu.cs.tweeter.client.view.util.ImageUtils;
 //import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
 //import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
 /**
  * The fragment that displays on the 'Feed' and 'Story' tab.
  */
-public class StatusListFragment extends Fragment implements /*StatusListPresenter.View,*/ GetUserTask.Observer {
-    private static final String LOG_TAG = "StatusListFragment";
+public class SaleListFragment extends Fragment implements SalesListPresenter.View, GetUserTask.Observer {
+    private static final String LOG_TAG = "SaleListFragment";
     private static final String USER_KEY = "UserKey";
+/*
     private static final String AUTH_TOKEN_KEY = "AuthTokenKey";
+*/
     private static final String IS_FEED_KEY = "IsFeedKey";
     private static final int PAGE_SIZE = 10;
 
@@ -63,8 +47,8 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
 
     private boolean isFeed;
     private User user;
-    /*private AuthToken authToken;
-    private StatusListPresenter presenter;*/
+    /*private AuthToken authToken;*/
+    private SalesListPresenter presenter;
     /*private StatusRecyclerViewAdapter statusRecyclerViewAdapter;*/
 
 
@@ -76,9 +60,9 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
         return user;
     }
 
-    /*StatusListPresenter getPresenter() {
+    SalesListPresenter getPresenter() {
         return presenter;
-    }*/
+    }
 
 /*
     StatusRecyclerViewAdapter getStatusRecyclerViewAdapter() {
@@ -92,10 +76,10 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
      *
      * @param user      the logged in user.
      * @ param authToken the auth token for this status's session.
-     * @param isFeed    whether this fragment displays feed or story.
+     * @param isFollowList    whether this fragment displays feed or story.
      * @return the fragment.
      */
-    public static StatusListFragment newInstance(User user, /*AuthToken authToken,*/ boolean isFeed) {
+    public static SaleListFragment newInstance(User user, boolean isFollowList) {
 
 //        URLSpan urlSpan = new URLSpan("https://ocremix.org/") {
 //            @Override
@@ -106,12 +90,12 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
 //            }
 //        };
 
-        StatusListFragment fragment = new StatusListFragment();
+        SaleListFragment fragment = new SaleListFragment();
 
         Bundle args = new Bundle(3);
         args.putSerializable(USER_KEY, user);
         /*args.putSerializable(AUTH_TOKEN_KEY, authToken);*/
-        args.putBoolean(IS_FEED_KEY, isFeed);
+        args.putBoolean(IS_FEED_KEY, isFollowList);
 
         fragment.setArguments(args);
         return fragment;
@@ -139,7 +123,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
         /*statusRecyclerViewAdapter = new StatusRecyclerViewAdapter(this);
         statusListRecyclerView.setAdapter(statusRecyclerViewAdapter);
 
-        statusListRecyclerView.addOnScrollListener(new StatusListFragment.FeedRecyclerViewPaginationScrollListener(layoutManager));*/
+        statusListRecyclerView.addOnScrollListener(new SaleListFragment.FeedRecyclerViewPaginationScrollListener(layoutManager));*/
 
         return view;
     }
@@ -168,7 +152,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
      * The ViewHolder for the RecyclerView that displays the Feed data.
      *//*
     private class StatusListHolder extends RecyclerView.ViewHolder {
-        private final StatusListFragment statusesFragment;
+        private final SaleListFragment statusesFragment;
         private final ImageView authorImage;
         private final TextView authorAlias;
         private final TextView postDate;
@@ -180,7 +164,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
          *
          * @param itemView the view on which the user will be displayed.
          *//*
-        StatusListHolder(StatusListFragment statusListFragment, @NonNull View itemView, int viewType) {
+        StatusListHolder(SaleListFragment statusListFragment, @NonNull View itemView, int viewType) {
             super(itemView);
             this.statusesFragment = statusListFragment;
 
@@ -290,7 +274,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
      *//*
     private class StatusRecyclerViewAdapter extends RecyclerView.Adapter<StatusListHolder> implements GetStatusTask.Observer {
 
-        private StatusListFragment statusListFragment;
+        private SaleListFragment statusListFragment;
         private final List<Status> statuses = new ArrayList<>();
 
         private Status lastStatus;
@@ -310,7 +294,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
         *//**
          * Creates an instance and loads the first page of feed data.
          *//*
-        StatusRecyclerViewAdapter(StatusListFragment statusesFragment) {
+        StatusRecyclerViewAdapter(SaleListFragment statusesFragment) {
             this.statusListFragment = statusesFragment;
             loadMoreItems();
         }
@@ -361,7 +345,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
         @NonNull
         @Override
         public StatusListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(StatusListFragment.this.getContext());
+            LayoutInflater layoutInflater = LayoutInflater.from(SaleListFragment.this.getContext());
             View view;
 
             if (viewType == LOADING_DATA_VIEW) {
@@ -420,7 +404,7 @@ public class StatusListFragment extends Fragment implements /*StatusListPresente
 
             GetStatusTask getStatusTask = new GetStatusTask(this, statusListFragment.getPresenter());
             boolean isFeed = statusListFragment.isFeed();
-            StatusListRequest request = new StatusListRequest(statusListFragment.getUser().getAlias(), StatusListFragment.PAGE_SIZE, lastStatus, isFeed);
+            StatusListRequest request = new StatusListRequest(statusListFragment.getUser().getAlias(), SaleListFragment.PAGE_SIZE, lastStatus, isFeed);
             request.setAuthToken(statusListFragment.authToken);
             getStatusTask.execute(request);
 

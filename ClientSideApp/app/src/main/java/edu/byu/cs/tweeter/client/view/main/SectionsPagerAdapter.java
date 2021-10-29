@@ -12,7 +12,7 @@ import edu.byu.cs.tweeter.R;
 /*
 import edu.byu.cs.tweeter.client.view.main.tabs.FollowingFollowerFragment;
 */
-import edu.byu.cs.tweeter.client.view.main.tabs.StatusListFragment;
+import edu.byu.cs.tweeter.client.view.main.tabs.SaleListFragment;
 /*import edu.byu.cs.tweeter.shared.model.domain.AuthToken;*/
 import edu.byu.cs.tweeter.shared.model.domain.User;
 
@@ -24,10 +24,10 @@ import edu.byu.cs.tweeter.shared.model.domain.User;
  */
 class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int FEED_FRAGMENT_POSITION = 0;
-    private static final int STORY_FRAGMENT_POSITION = 1;
-    private static final int FOLLOWING_FRAGMENT_POSITION = 2;
-    private static final int FOLLOWERS_FRAGMENT_POSITION = 3;
+    private static final int ALL_SALES_FRAGMENT_POSITION = 0;
+    private static final int SALE_MAP_FRAGMENT_POSITION = 1;
+    private static final int FOLLOWED_SALES_FRAGMENT_POSITION = 2;
+    private static final int FOLLOWED_MAP_FRAGMENT_POSITION = 3;
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.feedTabTitle, R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
@@ -45,15 +45,15 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        if (position == FEED_FRAGMENT_POSITION) {
-            return StatusListFragment.newInstance(user, /*authToken,*/ true);
-        } /*else if (position == STORY_FRAGMENT_POSITION) {
-            return StatusListFragment.newInstance(user, *//*authToken,*//* false);
-        } else if (position == FOLLOWING_FRAGMENT_POSITION ) {
-            return FollowingFollowerFragment.newInstance(user, *//*authToken,*//* true);
-        } else if(position == FOLLOWERS_FRAGMENT_POSITION) {
-            return FollowingFollowerFragment.newInstance(user, *//*authToken,*//* false);
-        }*/ else {
+        if (position == ALL_SALES_FRAGMENT_POSITION) {
+            return SaleListFragment.newInstance(user, false);
+        } else if (position == SALE_MAP_FRAGMENT_POSITION) {
+            return PlaceholderFragment.newInstance(position + 1);
+        } else if (position == FOLLOWED_SALES_FRAGMENT_POSITION ) {
+            return SaleListFragment.newInstance(user, true);
+        } else if(position == FOLLOWED_MAP_FRAGMENT_POSITION) {
+            return PlaceholderFragment.newInstance(position + 1);
+        } else {
             return PlaceholderFragment.newInstance(position + 1);
         }
     }

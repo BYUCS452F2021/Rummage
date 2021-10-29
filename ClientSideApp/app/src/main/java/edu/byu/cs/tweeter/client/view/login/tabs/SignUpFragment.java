@@ -84,6 +84,8 @@ public class SignUpFragment extends Fragment implements Presenter.View, LoginTas
         TextWatcher textWatcher = new EmptyFieldTextWatcher();
         presenter = new LoginPresenter(this);
 
+        //FIXME have it get the proper registration information
+
         editTextAlias = view.findViewById(R.id.input_alias);
         editTextAlias.addTextChangedListener(textWatcher);
 
