@@ -53,7 +53,7 @@ public class ServerFacade {
     public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
 
-        return new LoginResponse(new User("testMicky","dummypass","1234"));
+        return new LoginResponse(new User("testUser","dummypass","1234"));
 
         /*LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
@@ -72,7 +72,7 @@ public class ServerFacade {
      */
     public LoginResponse signUp(RegisterUserRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signUp");
-        return new LoginResponse(new User("testMicky","dummypass","1234"));
+        return new LoginResponse(new User("testUser","dummypass","1234"));
 
        /* LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
@@ -183,9 +183,9 @@ public class ServerFacade {
         //Log.i(LOG_TAG, "serverFacade:getStatuses");
         List<Sale> demo = new LinkedList<>();
         demo.add(new Sale(1, "UserA", ZonedDateTime.now(), 0, "The best sale ever", "Yard Sale"));
-        demo.add(new Sale(2, "UserB", ZonedDateTime.now(), 0, "The bestest sale ever", "Yard Sale"));
+        demo.add(new Sale(2, "testUser", ZonedDateTime.now(), 0, "The bestest sale ever", "Yard Sale"));
         demo.add(new Sale(3, "UserD", ZonedDateTime.now(), 0, "The bester sale ever", "Yard Sale"));
-        demo.add(new Sale(4, "UserE", ZonedDateTime.now(), 0, "The bestestest sale ever", "Yard Sale"));
+        demo.add(new Sale(4, "testUser", ZonedDateTime.now(), 0, "The bestestest sale ever", "Yard Sale"));
         demo.add(new Sale(5, "UserH", ZonedDateTime.now(), 0, "The besterest sale ever", "Yard Sale"));
         demo.add(new Sale(6, "UserN", ZonedDateTime.now(), 0, "The besterier sale ever", "Yard Sale"));
         demo.add(new Sale(7, "UserB", ZonedDateTime.now(), 0, "The best pie sale ever", "Pie Sale"));

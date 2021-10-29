@@ -1,15 +1,22 @@
 package edu.byu.cs.tweeter.client.view.main.tabs;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,10 +33,15 @@ import edu.byu.cs.tweeter.client.presenter.SalesListPresenter;
 import edu.byu.cs.tweeter.client.view.asyncTasks.GetSalesTask;
 /*import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.Status;*/
+import edu.byu.cs.tweeter.client.view.asyncTasks.PostTask;
+import edu.byu.cs.tweeter.client.view.main.MainActivity;
 import edu.byu.cs.tweeter.shared.model.domain.Sale;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
+
+import static edu.byu.cs.tweeter.client.view.main.MainActivity.STATUS_CHAR_LIMIT;
 //import edu.byu.cs.tweeter.client.presenter.StatusListPresenter;
 //import edu.byu.cs.tweeter.client.view.asyncTasks.GetStatusTask;
 /*
@@ -162,12 +174,17 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
    /**
      * The ViewHolder for the RecyclerView that displays the Feed data.
      */
-    private class SaleListHolder extends RecyclerView.ViewHolder {
+   private class SaleListHolder extends RecyclerView.ViewHolder {
         private final SaleListFragment statusesFragment;
         /*private final ImageView authorImage;*/
         private final TextView authorAlias;
         private final TextView postDate;
         private final TextView statusContent;
+        private final Button edit;
+        private final Button delete;
+        private AlertDialog.Builder postDialogBuilder;
+        private AlertDialog postAlertDialog;
+        private int charsUsed = 0;
 
 
         /**
@@ -185,6 +202,9 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
 
             statusContent = itemView.findViewById(R.id.statusContent);
 
+            edit = itemView.findViewById(R.id.edit_sale);
+            delete = itemView.findViewById(R.id.delete_sale);
+
             //itemView.setOnClickListener(
             //        view -> Toast.makeText(StatusListHolder.this.statusesFragment.getContext(),
             //                "You selected '" + statusContent.getText() + "'.", Toast.LENGTH_SHORT).show()
@@ -197,6 +217,7 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
          *
          * @param sale the status.
          */
+        @SuppressLint("StringFormatInvalid")
         void bindSale(Sale sale) {
             /*authorImage.setImageDrawable(ImageUtils.drawableFromByteArray(sale.getPoster().getImageBytes()));*/
             String author = sale.getUsername();
@@ -206,6 +227,79 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
 
             /*String stringToEdit = sale.getDescription();*/
             statusContent.setText(Html.fromHtml(sale.getDescription()));
+
+            if (author.equals(user.getUsername())) {
+                edit.setOnClickListener(fabView -> {
+
+                    EditText statusInput = new EditText(saleRecyclerViewAdapter.saleListFragment.getContext());
+                    statusInput.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            // do nothing
+                        }
+
+                        @SuppressLint("StringFormatInvalid")
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            charsUsed = charSequence.length();
+                            postAlertDialog.setMessage(getResources().getString(R.string.postFullMessage,
+                                    charsUsed,
+                                    STATUS_CHAR_LIMIT));
+                            if ((charsUsed <= 0) || (charsUsed > STATUS_CHAR_LIMIT)) {
+                                postAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                                        .setEnabled(false);
+                            } else {
+                                postAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                                        .setEnabled(true);
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+                            // do nothing
+                        }
+                    });
+
+                    // setup a dialog
+                    postDialogBuilder = new AlertDialog.Builder(saleRecyclerViewAdapter.saleListFragment.getContext());
+                    postDialogBuilder.setTitle(R.string.postTitle);
+                    postDialogBuilder.setMessage(getResources().getString(R.string.postFullMessage,
+                            0,
+                            STATUS_CHAR_LIMIT));
+                    postDialogBuilder.setView(statusInput);
+                    postDialogBuilder.setCancelable(false);
+                    postDialogBuilder.setPositiveButton(R.string.postPosButton, (dialogInterface, i) -> {
+                        // do logic and dismiss
+                        /*PostTask postTask = new PostTask(postPresenter, MainActivity.this);
+                        PostRequest request = new PostRequest(user.getContactID(), statusInput.getText().toString());
+                        //request.setAuthToken(this.authToken);
+                        postTask.execute(request);*/
+                        //FIXME actually post the updates
+                        statusContent.setText(statusInput.getText());
+
+                        dialogInterface.dismiss();
+                    });
+                    postDialogBuilder.setNegativeButton(R.string.postNegButton, (dialogInterface, i) -> {
+                        Toast.makeText(this.statusesFragment.getContext(), R.string.postCancelMessage, Toast.LENGTH_LONG).show();
+                        dialogInterface.cancel();
+                    });
+
+                    // create the specified dialog
+                    postAlertDialog = postDialogBuilder.create();
+                    postAlertDialog.show();
+
+                    // finish setup on created dialog
+                    postAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+                });
+            }
+            else {
+                edit.setVisibility(View.INVISIBLE);
+                delete.setVisibility(View.INVISIBLE);
+            }
+
+            //FIXME bind a delete to the delete button
+
+
             /*applyMentionsToMessage(stringToEdit, statusContent);*/
         }
 
