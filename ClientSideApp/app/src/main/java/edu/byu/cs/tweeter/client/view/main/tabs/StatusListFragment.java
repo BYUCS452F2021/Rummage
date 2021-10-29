@@ -32,23 +32,26 @@ import java.util.StringTokenizer;
 import edu.byu.cs.tweeter.R;
 import edu.byu.cs.tweeter.client.presenter.UserPresenter;
 import edu.byu.cs.tweeter.client.view.asyncTasks.GetUserTask;
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
-import edu.byu.cs.tweeter.shared.model.domain.Status;
+/*import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+import edu.byu.cs.tweeter.shared.model.domain.Status;*/
 import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.client.presenter.StatusListPresenter;
+//import edu.byu.cs.tweeter.client.presenter.StatusListPresenter;
 import edu.byu.cs.tweeter.client.util.SpanningLinksUtils;
-import edu.byu.cs.tweeter.client.view.asyncTasks.GetStatusTask;
+//import edu.byu.cs.tweeter.client.view.asyncTasks.GetStatusTask;
+/*
 import edu.byu.cs.tweeter.client.view.main.UserViewActivity;
+*/
+
 import edu.byu.cs.tweeter.client.view.util.ImageUtils;
-import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
+//import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
+//import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
 /**
  * The fragment that displays on the 'Feed' and 'Story' tab.
  */
-public class StatusListFragment extends Fragment implements StatusListPresenter.View, GetUserTask.Observer {
+public class StatusListFragment extends Fragment implements /*StatusListPresenter.View,*/ GetUserTask.Observer {
     private static final String LOG_TAG = "StatusListFragment";
     private static final String USER_KEY = "UserKey";
     private static final String AUTH_TOKEN_KEY = "AuthTokenKey";
@@ -60,9 +63,10 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
 
     private boolean isFeed;
     private User user;
-    private AuthToken authToken;
-    private StatusListPresenter presenter;
-    private StatusRecyclerViewAdapter statusRecyclerViewAdapter;
+    /*private AuthToken authToken;
+    private StatusListPresenter presenter;*/
+    /*private StatusRecyclerViewAdapter statusRecyclerViewAdapter;*/
+
 
     boolean isFeed() {
         return isFeed;
@@ -72,24 +76,26 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         return user;
     }
 
-    StatusListPresenter getPresenter() {
+    /*StatusListPresenter getPresenter() {
         return presenter;
-    }
+    }*/
 
+/*
     StatusRecyclerViewAdapter getStatusRecyclerViewAdapter() {
         return statusRecyclerViewAdapter;
     }
+*/
 
     /**
      * Creates an instance of the fragment and places the status and auth token in an arguments
      * bundle assigned to the fragment.
      *
      * @param user      the logged in user.
-     * @param authToken the auth token for this status's session.
+     * @ param authToken the auth token for this status's session.
      * @param isFeed    whether this fragment displays feed or story.
      * @return the fragment.
      */
-    public static StatusListFragment newInstance(User user, AuthToken authToken, boolean isFeed) {
+    public static StatusListFragment newInstance(User user, /*AuthToken authToken,*/ boolean isFeed) {
 
 //        URLSpan urlSpan = new URLSpan("https://ocremix.org/") {
 //            @Override
@@ -104,7 +110,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
 
         Bundle args = new Bundle(3);
         args.putSerializable(USER_KEY, user);
-        args.putSerializable(AUTH_TOKEN_KEY, authToken);
+        /*args.putSerializable(AUTH_TOKEN_KEY, authToken);*/
         args.putBoolean(IS_FEED_KEY, isFeed);
 
         fragment.setArguments(args);
@@ -118,32 +124,34 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
 
         //noinspection ConstantConditions
         user = (User) getArguments().getSerializable(USER_KEY);
+/*
         authToken = (AuthToken) getArguments().getSerializable(AUTH_TOKEN_KEY);
+*/
         isFeed = getArguments().getBoolean(IS_FEED_KEY);
 
-        presenter = new StatusListPresenter(this);
+        /*presenter = new StatusListPresenter(this);*/
 
         RecyclerView statusListRecyclerView = view.findViewById(R.id.statusListRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         statusListRecyclerView.setLayoutManager(layoutManager);
 
-        statusRecyclerViewAdapter = new StatusRecyclerViewAdapter(this);
+        /*statusRecyclerViewAdapter = new StatusRecyclerViewAdapter(this);
         statusListRecyclerView.setAdapter(statusRecyclerViewAdapter);
 
-        statusListRecyclerView.addOnScrollListener(new StatusListFragment.FeedRecyclerViewPaginationScrollListener(layoutManager));
+        statusListRecyclerView.addOnScrollListener(new StatusListFragment.FeedRecyclerViewPaginationScrollListener(layoutManager));*/
 
         return view;
     }
 
     @Override
     public void userRetrieved(UserResponse userResponse) {
-        Intent intent = new Intent(this.getContext(), UserViewActivity.class);
+        Intent intent = new Intent();/*this.getContext(), UserViewActivity.class);
         intent.putExtra(UserViewActivity.USER_KEY, user);
         intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
         intent.putExtra(UserViewActivity.MENTIONED_KEY, userResponse.getUser());
         intent.putExtra(UserViewActivity.IS_FOLLOWING_KEY, userResponse.getIsFollowing());
-        intent.putExtra(UserViewActivity.USER_IMAGE, userResponse.getUser().getImageBytes());
+        intent.putExtra(UserViewActivity.USER_IMAGE, userResponse.getUser().getImageBytes());*/
         startActivity(intent);
     }
 
@@ -156,9 +164,9 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         }
     }
 
-    /**
+   /* *//**
      * The ViewHolder for the RecyclerView that displays the Feed data.
-     */
+     *//*
     private class StatusListHolder extends RecyclerView.ViewHolder {
         private final StatusListFragment statusesFragment;
         private final ImageView authorImage;
@@ -167,11 +175,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         private final TextView statusContent;
 
 
-        /**
+        *//**
          * Creates an instance and sets an OnClickListener for the status's row.
          *
          * @param itemView the view on which the user will be displayed.
-         */
+         *//*
         StatusListHolder(StatusListFragment statusListFragment, @NonNull View itemView, int viewType) {
             super(itemView);
             this.statusesFragment = statusListFragment;
@@ -189,11 +197,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         }
 
 
-        /**
+        *//**
          * Binds the status's data to the view.
          *
          * @param status the status.
-         */
+         *//*
         void bindStatus(Status status) {
             authorImage.setImageDrawable(ImageUtils.drawableFromByteArray(status.getPoster().getImageBytes()));
             String author = status.getPoster().getAlias();
@@ -227,11 +235,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
                 userRequest.setAuthToken(this.statusesFragment.authToken);
                 userTask.execute(userRequest);
 
-                /*Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
+                *//*Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
                 intent.putExtra(UserViewActivity.USER_KEY, user);
                 intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
                 intent.putExtra(UserViewActivity.MENTIONED_KEY, mention);
-                startActivity(intent);*/
+                startActivity(intent);*//*
             }));
 
             SpanningLinksUtils.makeLinks(view, links);
@@ -256,11 +264,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
                         userRequest.setAuthToken(this.statusesFragment.authToken);
                         userTask.execute(userRequest);
 
-                        /*Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
+                        *//*Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
                         intent.putExtra(UserViewActivity.USER_KEY, user);
                         intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
                         intent.putExtra(UserViewActivity.MENTIONED_KEY, mention);
-                        startActivity(intent);*/
+                        startActivity(intent);*//*
                     }));
                 }
 
@@ -277,9 +285,9 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         }
     }
 
-    /**
+    *//**
      * The adapter for the RecyclerView that displays the Feed data.
-     */
+     *//*
     private class StatusRecyclerViewAdapter extends RecyclerView.Adapter<StatusListHolder> implements GetStatusTask.Observer {
 
         private StatusListFragment statusListFragment;
@@ -299,57 +307,57 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             return isLoading;
         }
 
-        /**
+        *//**
          * Creates an instance and loads the first page of feed data.
-         */
+         *//*
         StatusRecyclerViewAdapter(StatusListFragment statusesFragment) {
             this.statusListFragment = statusesFragment;
             loadMoreItems();
         }
 
-        /**
+        *//**
          * Adds new statuses to the list from which the RecyclerView retrieves the statuses it
          * displays and notifies the RecyclerView that items have been added.
          *
          * @param newStatuses the users to add.
-         */
+         *//*
         void addItems(List<Status> newStatuses) {
             int startInsertPosition = statuses.size();
             statuses.addAll(newStatuses);
             this.notifyItemRangeInserted(startInsertPosition, newStatuses.size());
         }
 
-        /**
+        *//**
          * Adds a single status to the list from which the RecyclerView retrieves the statuses it
          * displays and notifies the RecyclerView that an item has been added.
          *
          * @param status the status to add.
-         */
+         *//*
         void addItem(Status status) {
             statuses.add(status);
             this.notifyItemInserted(statuses.size() - 1);
         }
 
-        /**
+        *//**
          * Removes a status from the list from which the RecyclerView retrieves the status it displays
          * and notifies the RecyclerView that an item has been removed.
          *
          * @param status the status to remove.
-         */
+         *//*
         void removeItem(Status status) {
             int position = statuses.indexOf(status);
             statuses.remove(position);
             this.notifyItemRemoved(position);
         }
 
-        /**
+        *//**
          *  Creates a view holder for a status to be displayed in the RecyclerView or for a message
          *  indicating that new rows are being loaded if we are waiting for rows to load.
          *
          * @param parent the parent view.
          * @param viewType the type of the view (ignored in the current implementation).
          * @return the view holder.
-         */
+         *//*
         @NonNull
         @Override
         public StatusListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -366,14 +374,14 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             return new StatusListHolder(statusListFragment, view, viewType);
         }
 
-        /**
+        *//**
          * Binds the status at the specified position unless we are currently loading new data. If
          * we are loading new data, the display at that position will be the data loading footer.
          *
          * @param statusListHolder the ViewHolder to which the status should be bound.
          * @param position the position (in the list of statuses) that contains the status to be
          *                 bound.
-         */
+         *//*
         @Override
         public void onBindViewHolder(@NonNull StatusListHolder statusListHolder, int position) {
             if(!isLoading) {
@@ -381,31 +389,31 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             }
         }
 
-        /**
+        *//**
          * Returns the current number of statuses available for display.
          * @return the number of statuses available for display.
-         */
+         *//*
         @Override
         public int getItemCount() {
             return statuses.size();
         }
 
-        /**
+        *//**
          * Returns the type of the view that should be displayed for the item currently at the
          * specified position.
          *
          * @param position the position of the items whose view type is to be returned.
          * @return the view type.
-         */
+         *//*
         @Override
         public int getItemViewType(int position) {
             return (position == statuses.size() - 1 && isLoading) ? LOADING_DATA_VIEW : ITEM_VIEW;
         }
 
-        /**
+        *//**
          * Causes the Adapter to display a loading footer and make a request to get more following
          * data.
-         */
+         *//*
         void loadMoreItems() {
             isLoading = true;
             addLoadingFooter();
@@ -418,12 +426,12 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
 
         }
 
-        /**
+        *//**
          * A callback indicating more story data has been received. Loads the new statuses
          * and removes the loading footer.
          *
          * @param statusListResponse the asynchronous response to the request to load more items.
-         */
+         *//*
         @Override
         public void statusesRetrieved(StatusListResponse statusListResponse) {
             List<Status> statuses = statusListResponse.getYardSaleList();
@@ -436,11 +444,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             statusRecyclerViewAdapter.addItems(statuses);
         }
 
-        /**
+        *//**
          * A callback indicating that an exception was thrown by the presenter.
          *
          * @param exception the exception.
-         */
+         *//*
         @Override
         public void handleException(Exception exception) {
             Log.e(LOG_TAG, exception.getMessage(), exception);
@@ -451,41 +459,41 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             }
         }
 
-        /**
+        *//**
          * Adds a dummy user to the list of statuses so the RecyclerView will display a view (the
          * loading footer view) at the bottom of the list.
-         */
+         *//*
         private void addLoadingFooter() {
             addItem(new Status("", null, null));
         }
 
-        /**
+        *//**
          * Removes the dummy status from the list of statuses so the RecyclerView will stop displaying
          * the loading footer at the bottom of the list.
-         */
+         *//*
         private void removeLoadingFooter() {
             removeItem(statuses.get(statuses.size() - 1));
         }
     }
 
-    /**
+    *//**
      * A scroll listener that detects when the user has scrolled to the bottom of the currently
      * available data.
-     */
+     *//*
     private class FeedRecyclerViewPaginationScrollListener extends RecyclerView.OnScrollListener {
 
         private final LinearLayoutManager layoutManager;
 
-        /**
+        *//**
          * Creates a new instance.
          *
          * @param layoutManager the layout manager being used by the RecyclerView.
-         */
+         *//*
         FeedRecyclerViewPaginationScrollListener(LinearLayoutManager layoutManager) {
             this.layoutManager = layoutManager;
         }
 
-        /**
+        *//**
          * Determines whether the user has scrolled to the bottom of the currently available data
          * in the RecyclerView and asks the adapter to load more data if the last load request
          * indicated that there was more data to load.
@@ -493,7 +501,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          * @param recyclerView the RecyclerView.
          * @param dx           the amount of horizontal scroll.
          * @param dy           the amount of vertical scroll.
-         */
+         *//*
         @Override
         public void onScrolled(@NotNull RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
@@ -509,6 +517,6 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
                 }
             }
         }
-    }
+    }*/
 }
 

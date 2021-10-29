@@ -7,13 +7,13 @@ import java.io.IOException;
 
 import edu.byu.cs.tweeter.client.presenter.LoginPresenter;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 
 /*
  * An {@link AsyncTask} for logging in a user.
  */
-public class LoginTask extends AsyncTask<SignInRequest, Void, LoginResponse> {
+public class LoginTask extends AsyncTask<LoginRequest, Void, LoginResponse> {
 
     private final LoginPresenter loginPresenter;
     private final Observer observer;
@@ -49,13 +49,13 @@ public class LoginTask extends AsyncTask<SignInRequest, Void, LoginResponse> {
 
     /**
      * The method that is invoked on a background thread to log the user in. This method is
-     * invoked indirectly by calling {@link #execute(SignInRequest...)}.
+     * invoked indirectly by calling {@link #execute(LoginRequest...)}.
      *
      * @param signInRequests the request object (there will only be one).
      * @return the response.
      */
     @Override
-    protected LoginResponse doInBackground(SignInRequest... signInRequests) {
+    protected LoginResponse doInBackground(LoginRequest... signInRequests) {
         LoginResponse loginResponse = null;
 
         try {
@@ -69,7 +69,7 @@ public class LoginTask extends AsyncTask<SignInRequest, Void, LoginResponse> {
 
     /**
      * Notifies the observer (on the thread of the invoker of the
-     * {@link #execute(SignInRequest...)} method) when the task completes.
+     * {@link #execute(LoginRequest...)} method) when the task completes.
      *
      * @param loginResponse the response that was received by the task.
      */

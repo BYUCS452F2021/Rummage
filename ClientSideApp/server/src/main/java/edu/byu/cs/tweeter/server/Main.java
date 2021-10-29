@@ -1,5 +1,6 @@
 package edu.byu.cs.tweeter.server;
 
+/*
 import static spark.Spark.*;
 import com.google.gson.Gson;
 
@@ -21,4 +22,4 @@ public class Main {
             return gson.toJson(userResponse);
         });
     }
-}
+}*/

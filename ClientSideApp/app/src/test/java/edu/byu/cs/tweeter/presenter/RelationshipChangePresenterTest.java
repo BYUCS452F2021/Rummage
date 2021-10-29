@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.presenter;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,10 +26,12 @@ public class RelationshipChangePresenterTest {
     private RelationshipChangeRequest testRequest;
     private RelationshipChangeResponse expectedResponse;
 
-    /**
+    */
+/**
      * Create a RelationshipChangePresenter spy that uses a mock service to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws Exception {
         String userAlias = "FirstNameLastName";
@@ -53,9 +56,11 @@ public class RelationshipChangePresenterTest {
         Mockito.when(spyPresenter.getCheckAuthorizedService()).thenReturn(mockCheckAuthorizedService);
     }
 
-    /*
+    */
+/*
      * Tests if the presenter returns the same response as the service
-     */
+     *//*
+
     @Test
     public void testGetUser_returnsServiceResult() throws Exception {
         // Assert that the presenter returns the same response as the service (it doesn't do
@@ -64,3 +69,4 @@ public class RelationshipChangePresenterTest {
         Assertions.assertEquals(expectedResponse, actualResponse);
     }
 }
+*/

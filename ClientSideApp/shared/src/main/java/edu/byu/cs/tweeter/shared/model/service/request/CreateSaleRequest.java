@@ -46,35 +46,35 @@ public class CreateSaleRequest {
         City = city;
     }
 
-    public string getState() {
+    public String getState() {
         return State;
     }
 
-    public void setState(string state) {
+    public void setState(String state) {
         State = state;
     }
 
-    public string getAddress() {
+    public String getAddress() {
         return Address;
     }
 
-    public void setAddress(string address) {
+    public void setAddress(String address) {
         Address = address;
     }
 
-    public string getDescription() {
+    public String getDescription() {
         return Description;
     }
 
-    public void setDescription(string description) {
+    public void setDescription(String description) {
         Description = description;
     }
 
-    public string getType() {
+    public String getType() {
         return Type;
     }
 
-    public void setType(string type) {
+    public void setType(String type) {
         Type = type;
     }
 }

@@ -4,13 +4,13 @@ import android.os.AsyncTask;
 
 
 import edu.byu.cs.tweeter.client.presenter.SignOutPresenter;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
 
 /*
  * An {@link AsyncTask} for signing out a user.
  */
-public class SignOutTask extends AsyncTask<SignOutRequest, Void, SignOutResponse> {
+public class SignOutTask extends AsyncTask<LogoutRequest, Void, SignOutResponse> {
     private final SignOutPresenter signOutPresenter;
     private final Observer observer;
     private Exception exception;
@@ -44,7 +44,7 @@ public class SignOutTask extends AsyncTask<SignOutRequest, Void, SignOutResponse
     }
 
     @Override
-    protected SignOutResponse doInBackground(SignOutRequest... signOutRequests) {
+    protected SignOutResponse doInBackground(LogoutRequest... signOutRequests) {
         SignOutResponse signOutResponse = null;
 
         try {
@@ -58,7 +58,7 @@ public class SignOutTask extends AsyncTask<SignOutRequest, Void, SignOutResponse
 
     /**
      * Notifies the observer (on the thread of the invoker of the
-     * {@link #execute(SignOutRequest...)} method) when the task completes.
+     * {@link #execute(LogoutRequest...)} method) when the task completes.
      *
      * @param signOutResponse the response that was received by the task.
      */

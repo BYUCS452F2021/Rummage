@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.presenter;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,10 +29,12 @@ class PostPresenterTest {
     private PostRequest request;
     private PostResponse response;
 
-    /**
+    */
+/**
      * Create a PostPresenter spy that uses a mock service to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws Exception {
         mockCheckAuthorizedService = Mockito.mock(CheckAuthorizedService.class);
@@ -48,9 +51,11 @@ class PostPresenterTest {
         response = new PostResponse(true);
     }
 
-    /*
+    */
+/*
      * Tests if the Post presenter returns the same response as the service
-     */
+     *//*
+
     @Test
     void testPost_returnsServiceResult() throws Exception {
         Mockito.when(mockPostService.post(request)).thenReturn(response);
@@ -63,3 +68,4 @@ class PostPresenterTest {
     // but with dummy data it doesn't make sense to throw any exceptions for post yet
 
 }
+*/

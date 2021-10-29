@@ -1,10 +1,10 @@
 package edu.byu.cs.tweeter.shared.model.service.response;
 
 import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
 
 /**
- * A response for a {@link SignInRequest}.
+ * A response for a {@link LoginRequest}.
  */
 public class LoginResponse extends Response {
 

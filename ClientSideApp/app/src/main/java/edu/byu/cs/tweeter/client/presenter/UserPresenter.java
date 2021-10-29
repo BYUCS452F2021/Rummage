@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import edu.byu.cs.tweeter.client.model.service.UserProxyService;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
@@ -26,7 +26,7 @@ public class UserPresenter extends Presenter {
      * @return the followees/followers.
      */
     public UserResponse getUser(UserRequest request) throws Exception {
-        getCheckAuthorizedService().checkAuthorized(new SignOutRequest(request.getAuthToken()));
+        //getCheckAuthorizedService().checkAuthorized(new SignOutRequest(request.getAuthToken()));
         return getUserService().getUser(request);
     }
 

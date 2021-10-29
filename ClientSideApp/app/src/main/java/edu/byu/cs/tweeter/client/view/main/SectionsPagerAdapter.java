@@ -9,9 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import edu.byu.cs.tweeter.R;
+/*
 import edu.byu.cs.tweeter.client.view.main.tabs.FollowingFollowerFragment;
+*/
 import edu.byu.cs.tweeter.client.view.main.tabs.StatusListFragment;
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+/*import edu.byu.cs.tweeter.shared.model.domain.AuthToken;*/
 import edu.byu.cs.tweeter.shared.model.domain.User;
 
 
@@ -31,27 +33,27 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
     private static final int[] TAB_TITLES = new int[]{R.string.feedTabTitle, R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
     private final Context mContext;
     private final User user;
-    private final AuthToken authToken;
+    /*private final AuthToken authToken;*/
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, User user, AuthToken authToken) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, User user/*, AuthToken authToken*/) {
         super(fm);
         mContext = context;
         this.user = user;
-        this.authToken = authToken;
+        /*this.authToken = authToken;*/
     }
 
     @Override
     public Fragment getItem(int position) {
 
         if (position == FEED_FRAGMENT_POSITION) {
-            return StatusListFragment.newInstance(user, authToken, true);
-        } else if (position == STORY_FRAGMENT_POSITION) {
-            return StatusListFragment.newInstance(user, authToken, false);
+            return StatusListFragment.newInstance(user, /*authToken,*/ true);
+        } /*else if (position == STORY_FRAGMENT_POSITION) {
+            return StatusListFragment.newInstance(user, *//*authToken,*//* false);
         } else if (position == FOLLOWING_FRAGMENT_POSITION ) {
-            return FollowingFollowerFragment.newInstance(user, authToken, true);
+            return FollowingFollowerFragment.newInstance(user, *//*authToken,*//* true);
         } else if(position == FOLLOWERS_FRAGMENT_POSITION) {
-            return FollowingFollowerFragment.newInstance(user, authToken, false);
-        } else {
+            return FollowingFollowerFragment.newInstance(user, *//*authToken,*//* false);
+        }*/ else {
             return PlaceholderFragment.newInstance(position + 1);
         }
     }
@@ -64,7 +66,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 4 total pages.
-        return 4;
+        // Show 1 total pages.
+        return 1;
     }
 }

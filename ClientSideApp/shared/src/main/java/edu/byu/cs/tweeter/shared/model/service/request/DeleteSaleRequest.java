@@ -1,19 +1,19 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
 public class DeleteSaleRequest {
-    private string SaleID;
+    private String SaleID;
 
     public DeleteSaleRequest(){}
 
-    public DeleteSaleRequest(string saleID) {
+    public DeleteSaleRequest(String saleID) {
         SaleID = saleID;
     }
 
-    public string getSaleID() {
+    public String getSaleID() {
         return SaleID;
     }
 
-    public void setSaleID(string saleID) {
+    public void setSaleID(String saleID) {
         SaleID = saleID;
     }
 }

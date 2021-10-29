@@ -7,9 +7,9 @@ import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest
 import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignUpRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.RegisterUserRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
 /*import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;*/
 import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
@@ -41,7 +41,7 @@ public class ServerFacade {
      * @param request contains all information needed to perform a login.
      * @return the login response.
      */
-    public LoginResponse signIn(SignInRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
         LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
@@ -58,7 +58,7 @@ public class ServerFacade {
      * @param request contains all information needed to perform a signup.
      * @return the login response.
      */
-    public LoginResponse signUp(SignUpRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public LoginResponse signUp(RegisterUserRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signUp");
         LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
@@ -75,7 +75,7 @@ public class ServerFacade {
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
-    public SignOutResponse signOut(SignOutRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public SignOutResponse signOut(LogoutRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signOut");
         SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
 
@@ -188,7 +188,7 @@ public class ServerFacade {
         }
     }
 
-    public SignOutResponse checkAuthorized(SignOutRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    /*public SignOutResponse checkAuthorized(SignOutRequest request, String urlPath) throws IOException, TweeterRemoteException {
         SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
 
         if(response.isSuccess()) {
@@ -196,5 +196,5 @@ public class ServerFacade {
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
         }
-    }
+    }*/
 }

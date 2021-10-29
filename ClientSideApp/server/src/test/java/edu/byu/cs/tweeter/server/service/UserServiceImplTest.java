@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.server.service;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,10 +23,12 @@ public class UserServiceImplTest {
     private UserResponse successResponse;
     UserServiceImpl userServiceImpl;
 
-    /**
+    */
+/**
      * Create a UserServiceImpl spy that uses a mock DAO to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws Exception {
         String userAlias = "FirstNameLastName";
@@ -53,20 +56,24 @@ public class UserServiceImplTest {
     }
 
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link UserServiceImpl#getUser(UserRequest)}
      * method returns the same result as the mockDAO.
-     */
+     *//*
+
     @Test
     public void testGetUser_validRequest_correctResponse() throws Exception {
         UserResponse response = userServiceImpl.getUser(validRequest);
         Assertions.assertEquals(successResponse.getUser(), response.getUser());
     }
 
-   /**
+   */
+/**
     * Verify that for failed requests the {@link UserServiceImpl#getUser(UserRequest)}
     * method returns the same result as the {@link UserDAO}.
-    */
+    *//*
+
    @Test
    public void testGetUser_invalidRequest_throwsError() {
        Assertions.assertThrows(Exception.class, () -> userServiceImpl.getUser(invalidRequest));
@@ -77,3 +84,4 @@ public class UserServiceImplTest {
      userServiceImpl.getUserDAO().deleteUser("signUpTester");
    }
 }
+*/

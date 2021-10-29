@@ -5,7 +5,7 @@ import java.io.IOException;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.shared.model.service.SignOutService;
 import edu.byu.cs.tweeter.client.model.net.ServerFacade;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
 
 /*
@@ -18,7 +18,7 @@ public class SignOutProxyService extends ProxyService implements SignOutService 
      * @param request SignOutRequest
      * @ret SignOutResponse response given
      */
-    public SignOutResponse signOut(SignOutRequest request) throws IOException, TweeterRemoteException {
+    public SignOutResponse signOut(LogoutRequest request) throws IOException, TweeterRemoteException {
         ServerFacade serverFacade = getServerFacade();
         return serverFacade.signOut(request, "/signout");
     }

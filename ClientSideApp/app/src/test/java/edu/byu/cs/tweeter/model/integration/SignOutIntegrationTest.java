@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.integration;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,10 +23,12 @@ public class SignOutIntegrationTest {
 
     private SignOutResponse successResponse;
 
-    /**
+    */
+/**
      * Create a SignOutService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         signOutService = new SignOutProxyService();
@@ -40,3 +43,4 @@ public class SignOutIntegrationTest {
         assertEquals(successResponse.isSuccess(), actual.isSuccess());
     }
 }
+*/

@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.service;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,10 +30,12 @@ public class StatusListProxyServiceTest {
 
     StatusListProxyService statusListServiceSpy;
 
-    /**
+    */
+/**
      * Create a StatusListService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws IOException, TweeterRemoteException {
         User currentUser = new User("FirstName", "LastName", "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
@@ -58,25 +61,29 @@ public class StatusListProxyServiceTest {
         Mockito.when(statusListServiceSpy.getServerFacade()).thenReturn(mockServerFacade);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link StatusListProxyService#getStatuses(StatusListRequest)}
      * method returns the same result as the {@link ServerFacade}.
      * .
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetStatuses_validRequest_correctResponse() throws IOException, TweeterRemoteException {
         StatusListResponse response = statusListServiceSpy.getStatuses(validRequest);
         Assertions.assertEquals(successResponse, response);
     }
 
-    /**
+    */
+/**
      * Verify that the {@link StatusListProxyService#getStatuses(StatusListRequest)} method loads the
      * profile image of each user included in the result.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetStatuses_validRequest_loadsProfileImages() throws IOException, TweeterRemoteException {
         StatusListResponse response = statusListServiceSpy.getStatuses(validRequest);
@@ -86,15 +93,18 @@ public class StatusListProxyServiceTest {
         }
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link StatusListProxyService#getStatuses(StatusListRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetStatuses_invalidRequest_returnsNoStatuses() throws IOException, TweeterRemoteException {
         StatusListResponse response = statusListServiceSpy.getStatuses(invalidRequest);
         Assertions.assertEquals(failureResponse, response);
     }
 }
+*/

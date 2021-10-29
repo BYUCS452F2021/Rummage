@@ -1,10 +1,11 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
+
 /**
  * Contains all the information needed to make signUp requests.
  */
 public class RegisterUserRequest extends LoginRequest {
-
     private String firstName;
     private String lastName;
     private String imageUrl;

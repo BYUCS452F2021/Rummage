@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.integration;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,10 +26,12 @@ public class SignInIntegrationTest {
     private LoginResponse successResponse;
     private LoginResponse failResponse;
 
-    /**
+    */
+/**
      * Create a SignInService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         signInService = Mockito.spy(new SignInProxyService());
@@ -54,3 +57,4 @@ public class SignInIntegrationTest {
     //    assertEquals(failResponse.getUser(), actual.getUser());
     //}
 }
+*/

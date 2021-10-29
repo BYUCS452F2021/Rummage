@@ -2,12 +2,14 @@ package edu.byu.cs.tweeter.client.presenter;
 
 import java.io.IOException;
 
-import edu.byu.cs.tweeter.client.model.service.CheckAuthorizedProxyService;
+/*import edu.byu.cs.tweeter.client.model.service.CheckAuthorizedProxyService;*/
 import edu.byu.cs.tweeter.client.model.service.PostProxyService;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
+/*
 import edu.byu.cs.tweeter.shared.model.service.CheckAuthorizedService;
+*/
 import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
 
 /*
@@ -30,7 +32,7 @@ public class PostPresenter extends Presenter {
      * @ret PostResponse response from post service
      */
     public PostResponse post(PostRequest request) throws Exception {
-        getCheckAuthorizedService().checkAuthorized(new SignOutRequest(request.getAuthToken()));
+        //getCheckAuthorizedService().checkAuthorized(new SignOutRequest(request.getAuthToken()));
         return getPostService().post(request);
     }
 

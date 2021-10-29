@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.service;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,10 +26,12 @@ class PostProxyServiceTest {
     private PostResponse successResponse;
     private PostResponse failResponse;
 
-    /**
+    */
+/**
      * Create a PostService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         spyPostService = Mockito.spy(new PostProxyService());
@@ -46,12 +49,14 @@ class PostProxyServiceTest {
         Mockito.when(mockServerFacade.post(invalidRequest, "/poststatus")).thenReturn(failResponse);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link PostProxyService#post(PostRequest)} (PostRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     void testPost_whenValidRequest_thenValidResponse() throws IOException, TweeterRemoteException {
         PostResponse actual = spyPostService.post(validRequest);
@@ -60,12 +65,14 @@ class PostProxyServiceTest {
 
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link PostProxyService#post(PostRequest)} (PostRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     void testPost_whenInvalidRequest_thenInvalidResponse() throws IOException, TweeterRemoteException {
         PostResponse actual = spyPostService.post(invalidRequest);
@@ -74,3 +81,4 @@ class PostProxyServiceTest {
     }
 
 }
+*/

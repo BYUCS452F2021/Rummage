@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.presenter;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,10 +32,12 @@ class LoginPresenterTest {
     private SignInRequest testSignUpRequest;
     private LoginResponse expectedResponse;
 
-    /**
+    */
+/**
      * Create a LoginPresenter spy that uses a mock service to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         testSignInRequest = new SignInRequest("alias", "pass");
@@ -55,39 +58,48 @@ class LoginPresenterTest {
 
     }
 
-    /*
+    */
+/*
      * Tests if the presenter returns the same response as the service when signing in
-     */
+     *//*
+
     @Test
     void testSignIn_returnsServiceResult() throws IOException, TweeterRemoteException {
         LoginResponse actual = spyLoginPresenter.login(testSignInRequest);
         assertEquals(expectedResponse, actual);
     }
 
-    /*
+    */
+/*
      * Tests if the presenter returns the same response as the service when signing up
-     */
+     *//*
+
     @Test
     void testSignUp_returnsServiceResult() throws IOException, TweeterRemoteException {
         LoginResponse actual = spyLoginPresenter.login(testSignUpRequest);
         assertEquals(expectedResponse, actual);
     }
 
-    /*
+    */
+/*
      * Tests if the presenters throws the same error as the service when signing in
-     */
+     *//*
+
     @Test
     public void testSignInServiceThrows_thenPresenterThrows() throws IOException, TweeterRemoteException {
         Mockito.when(mockSignInService.login(testSignInRequest)).thenThrow(new IOException());
         Assertions.assertThrows(IOException.class, () -> spyLoginPresenter.login(testSignInRequest));
     }
 
-    /*
+    */
+/*
      * Tests if the presenters throws the same error as the service when signing up
-     */
+     *//*
+
     @Test
     public void testSignUpServiceThrows_thenPresenterThrows() throws IOException, TweeterRemoteException {
         Mockito.when(mockSignUpService.login(testSignUpRequest)).thenThrow(new IOException());
         Assertions.assertThrows(IOException.class, () -> spyLoginPresenter.login(testSignUpRequest));
     }
 }
+*/
