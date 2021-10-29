@@ -5,9 +5,9 @@ package edu.byu.cs.tweeter.shared.model.service.request;
 /**
  * Contains all of the information needed to sign out an authenticated user.
  */
-public class SignOutRequest {
+public class LogoutRequest {
 
-    public SignOutRequest() {}
+    public LogoutRequest() {}
 
     //private AuthToken sessionAuthToken;
 
