@@ -1,31 +1,20 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
-{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\f0\fs22\lang9  Schema:\par
  - Users (\ul Username\ulnone , Password, ContactInfoID)\par
-    - Foreign Key ContactInfoID references ContactInfo\par
-\par
- - ContactInfo (\ul ContactInfoID\ulnone , FirstName, LastName, BirthDate, Email, Phone)\par
-\par
- - FollowedUsers (\ul Username\ulnone , \ul FollowedUser\ulnone )\par
-    - Foreign Key Username references Users\par
-    - Foreign Key FollowedUser references Users\par
+    -  ContactInfo Embed( FirstName, LastName, BirthDate, Email, Phone)\par
+avoids costly joins by embedding\par
 \par
  - FollowedSales (\ul Username\ulnone , \ul FollowedSale\ulnone )\par
     - Foreign Key Username references Users\par
     - Foreign Key FollowedSale references YardSales\par
 \par
  - YardSales (\ul SaleID\ulnone , Username, Date, Location, Description, Type)\par
-    - Foreign Key LocationID references Location\par
-    - Foreign Key Username references Users\par
+embed document Location : (City, State, Address)\par
+    - Foreign Key Username references Users (Third Normal Form at work)\par
 \par
- - Location (\ul LocationID\ulnone , City, State, Address)\par
 \par
- - Items (\ul ItemID\ulnone , Sale, Title, Description, Price)\par
-    - Foreign Key SaleID references YardSales\par
 \par
- - Images (\ul ImageID\ulnone , Item, Sale, Url)\par
-    - Foreign Key SaleID references YardSales\par
-    - Foreign Key ItemID references Items\par
 \par
 # TODO - REVIEW TABLE NAME EXPLANATIONS #######################################\par
 Table name explanations:\par
@@ -134,7 +123,7 @@ Evidence of Normalization:\par
  - 2NF: Every table has either a singular primary key or, in instances where we have a composite key, the composite primary key are\par
         the only attributes in the table making it impossible for our tables to not be in 2NF.\par
  - 3NF: In every relation, the primary key or composite keys are the only attributes that functionally determine any other attribute in the relation.\par
- - 4NF: The only violation we had of 4NF was an Images table that stored both images for Items and for YardSales. However, with Item and YardSale images\par 
+ - 4NF: The only violation we had of 4NF was an Images table that stored both images for Items and for YardSales. However, with Item and YardSale images\par
         separated into ItemImages and YardSaleImages we no longer have any relations with multi-valued dependencies.\par
 \par
 # Notes:\par
@@ -167,3 +156,4 @@ Evidence of Normalization:\par
 # I added TODOs: review table name explanations, add column name explanations,\par
 # add evidence of normalization.\par
 }
+ 
