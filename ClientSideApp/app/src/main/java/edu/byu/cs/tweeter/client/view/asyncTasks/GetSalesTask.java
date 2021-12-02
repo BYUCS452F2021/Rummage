@@ -3,31 +3,31 @@ package edu.byu.cs.tweeter.client.view.asyncTasks;
 import android.os.AsyncTask;
 
 
-import edu.byu.cs.tweeter.client.presenter.FollowedSalesPresenter;
+import edu.byu.cs.tweeter.client.presenter.SalesListPresenter;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
 
 /*
  * An {@link AsyncTask} for retrieving statuses for a user.
  */
-public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, FollowedSalesResponse> {
+public class GetSalesTask extends AsyncTask<FollowedSalesRequest, Void, FollowedSalesResponse> {
     private final Observer observer;
     private Exception exception;
-    private FollowedSalesPresenter followedSalesPresenter;
+    private SalesListPresenter salesListPresenter;
 
     /**
      * Creates an instance.
      *
      * @param observer          the observer who wants to be notified when this task completes.
-     * @param followedSalesPresenter the presenter from whom this task should retrieve statuses.
+     * @param salesListPresenter the presenter from whom this task should retrieve statuses.
      */
-    public GetFollowedSalesTask(Observer observer, FollowedSalesPresenter followedSalesPresenter) {
+    public GetSalesTask(Observer observer, SalesListPresenter salesListPresenter) {
         if (observer == null) {
             throw new NullPointerException();
         }
 
         this.observer = observer;
-        this.followedSalesPresenter = followedSalesPresenter;
+        this.salesListPresenter = salesListPresenter;
     }
 
     /**
@@ -37,7 +37,7 @@ public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, 
      */
     public interface Observer {
 
-        void followedSalesRetrieved(FollowedSalesResponse follwedSalesResponse);
+        void salesRetrieved(FollowedSalesResponse follwedSalesResponse);
 
         void handleException(Exception exception);
 
@@ -56,7 +56,7 @@ public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, 
         FollowedSalesResponse response = null;
 
         try {
-            response = followedSalesPresenter.getFollowedSales((followedSalesRequests[0]));
+            response = salesListPresenter.getFollowedSales((followedSalesRequests[0]));
         } catch (Exception ex) {
             exception = ex;
         }
@@ -74,7 +74,7 @@ public class GetFollowedSalesTask extends AsyncTask<FollowedSalesRequest, Void, 
         if (exception != null) {
             observer.handleException(exception);
         } else {
-            observer.followedSalesRetrieved(followedSalesResponse);
+            observer.salesRetrieved(followedSalesResponse);
         }
     }
 }

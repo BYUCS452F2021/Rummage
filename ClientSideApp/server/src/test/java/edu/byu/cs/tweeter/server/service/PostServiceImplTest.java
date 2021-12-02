@@ -1,20 +1,21 @@
 package edu.byu.cs.tweeter.server.service;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import edu.byu.cs.tweeter.server.dao.StoryDAO;
-import edu.byu.cs.tweeter.server.dao.UserDAO;
-import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
+//import edu.byu.cs.tweeter.server.dao.StoryDAO;
+//import edu.byu.cs.tweeter.server.dao.UserDAO;
+//import edu.byu.cs.tweeter.shared.model.domain.User;
+//import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
+//import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Matchers.any;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.mockito.Matchers.any;
+/*
 
 public class PostServiceImplTest {
 
@@ -28,10 +29,12 @@ public class PostServiceImplTest {
     private PostResponse successResponse;
     private PostResponse failResponse;
 
-    /**
+    */
+/**
      * Create a PostService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws Exception {
         spyPostServiceImpl = Mockito.spy(new PostServiceImpl());
@@ -54,10 +57,12 @@ public class PostServiceImplTest {
         //Mockito.when(mockStoryDAO.createPost(invalidRequest, user2.getFirstName(), user2.getLastName(), user2.getImageUrl(), any(String.class), any(Long.class))).thenReturn(false);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     void testPost_whenValidRequest_thenValidResponse() throws Exception {
         PostResponse actual = spyPostServiceImpl.post(validRequest);
@@ -65,10 +70,12 @@ public class PostServiceImplTest {
         //Mockito.verify(mockPostDAO).post(validRequest);
     }
 
-    /* *
+    */
+/* *
      * Verify that for failed requests the {@link PostServiceImpl#post(PostRequest)}
      * method returns the same result as the {@link PostDAO}.
-     */
+     *//*
+
     //@Test
     //void testPost_whenInvalidRequest_thenInvalidResponse() throws Exception {
     //    PostResponse actual = spyPostServiceImpl.post(invalidRequest);
@@ -76,3 +83,4 @@ public class PostServiceImplTest {
     //    //Mockito.verify(mockPostDAO).post(invalidRequest);
     //}
 }
+*/

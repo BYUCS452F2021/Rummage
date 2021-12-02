@@ -19,8 +19,8 @@ import edu.byu.cs.tweeter.client.view.asyncTasks.LoginTask;
 import edu.byu.cs.tweeter.client.presenter.LoginPresenter;
 import edu.byu.cs.tweeter.client.presenter.Presenter;
 import edu.byu.cs.tweeter.client.view.main.MainActivity;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignUpRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.RegisterUserRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 
 /**
@@ -84,6 +84,8 @@ public class SignUpFragment extends Fragment implements Presenter.View, LoginTas
         TextWatcher textWatcher = new EmptyFieldTextWatcher();
         presenter = new LoginPresenter(this);
 
+        //FIXME have it get the proper registration information
+
         editTextAlias = view.findViewById(R.id.input_alias);
         editTextAlias.addTextChangedListener(textWatcher);
 
@@ -101,7 +103,7 @@ public class SignUpFragment extends Fragment implements Presenter.View, LoginTas
 
         signUpButton = view.findViewById(R.id.sign_up_button);
         signUpButton.setOnClickListener((View signUpButtonView) -> {
-            SignInRequest signUpRequest = new SignUpRequest(editTextAlias.getText().toString(),
+            RegisterUserRequest signUpRequest = new RegisterUserRequest(editTextAlias.getText().toString(),
                     editTextPassword.getText().toString(),
                     editTextFirstName.getText().toString(),
                     editTextLastName.getText().toString(),
@@ -123,8 +125,8 @@ public class SignUpFragment extends Fragment implements Presenter.View, LoginTas
         Intent intent = new Intent(this.getContext(), MainActivity.class);
 
         intent.putExtra(MainActivity.CURRENT_USER_KEY, loginResponse.getUser());
-        intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
-        intent.putExtra(MainActivity.AUTH_TOKEN_KEY, loginResponse.getAuthToken());
+        //intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
+        //intent.putExtra(MainActivity.AUTH_TOKEN_KEY, loginResponse.getAuthToken());
 
         Toast.makeText(SignUpFragment.this.getContext(), R.string.signUpSuccess,
                 Toast.LENGTH_LONG).show();

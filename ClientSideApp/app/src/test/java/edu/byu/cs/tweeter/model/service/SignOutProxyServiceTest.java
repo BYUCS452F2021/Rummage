@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.service;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,10 +27,12 @@ class SignOutProxyServiceTest {
     private SignOutResponse successResponse;
     private SignOutResponse failResponse;
 
-    /**
+    */
+/**
      * Create a SignOutService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         spySignOutService = Mockito.spy(new SignOutProxyService());
@@ -44,12 +47,14 @@ class SignOutProxyServiceTest {
         Mockito.when(mockServerFacade.signOut(invalidRequest, "/signout")).thenReturn(failResponse);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link SignOutProxyService#signOut(SignOutRequest)} (SignOutRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     void testSignOut_whenValidRequest_thenValidResponse() throws IOException, TweeterRemoteException {
         SignOutResponse actual = spySignOutService.signOut(validRequest);
@@ -57,12 +62,14 @@ class SignOutProxyServiceTest {
         Mockito.verify(mockServerFacade).signOut(validRequest, "/signout");
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link SignOutProxyService#signOut(SignOutRequest)} (SignOutRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     void testSignOut_whenInvalidRequest_thenInvalidResponse() throws IOException, TweeterRemoteException {
         SignOutResponse actual = spySignOutService.signOut(invalidRequest);
@@ -70,4 +77,4 @@ class SignOutProxyServiceTest {
         Mockito.verify(mockServerFacade).signOut(invalidRequest, "/signout");
     }
 
-}
+}*/

@@ -1,15 +1,24 @@
 package edu.byu.cs.tweeter.client.model.net;
 
-import java.io.IOException;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
+import java.io.IOException;
+import java.time.ZonedDateTime;
+import java.util.LinkedList;
+import java.util.List;
+
+import edu.byu.cs.tweeter.shared.model.domain.Sale;
+import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignUpRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.RegisterUserRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
 /*import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;*/
 import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
@@ -17,7 +26,7 @@ import edu.byu.cs.tweeter.shared.model.service.response.FollowingFollowersRespon
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeResponse;
-import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
+import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
 /**
@@ -41,15 +50,18 @@ public class ServerFacade {
      * @param request contains all information needed to perform a login.
      * @return the login response.
      */
-    public LoginResponse signIn(SignInRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
-        LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
+
+        return new LoginResponse(new User("testMicky","dummypass","1234"));
+
+        /*LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -58,15 +70,17 @@ public class ServerFacade {
      * @param request contains all information needed to perform a signup.
      * @return the login response.
      */
-    public LoginResponse signUp(SignUpRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public LoginResponse signUp(RegisterUserRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signUp");
-        LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
+        return new LoginResponse(new User("testMicky","dummypass","1234"));
+
+       /* LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -75,15 +89,17 @@ public class ServerFacade {
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
-    public SignOutResponse signOut(SignOutRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    public LogoutResponse signOut(LogoutRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signOut");
-        SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
+        return new LogoutResponse(true);
+
+        /*SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -94,13 +110,15 @@ public class ServerFacade {
      */
     public PostResponse post(PostRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:post");
-        PostResponse response = clientCommunicator.doPost(urlPath, request, null, PostResponse.class);
+        return new PostResponse(true);
+
+        /*PostResponse response = clientCommunicator.doPost(urlPath, request, null, PostResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /* *
@@ -160,15 +178,25 @@ public class ServerFacade {
      * @param request contains all information needed to perform the operation.
      * @return the response.
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public FollowedSalesResponse getFollowedSales(FollowedSalesRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:getStatuses");
-        FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
+        List<Sale> demo = new LinkedList<>();
+        demo.add(new Sale(1, "UserA", ZonedDateTime.now(), 0, "The best sale ever", "Yard Sale"));
+        demo.add(new Sale(2, "UserB", ZonedDateTime.now(), 0, "The bestest sale ever", "Yard Sale"));
+        demo.add(new Sale(3, "UserD", ZonedDateTime.now(), 0, "The bester sale ever", "Yard Sale"));
+        demo.add(new Sale(4, "UserE", ZonedDateTime.now(), 0, "The bestestest sale ever", "Yard Sale"));
+        demo.add(new Sale(5, "UserH", ZonedDateTime.now(), 0, "The besterest sale ever", "Yard Sale"));
+        demo.add(new Sale(6, "UserN", ZonedDateTime.now(), 0, "The besterier sale ever", "Yard Sale"));
+        demo.add(new Sale(7, "UserB", ZonedDateTime.now(), 0, "The best pie sale ever", "Pie Sale"));
+        return new FollowedSalesResponse(demo, false);
+        /*FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
 
         if(response.isSuccess()) {
             return response;
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
-        }
+        }*/
     }
 
     /**
@@ -188,7 +216,7 @@ public class ServerFacade {
         }
     }
 
-    public SignOutResponse checkAuthorized(SignOutRequest request, String urlPath) throws IOException, TweeterRemoteException {
+    /*public SignOutResponse checkAuthorized(SignOutRequest request, String urlPath) throws IOException, TweeterRemoteException {
         SignOutResponse response = clientCommunicator.doPost(urlPath, request, null, SignOutResponse.class);
 
         if(response.isSuccess()) {
@@ -196,5 +224,5 @@ public class ServerFacade {
         } else {
             throw new TweeterServerException(response.getMessage(), null, null);
         }
-    }
+    }*/
 }

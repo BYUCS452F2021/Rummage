@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.integration;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,10 +22,12 @@ public class RelationshipChangeIntegrationTest {
 
     RelationshipChangeProxyService relationshipChangeService;
 
-    /**
+    */
+/**
      * Create a RelationshipChangeService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() {
         String userAlias = "@testIntegrationRelChange";
@@ -43,25 +46,29 @@ public class RelationshipChangeIntegrationTest {
         relationshipChangeService = new RelationshipChangeProxyService();
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link RelationshipChangeProxyService#changeRelationship(RelationshipChangeRequest)}
      * method returns the expected result.
      *
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetUser_validRequest_correctResponse() throws IOException, TweeterRemoteException {
         RelationshipChangeResponse response = relationshipChangeService.changeRelationship(validFollowRequest);
         Assertions.assertEquals(expectedFollowResponse.isFollowRelationship(), response.isFollowRelationship());
     }
 
-    /**
+    */
+/**
      * Verify that for unfollow requests the {@link RelationshipChangeProxyService#changeRelationship(RelationshipChangeRequest)}
      * method returns the expected result.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetUser_invalidRequest_returnsNoUser() throws IOException, TweeterRemoteException {
         RelationshipChangeResponse response = relationshipChangeService.changeRelationship(validUnfollowRequest);
@@ -69,3 +76,4 @@ public class RelationshipChangeIntegrationTest {
     }
 
 }
+*/

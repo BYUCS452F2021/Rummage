@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.integration;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,10 +25,12 @@ public class FollowingFollowerIntegrationTest {
 
     private FollowingFollowerProxyService followingFollowerService;
 
-    /**
+    */
+/**
      * Create a FollowingService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() {
         User currentUser = new User("FirstName", "LastName", "@testFollowerFolloweeIntegration", null);
@@ -51,25 +54,29 @@ public class FollowingFollowerIntegrationTest {
         followingFollowerService = new FollowingFollowerProxyService();
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link FollowingFollowerProxyService#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)}
      * method returns the same result as the {@link ServerFacade}.
      * .
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetFollowees_validRequest_correctResponse() throws IOException, TweeterRemoteException {
         FollowingFollowersResponse response = followingFollowerService.getFollowingFollowers(validRequest);
         Assertions.assertEquals(successResponse.getFollowees().size(), response.getFollowees().size());
     }
 
-    /**
+    */
+/**
      * Verify that the {@link FollowingFollowerProxyService#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)} method loads the
      * profile image of each user included in the result.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetFollowees_validRequest_loadsProfileImages() throws IOException, TweeterRemoteException {
         FollowingFollowersResponse response = followingFollowerService.getFollowingFollowers(validRequest);
@@ -79,15 +86,18 @@ public class FollowingFollowerIntegrationTest {
         }
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link FollowingFollowerProxyService#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetFollowees_invalidRequest_returnsNoFollowees() throws IOException, TweeterRemoteException {
         FollowingFollowersResponse response = followingFollowerService.getFollowingFollowers(invalidRequest);
         Assertions.assertEquals(failureResponse, response);
     }
 }
+*/

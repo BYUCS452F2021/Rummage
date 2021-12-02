@@ -1,17 +1,11 @@
 package edu.byu.cs.tweeter.client.view.main.tabs;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.util.Pair;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,37 +16,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.StringTokenizer;
 
 import edu.byu.cs.tweeter.R;
-import edu.byu.cs.tweeter.client.presenter.UserPresenter;
-import edu.byu.cs.tweeter.client.view.asyncTasks.GetUserTask;
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
-import edu.byu.cs.tweeter.shared.model.domain.Status;
+import edu.byu.cs.tweeter.client.presenter.SalesListPresenter;
+import edu.byu.cs.tweeter.client.view.asyncTasks.GetSalesTask;
+/*import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+import edu.byu.cs.tweeter.shared.model.domain.Status;*/
+import edu.byu.cs.tweeter.shared.model.domain.Sale;
 import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.client.presenter.StatusListPresenter;
-import edu.byu.cs.tweeter.client.util.SpanningLinksUtils;
-import edu.byu.cs.tweeter.client.view.asyncTasks.GetStatusTask;
+import edu.byu.cs.tweeter.shared.model.service.request.FollowedSalesRequest;
+import edu.byu.cs.tweeter.shared.model.service.response.FollowedSalesResponse;
+//import edu.byu.cs.tweeter.client.presenter.StatusListPresenter;
+//import edu.byu.cs.tweeter.client.view.asyncTasks.GetStatusTask;
+/*
 import edu.byu.cs.tweeter.client.view.main.UserViewActivity;
-import edu.byu.cs.tweeter.client.view.util.ImageUtils;
-import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.UserRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
-import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
+*/
+
+//import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
+//import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
+
 
 /**
  * The fragment that displays on the 'Feed' and 'Story' tab.
  */
-public class StatusListFragment extends Fragment implements StatusListPresenter.View, GetUserTask.Observer {
-    private static final String LOG_TAG = "StatusListFragment";
+public class SaleListFragment extends Fragment implements SalesListPresenter.View/*, GetUserTask.Observer*/ {
+    private static final String LOG_TAG = "SaleListFragment";
     private static final String USER_KEY = "UserKey";
+/*
     private static final String AUTH_TOKEN_KEY = "AuthTokenKey";
-    private static final String IS_FEED_KEY = "IsFeedKey";
+*/
+    private static final String IS_FOLLOW_LIST_KEY = "IsFeedKey";
     private static final int PAGE_SIZE = 10;
 
     private static final int LOADING_DATA_VIEW = 0;
@@ -60,9 +57,10 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
 
     private boolean isFeed;
     private User user;
-    private AuthToken authToken;
-    private StatusListPresenter presenter;
-    private StatusRecyclerViewAdapter statusRecyclerViewAdapter;
+    /*private AuthToken authToken;*/
+    private SalesListPresenter presenter;
+    private SaleRecyclerViewAdapter saleRecyclerViewAdapter;
+
 
     boolean isFeed() {
         return isFeed;
@@ -72,24 +70,26 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         return user;
     }
 
-    StatusListPresenter getPresenter() {
+    SalesListPresenter getPresenter() {
         return presenter;
     }
 
-    StatusRecyclerViewAdapter getStatusRecyclerViewAdapter() {
-        return statusRecyclerViewAdapter;
+
+    SaleRecyclerViewAdapter getSaleRecyclerViewAdapter() {
+        return saleRecyclerViewAdapter;
     }
+
 
     /**
      * Creates an instance of the fragment and places the status and auth token in an arguments
      * bundle assigned to the fragment.
      *
      * @param user      the logged in user.
-     * @param authToken the auth token for this status's session.
-     * @param isFeed    whether this fragment displays feed or story.
+     * @ param authToken the auth token for this status's session.
+     * @param isFollowList    whether this fragment displays feed or story.
      * @return the fragment.
      */
-    public static StatusListFragment newInstance(User user, AuthToken authToken, boolean isFeed) {
+    public static SaleListFragment newInstance(User user, boolean isFollowList) {
 
 //        URLSpan urlSpan = new URLSpan("https://ocremix.org/") {
 //            @Override
@@ -100,12 +100,12 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
 //            }
 //        };
 
-        StatusListFragment fragment = new StatusListFragment();
+        SaleListFragment fragment = new SaleListFragment();
 
         Bundle args = new Bundle(3);
         args.putSerializable(USER_KEY, user);
-        args.putSerializable(AUTH_TOKEN_KEY, authToken);
-        args.putBoolean(IS_FEED_KEY, isFeed);
+        /*args.putSerializable(AUTH_TOKEN_KEY, authToken);*/
+        args.putBoolean(IS_FOLLOW_LIST_KEY, isFollowList);
 
         fragment.setArguments(args);
         return fragment;
@@ -114,54 +114,57 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_statuses, container, false);
+        View view = inflater.inflate(R.layout.fragment_sales, container, false);
 
         //noinspection ConstantConditions
         user = (User) getArguments().getSerializable(USER_KEY);
+/*
         authToken = (AuthToken) getArguments().getSerializable(AUTH_TOKEN_KEY);
-        isFeed = getArguments().getBoolean(IS_FEED_KEY);
+*/
+        isFeed = getArguments().getBoolean(IS_FOLLOW_LIST_KEY);
 
-        presenter = new StatusListPresenter(this);
+        presenter = new SalesListPresenter(this);
 
-        RecyclerView statusListRecyclerView = view.findViewById(R.id.statusListRecyclerView);
+        RecyclerView statusListRecyclerView = view.findViewById(R.id.saleListRecyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         statusListRecyclerView.setLayoutManager(layoutManager);
 
-        statusRecyclerViewAdapter = new StatusRecyclerViewAdapter(this);
-        statusListRecyclerView.setAdapter(statusRecyclerViewAdapter);
+        saleRecyclerViewAdapter = new SaleRecyclerViewAdapter(this);
+        statusListRecyclerView.setAdapter(saleRecyclerViewAdapter);
 
-        statusListRecyclerView.addOnScrollListener(new StatusListFragment.FeedRecyclerViewPaginationScrollListener(layoutManager));
+        statusListRecyclerView.addOnScrollListener(new FeedRecyclerViewPaginationScrollListener(layoutManager));
 
         return view;
     }
 
-    @Override
+    //FIXME re-purpose into sale view activity
+    /*@Override
     public void userRetrieved(UserResponse userResponse) {
-        Intent intent = new Intent(this.getContext(), UserViewActivity.class);
+        Intent intent = new Intent();*//*this.getContext(), UserViewActivity.class);
         intent.putExtra(UserViewActivity.USER_KEY, user);
         intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
         intent.putExtra(UserViewActivity.MENTIONED_KEY, userResponse.getUser());
         intent.putExtra(UserViewActivity.IS_FOLLOWING_KEY, userResponse.getIsFollowing());
-        intent.putExtra(UserViewActivity.USER_IMAGE, userResponse.getUser().getImageBytes());
+        intent.putExtra(UserViewActivity.USER_IMAGE, userResponse.getUser().getImageBytes());*//*
         startActivity(intent);
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void handleException(Exception ex) {
         Log.e(LOG_TAG, ex.getMessage(), ex);
         Toast.makeText(this.getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
         if (Objects.equals(ex.getMessage(), "Unauthorized")) {
             this.getActivity().finish();
         }
-    }
+    }*/
 
-    /**
+   /**
      * The ViewHolder for the RecyclerView that displays the Feed data.
      */
-    private class StatusListHolder extends RecyclerView.ViewHolder {
-        private final StatusListFragment statusesFragment;
-        private final ImageView authorImage;
+    private class SaleListHolder extends RecyclerView.ViewHolder {
+        private final SaleListFragment statusesFragment;
+        /*private final ImageView authorImage;*/
         private final TextView authorAlias;
         private final TextView postDate;
         private final TextView statusContent;
@@ -172,11 +175,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          *
          * @param itemView the view on which the user will be displayed.
          */
-        StatusListHolder(StatusListFragment statusListFragment, @NonNull View itemView, int viewType) {
+        SaleListHolder(SaleListFragment statusListFragment, @NonNull View itemView, int viewType) {
             super(itemView);
             this.statusesFragment = statusListFragment;
 
-            authorImage = itemView.findViewById(R.id.authorImage);
+            /*authorImage = itemView.findViewById(R.id.authorImage);*/
             authorAlias = itemView.findViewById(R.id.authorAlias);
             postDate = itemView.findViewById(R.id.postDate);
 
@@ -192,30 +195,30 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         /**
          * Binds the status's data to the view.
          *
-         * @param status the status.
+         * @param sale the status.
          */
-        void bindStatus(Status status) {
-            authorImage.setImageDrawable(ImageUtils.drawableFromByteArray(status.getPoster().getImageBytes()));
-            String author = status.getPoster().getAlias();
+        void bindSale(Sale sale) {
+            /*authorImage.setImageDrawable(ImageUtils.drawableFromByteArray(sale.getPoster().getImageBytes()));*/
+            String author = sale.getUsername();
             authorAlias.setText(author);
-            applyMentionsToAuthor(author, authorAlias);
-            postDate.setText(status.generateDate().toString());
+            /*applyMentionsToAuthor(author, authorAlias);*/
+            postDate.setText(sale.generateDate().toString());
 
-            String stringToEdit = status.getMessage();
-            statusContent.setText(Html.fromHtml(stringToEdit));
-            applyMentionsToMessage(stringToEdit, statusContent);
+            /*String stringToEdit = sale.getDescription();*/
+            statusContent.setText(Html.fromHtml(sale.getDescription()));
+            /*applyMentionsToMessage(stringToEdit, statusContent);*/
         }
 
-        private boolean IsValidUrl(String urlString) {
+        /*private boolean IsValidUrl(String urlString) {
             try {
                 URL url = new URL(urlString);
                 return URLUtil.isValidUrl(urlString) && Patterns.WEB_URL.matcher(urlString).matches();
             } catch (MalformedURLException ignored) {
             }
             return false;
-        }
+        }*/
 
-        private void applyMentionsToAuthor(String stringToModify, TextView view) {
+        /*private void applyMentionsToAuthor(String stringToModify, TextView view) {
 
             List<Pair<String, View.OnClickListener>> links = new ArrayList<>();
 
@@ -227,17 +230,17 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
                 userRequest.setAuthToken(this.statusesFragment.authToken);
                 userTask.execute(userRequest);
 
-                /*Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
+                Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
                 intent.putExtra(UserViewActivity.USER_KEY, user);
                 intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
                 intent.putExtra(UserViewActivity.MENTIONED_KEY, mention);
-                startActivity(intent);*/
+                startActivity(intent);
             }));
 
             SpanningLinksUtils.makeLinks(view, links);
-        }
+        }*/
 
-        private void applyMentionsToMessage(String stringToModify, TextView view) {
+        /*private void applyMentionsToMessage(String stringToModify, TextView view) {
 
             List<Pair<String, View.OnClickListener>> links = new ArrayList<>();
 
@@ -256,11 +259,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
                         userRequest.setAuthToken(this.statusesFragment.authToken);
                         userTask.execute(userRequest);
 
-                        /*Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
+                        Intent intent = new Intent(statusesFragment.getContext(), UserViewActivity.class);
                         intent.putExtra(UserViewActivity.USER_KEY, user);
                         intent.putExtra(UserViewActivity.AUTH_TOKEN_KEY, authToken);
                         intent.putExtra(UserViewActivity.MENTIONED_KEY, mention);
-                        startActivity(intent);*/
+                        startActivity(intent);
                     }));
                 }
 
@@ -274,18 +277,18 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             }
 
             SpanningLinksUtils.makeLinks(view, links);
-        }
+        }*/
     }
 
     /**
      * The adapter for the RecyclerView that displays the Feed data.
      */
-    private class StatusRecyclerViewAdapter extends RecyclerView.Adapter<StatusListHolder> implements GetStatusTask.Observer {
+    private class SaleRecyclerViewAdapter extends RecyclerView.Adapter<SaleListHolder> implements GetSalesTask.Observer {
 
-        private StatusListFragment statusListFragment;
-        private final List<Status> statuses = new ArrayList<>();
+        private SaleListFragment saleListFragment;
+        private final List<Sale> sales = new ArrayList<>();
 
-        private Status lastStatus;
+        private Sale lastSale;
 
         private boolean hasMorePages;
         private boolean isLoading = false;
@@ -302,8 +305,8 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
         /**
          * Creates an instance and loads the first page of feed data.
          */
-        StatusRecyclerViewAdapter(StatusListFragment statusesFragment) {
-            this.statusListFragment = statusesFragment;
+        SaleRecyclerViewAdapter(SaleListFragment statusesFragment) {
+            this.saleListFragment = statusesFragment;
             loadMoreItems();
         }
 
@@ -311,23 +314,23 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          * Adds new statuses to the list from which the RecyclerView retrieves the statuses it
          * displays and notifies the RecyclerView that items have been added.
          *
-         * @param newStatuses the users to add.
+         * @param newSales the users to add.
          */
-        void addItems(List<Status> newStatuses) {
-            int startInsertPosition = statuses.size();
-            statuses.addAll(newStatuses);
-            this.notifyItemRangeInserted(startInsertPosition, newStatuses.size());
+        void addItems(List<Sale> newSales) {
+            int startInsertPosition = sales.size();
+            sales.addAll(newSales);
+            this.notifyItemRangeInserted(startInsertPosition, newSales.size());
         }
 
         /**
          * Adds a single status to the list from which the RecyclerView retrieves the statuses it
          * displays and notifies the RecyclerView that an item has been added.
          *
-         * @param status the status to add.
+         * @param sale the status to add.
          */
-        void addItem(Status status) {
-            statuses.add(status);
-            this.notifyItemInserted(statuses.size() - 1);
+        void addItem(Sale sale) {
+            sales.add(sale);
+            this.notifyItemInserted(sales.size() - 1);
         }
 
         /**
@@ -336,9 +339,9 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          *
          * @param status the status to remove.
          */
-        void removeItem(Status status) {
-            int position = statuses.indexOf(status);
-            statuses.remove(position);
+        void removeItem(Sale status) {
+            int position = sales.indexOf(status);
+            sales.remove(position);
             this.notifyItemRemoved(position);
         }
 
@@ -352,18 +355,18 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          */
         @NonNull
         @Override
-        public StatusListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(StatusListFragment.this.getContext());
+        public SaleListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(SaleListFragment.this.getContext());
             View view;
 
             if (viewType == LOADING_DATA_VIEW) {
                 view = layoutInflater.inflate(R.layout.loading_row, parent, false);
 
             } else {
-                view = layoutInflater.inflate(R.layout.status_row, parent, false);
+                view = layoutInflater.inflate(R.layout.sale_row, parent, false);
             }
 
-            return new StatusListHolder(statusListFragment, view, viewType);
+            return new SaleListHolder(saleListFragment, view, viewType);
         }
 
         /**
@@ -375,9 +378,9 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          *                 bound.
          */
         @Override
-        public void onBindViewHolder(@NonNull StatusListHolder statusListHolder, int position) {
+        public void onBindViewHolder(@NonNull SaleListHolder statusListHolder, int position) {
             if(!isLoading) {
-                statusListHolder.bindStatus(statuses.get(position));
+                statusListHolder.bindSale(sales.get(position));
             }
         }
 
@@ -387,7 +390,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          */
         @Override
         public int getItemCount() {
-            return statuses.size();
+            return sales.size();
         }
 
         /**
@@ -399,7 +402,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          */
         @Override
         public int getItemViewType(int position) {
-            return (position == statuses.size() - 1 && isLoading) ? LOADING_DATA_VIEW : ITEM_VIEW;
+            return (position == sales.size() - 1 && isLoading) ? LOADING_DATA_VIEW : ITEM_VIEW;
         }
 
         /**
@@ -410,11 +413,11 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             isLoading = true;
             addLoadingFooter();
 
-            GetStatusTask getStatusTask = new GetStatusTask(this, statusListFragment.getPresenter());
-            boolean isFeed = statusListFragment.isFeed();
-            StatusListRequest request = new StatusListRequest(statusListFragment.getUser().getAlias(), StatusListFragment.PAGE_SIZE, lastStatus, isFeed);
-            request.setAuthToken(statusListFragment.authToken);
-            getStatusTask.execute(request);
+            GetSalesTask getSalesTask = new GetSalesTask(this, saleListFragment.getPresenter());
+            boolean isFeed = saleListFragment.isFeed();
+            FollowedSalesRequest request = new FollowedSalesRequest(saleListFragment.getUser().getUsername(), SaleListFragment.PAGE_SIZE, lastSale, isFeed);
+            /*request.setAuthToken(saleListFragment.authToken);*/
+            getSalesTask.execute(request);
 
         }
 
@@ -425,15 +428,15 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          * @param statusListResponse the asynchronous response to the request to load more items.
          */
         @Override
-        public void statusesRetrieved(StatusListResponse statusListResponse) {
-            List<Status> statuses = statusListResponse.getYardSaleList();
+        public void salesRetrieved(FollowedSalesResponse statusListResponse) {
+            List<Sale> statuses = statusListResponse.getSaleList();
 
-            lastStatus = (statuses.size() > 0) ? statuses.get(statuses.size() -1) : null;
+            lastSale = (statuses.size() > 0) ? statuses.get(statuses.size() -1) : null;
             hasMorePages = statusListResponse.getHasMorePages();
 
             isLoading = false;
             removeLoadingFooter();
-            statusRecyclerViewAdapter.addItems(statuses);
+            saleRecyclerViewAdapter.addItems(statuses);
         }
 
         /**
@@ -447,7 +450,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             removeLoadingFooter();
             Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
             if (Objects.equals(exception.getMessage(), "Unauthorized")) {
-                this.statusListFragment.getActivity().finish();
+                this.saleListFragment.getActivity().finish();
             }
         }
 
@@ -456,7 +459,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          * loading footer view) at the bottom of the list.
          */
         private void addLoadingFooter() {
-            addItem(new Status("", null, null));
+            addItem(new Sale());
         }
 
         /**
@@ -464,7 +467,7 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
          * the loading footer at the bottom of the list.
          */
         private void removeLoadingFooter() {
-            removeItem(statuses.get(statuses.size() - 1));
+            removeItem(sales.get(sales.size() - 1));
         }
     }
 
@@ -502,10 +505,10 @@ public class StatusListFragment extends Fragment implements StatusListPresenter.
             int totalItemCount = layoutManager.getItemCount();
             int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
 
-            if (!statusRecyclerViewAdapter.isLoading && statusRecyclerViewAdapter.hasMorePages) {
+            if (!saleRecyclerViewAdapter.isLoading && saleRecyclerViewAdapter.hasMorePages) {
                 if ((visibleItemCount + firstVisibleItemPosition) >=
                         totalItemCount && firstVisibleItemPosition >= 0) {
-                    statusRecyclerViewAdapter.loadMoreItems();
+                    saleRecyclerViewAdapter.loadMoreItems();
                 }
             }
         }

@@ -4,13 +4,13 @@ import android.os.AsyncTask;
 
 
 import edu.byu.cs.tweeter.client.presenter.SignOutPresenter;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
+import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 
 /*
  * An {@link AsyncTask} for signing out a user.
  */
-public class SignOutTask extends AsyncTask<SignOutRequest, Void, SignOutResponse> {
+public class SignOutTask extends AsyncTask<LogoutRequest, Void, LogoutResponse> {
     private final SignOutPresenter signOutPresenter;
     private final Observer observer;
     private Exception exception;
@@ -35,17 +35,17 @@ public class SignOutTask extends AsyncTask<SignOutRequest, Void, SignOutResponse
      * completes.
      */
     public interface Observer {
-        void signOutSuccessful(SignOutResponse loginResponse);
+        void signOutSuccessful(LogoutResponse loginResponse);
 
-        void signOutUnsuccessful(SignOutResponse loginResponse);
+        void signOutUnsuccessful(LogoutResponse loginResponse);
 
         void handleSignOutException(Exception ex);
 
     }
 
     @Override
-    protected SignOutResponse doInBackground(SignOutRequest... signOutRequests) {
-        SignOutResponse signOutResponse = null;
+    protected LogoutResponse doInBackground(LogoutRequest... signOutRequests) {
+        LogoutResponse signOutResponse = null;
 
         try {
             signOutResponse = signOutPresenter.signOut(signOutRequests[0]);
@@ -58,12 +58,12 @@ public class SignOutTask extends AsyncTask<SignOutRequest, Void, SignOutResponse
 
     /**
      * Notifies the observer (on the thread of the invoker of the
-     * {@link #execute(SignOutRequest...)} method) when the task completes.
+     * {@link #execute(LogoutRequest...)} method) when the task completes.
      *
      * @param signOutResponse the response that was received by the task.
      */
     @Override
-    protected void onPostExecute(SignOutResponse signOutResponse) {
+    protected void onPostExecute(LogoutResponse signOutResponse) {
         if (exception != null) {
             observer.handleSignOutException(exception);
         } else if (signOutResponse.isSuccess()) {

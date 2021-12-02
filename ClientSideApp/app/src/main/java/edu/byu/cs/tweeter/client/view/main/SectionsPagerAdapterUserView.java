@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.client.view.main;
+/*
 
 import android.content.Context;
 
@@ -9,19 +10,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import edu.byu.cs.tweeter.R;
+*/
+/*
 import edu.byu.cs.tweeter.client.view.main.tabs.FollowingFollowerFragment;
-import edu.byu.cs.tweeter.client.view.main.tabs.StatusListFragment;
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+*//*
+
+import edu.byu.cs.tweeter.client.view.main.tabs.SaleListFragment;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 
 
+*/
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to one of the sections/tabs/pages
  * of the UserView Activity.
- */
+ *//*
+
 class SectionsPagerAdapterUserView extends FragmentPagerAdapter {
 
-    private static final int STORY_FRAGMENT_POSITION = 0;
+    private static final int ALL_SALES_FRAGMENT_POSITION = 0;
     private static final int FOLLOWING_FRAGMENT_POSITION = 1;
     private static final int FOLLOWERS_FRAGMENT_POSITION = 2;
 
@@ -29,22 +36,28 @@ class SectionsPagerAdapterUserView extends FragmentPagerAdapter {
     private static final int[] TAB_TITLES = new int[]{R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
     private final Context mContext;
     private final User user;
-    private final AuthToken authToken;
+    */
+/*private final AuthToken authToken;*//*
 
-    public SectionsPagerAdapterUserView(Context context, FragmentManager fm, User user, AuthToken authToken) {
+
+    public SectionsPagerAdapterUserView(Context context, FragmentManager fm, User user*/
+/*, AuthToken authToken*//*
+) {
         super(fm);
         mContext = context;
         this.user = user;
-        this.authToken = authToken;
+        */
+/*this.authToken = authToken;*//*
+
     }
 
     @Override
     public Fragment getItem(int position) {
 
-        if (position == STORY_FRAGMENT_POSITION) {
-            return StatusListFragment.newInstance(user, authToken, false);
+       if (position == ALL_SALES_FRAGMENT_POSITION) {
+            return SaleListFragment.newInstance(user, true);
         } else if (position == FOLLOWING_FRAGMENT_POSITION ) {
-            return FollowingFollowerFragment.newInstance(user, authToken, true);
+            return FollowingFollowerFragment.newInstance(user, true);
         } else if(position == FOLLOWERS_FRAGMENT_POSITION) {
             return FollowingFollowerFragment.newInstance(user, authToken, false);
         } else {
@@ -60,7 +73,7 @@ class SectionsPagerAdapterUserView extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 3 total pages.
-        return 3;
+        // Show 4 total pages.
+        return 4;
     }
-}
+}*/

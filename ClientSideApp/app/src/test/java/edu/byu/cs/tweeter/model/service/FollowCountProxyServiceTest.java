@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.service;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,10 +26,12 @@ public class FollowCountProxyServiceTest {
 
     private FollowCountProxyService followCountProxyServiceSpy;
 
-    /**
+    */
+/**
      * Create a FollowCount spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws IOException, TweeterRemoteException {
         User currentUser = new User("FirstName", "LastName", null);
@@ -52,23 +55,27 @@ public class FollowCountProxyServiceTest {
 
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link FollowCountProxyService#getFollowCount(FollowCountRequest)}
      * method returns the same result as the {@link ServerFacade}.
      * .
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetFollowCount_validRequest_correctResponse() throws IOException, TweeterRemoteException {
         FollowCountResponse response = followCountProxyServiceSpy.getFollowCount(validRequest);
         Assertions.assertEquals(successResponse, response);
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link FollowCountProxyService#getFollowCount(FollowCountRequest)}
      * method throws an exception.
-     */
+     *//*
+
     @Test
     public void testGetFollowCount_invalidRequest_throwsException() {
         Assertions.assertThrows(AssertionError.class,
@@ -76,3 +83,4 @@ public class FollowCountProxyServiceTest {
     }
 
 }
+*/

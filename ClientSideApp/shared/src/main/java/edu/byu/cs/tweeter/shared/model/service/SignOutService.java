@@ -3,8 +3,8 @@ package edu.byu.cs.tweeter.shared.model.service;
 import java.io.IOException;
 
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
+import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 
 /*
  * Contains the business logic for signing out  an authenticated user.
@@ -17,5 +17,5 @@ public interface SignOutService {
      * @param followCountRequest contains the data required to fulfill the request.
      * @return a boolean indicating success/failure
      */
-    SignOutResponse signOut(SignOutRequest request) throws IOException, TweeterRemoteException;
+    LogoutResponse signOut(LogoutRequest request) throws IOException, TweeterRemoteException;
 }

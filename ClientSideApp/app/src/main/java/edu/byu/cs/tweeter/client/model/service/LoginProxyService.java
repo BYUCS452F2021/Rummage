@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 import edu.byu.cs.tweeter.client.util.ByteArrayUtils;
 
@@ -14,7 +14,7 @@ import edu.byu.cs.tweeter.client.util.ByteArrayUtils;
  */
 public abstract class LoginProxyService extends ProxyService {
 
-    public LoginResponse login(SignInRequest request) throws IOException, TweeterRemoteException {
+    public LoginResponse login(LoginRequest request) throws IOException, TweeterRemoteException {
         LoginResponse loginResponse;
 
         loginResponse = doLoginOperation(request);
@@ -40,6 +40,6 @@ public abstract class LoginProxyService extends ProxyService {
         user.setImageBytes(bytes);
     }*/
 
-    public abstract LoginResponse doLoginOperation(SignInRequest request) throws IOException, TweeterRemoteException;
+    public abstract LoginResponse doLoginOperation(LoginRequest request) throws IOException, TweeterRemoteException;
 
 }

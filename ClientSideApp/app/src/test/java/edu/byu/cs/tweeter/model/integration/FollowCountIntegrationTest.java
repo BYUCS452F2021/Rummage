@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.integration;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,13 +44,15 @@ public class FollowCountIntegrationTest {
         successResponse = new FollowCountResponse(followCount);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link FollowCountProxyService#getFollowCount(FollowCountRequest)}
      * method returns the same result as the {@link ServerFacade}.
      * .
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     public void testGetFollowCount_validRequest_correctResponse() throws IOException, TweeterRemoteException {
         FollowCountResponse response = followCountProxyService.getFollowCount(validRequest);
@@ -57,13 +60,16 @@ public class FollowCountIntegrationTest {
         Assertions.assertEquals(successResponse.getFollowCount().getNumFollowing(), response.getFollowCount().getNumFollowing());
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link FollowCountProxyService#getFollowCount(FollowCountRequest)}
      * method throws an exception.
-     */
+     *//*
+
     @Test
     public void testGetFollowCount_invalidRequest_throwsException() {
        Assertions.assertThrows(TweeterServerException.class, () -> followCountProxyService.getFollowCount(invalidRequest));
     }
 
 }
+*/
