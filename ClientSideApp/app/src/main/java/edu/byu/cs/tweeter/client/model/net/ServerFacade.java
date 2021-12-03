@@ -11,8 +11,14 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.Sorts;
 
+
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -40,6 +46,8 @@ import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeRespon
 import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.UserResponse;
 
+import static com.mongodb.client.model.Filters.eq;
+
 /**
  * Acts as a Facade to the Tweeter server. All network requests to the server should go through
  * this class.
@@ -54,10 +62,28 @@ public class ServerFacade {
     // **************************************
     private static final String SERVER_URL = "https://76p6b1s1de.execute-api.us-west-2.amazonaws.com/integrationStage";
     private final ClientCommunicator clientCommunicator = new ClientCommunicator(SERVER_URL);
-    // private final MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://rummage:<passwordhere>@rummage.igpye.mongodb.net/test"));
-    // new MongoClient(); //mongodb+srv://rummage:<password>@rummage.igpye.mongodb.net/test
-    // private final DB database = mongoClient.getDB("rummage");
-    private MongoDatabase database;
+    private final MongoDatabase database;
+
+    private class dbUser {
+        public String Username;
+        public String Password;
+
+        public String getUsername() {
+            return Username;
+        }
+
+        public void setUsername(String username) {
+            Username = username;
+        }
+
+        public String getPassword() {
+            return Password;
+        }
+
+        public void setPassword(String password) {
+            Password = password;
+        }
+    }
 
     public ServerFacade() throws UnknownHostException {
         ConnectionString connectionString = new ConnectionString("mongodb+srv://rummage:cH6J7CJHEUpF2ZM@rummage.igpye.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
@@ -77,10 +103,25 @@ public class ServerFacade {
     public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
 
+        MongoCollection<Document> users = database.getCollection("Users");
+
+        Bson projectionFields = Projections.fields(
+                Projections.include("Username", "Password"),
+                Projections.excludeId());
+        Document doc = users.find(eq("Username", request.getUsername()))
+                .projection(projectionFields)
+                .first();
+        if (doc == null) {
+            throw new TweeterRemoteException("Incorrect Username or Password","", null);
+        } else {
+            String s = doc.toJson();
+            dbUser temp = JsonSerializer.deserialize(s, dbUser.class);
+
+            return new LoginResponse(new User(temp.getUsername(), temp.getPassword(), "1234"));
+        }
 
 
-
-        return new LoginResponse(new User("testUser","dummypass","1234"));
+        // return new LoginResponse(new User("testUser","dummypass","1234"));
 
         /*LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
