@@ -1,5 +1,7 @@
 package edu.byu.cs.tweeter.client.model.service;
 
+import java.net.UnknownHostException;
+
 import edu.byu.cs.tweeter.client.model.net.ServerFacade;
 
 /**
@@ -15,7 +17,12 @@ public abstract class ProxyService {
      * @return the {@link ServerFacade} instance.
      */
     public ServerFacade getServerFacade() {
-        return new ServerFacade();
+        try {
+            return new ServerFacade();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
             postDialogBuilder.setPositiveButton(R.string.postPosButton, (dialogInterface, i) -> {
                 // do logic and dismiss
                 PostTask postTask = new PostTask(postPresenter, MainActivity.this);
-                PostRequest request = new PostRequest(user.getContactID(), statusInput.getText().toString());
+                PostRequest request = new PostRequest(user.getUsername(), statusInput.getText().toString());
                 //request.setAuthToken(this.authToken);
                 postTask.execute(request);
 

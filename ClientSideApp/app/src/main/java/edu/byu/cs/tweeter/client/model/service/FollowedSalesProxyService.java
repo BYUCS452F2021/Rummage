@@ -1,6 +1,11 @@
 package edu.byu.cs.tweeter.client.model.service;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import edu.byu.cs.tweeter.client.model.net.ServerFacade;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
@@ -19,6 +24,7 @@ public class FollowedSalesProxyService extends ProxyService implements YardSaleS
      * @param yardSaleRequest
      * @ret StatusListResponse
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public FollowedSalesResponse getYardSales(FollowedSalesRequest yardSaleRequest) throws IOException, TweeterRemoteException {
         ServerFacade serverFacade = getServerFacade();
         FollowedSalesResponse yardSaleResponse;
@@ -52,6 +58,11 @@ public class FollowedSalesProxyService extends ProxyService implements YardSaleS
      * @return the instance.
      */
     public ServerFacade getServerFacade() {
-        return new ServerFacade();
+        try {
+            return new ServerFacade();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

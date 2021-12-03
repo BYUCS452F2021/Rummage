@@ -4,7 +4,18 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.ConnectionString;
+import com.mongodb.DBObject;
+
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+
+
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,6 +54,19 @@ public class ServerFacade {
     // **************************************
     private static final String SERVER_URL = "https://76p6b1s1de.execute-api.us-west-2.amazonaws.com/integrationStage";
     private final ClientCommunicator clientCommunicator = new ClientCommunicator(SERVER_URL);
+    // private final MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://rummage:<passwordhere>@rummage.igpye.mongodb.net/test"));
+    // new MongoClient(); //mongodb+srv://rummage:<password>@rummage.igpye.mongodb.net/test
+    // private final DB database = mongoClient.getDB("rummage");
+    private MongoDatabase database;
+
+    public ServerFacade() throws UnknownHostException {
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://rummage:cH6J7CJHEUpF2ZM@rummage.igpye.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+        MongoClient mongoClient = MongoClients.create(settings);
+        database = mongoClient.getDatabase("rummage");
+    }
 
     /**
      * Performs a login and if successful, returns the logged in user and an auth token.
@@ -52,6 +76,9 @@ public class ServerFacade {
      */
     public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
+
+
+
 
         return new LoginResponse(new User("testUser","dummypass","1234"));
 
@@ -72,7 +99,16 @@ public class ServerFacade {
      */
     public LoginResponse signUp(RegisterUserRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signUp");
-        return new LoginResponse(new User("testUser","dummypass","1234"));
+
+        /*DBCollection collection = database.getCollection("Users");
+        DBObject person = new BasicDBObject("Username", request.getUsername()).append("Password", request.getPassword())
+                .append("ContactInfo", new BasicDBObject("FirstName", request.getFirstName()).append("LastName", request.getLastName())
+                        .append("Email", "exampleemail@email.email").append("Phone", "666-666-6666"));
+        collection.insert(person);*/
+
+
+
+        return new LoginResponse(new User(request.getUsername(),request.getPassword(),"1234"));
 
        /* LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
