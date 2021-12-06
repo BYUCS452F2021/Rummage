@@ -307,11 +307,13 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
 
                 follow.setOnClickListener(fabView -> {
                     CharSequence text = follow.getText();
-
-                    if (text.equals("Follow")) {
+                    if (statusesFragment.isFeed) {
+                        itemView.setVisibility(View.INVISIBLE);
+                    }
+                    else if (text.equals("Follow")) {
                         follow.setText("Unfollow");
                     }
-                    if (text.equals("Unfollow")) {
+                    else if (text.equals("Unfollow")) {
                         follow.setText("Follow");
                     }
                 });

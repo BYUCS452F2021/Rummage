@@ -54,7 +54,7 @@ public class ServerFacade {
     public LoginResponse signIn(LoginRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signIn");
 
-        return new LoginResponse(new User("testUser","dummypass","1234"));
+        return new LoginResponse(new User("Caleb_Johnson","dummypass","1234"));
 
         /*LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
