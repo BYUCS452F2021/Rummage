@@ -13,6 +13,7 @@ public class Sale implements Serializable {
     private String username;
     private String date;
     private int locationID;
+    private Location location;
     private String description;
     private String type;
 
@@ -21,7 +22,7 @@ public class Sale implements Serializable {
     public Sale() {}
 
     @SuppressWarnings("NewApi")
-    public Sale(int saleId, String username, ZonedDateTime date, int locationID, String description, String type) {
+    public Sale(int saleId, String username, ZonedDateTime date, int locationID, String description, String type, Location location) {
         this.saleId = saleId;
         this.username = username;
         if (date == null) {
@@ -32,6 +33,7 @@ public class Sale implements Serializable {
             this.date = date.format(formatter);
         }
         this.locationID = locationID;
+        this.location = location;
         this.description = description;
         this.type = type;
         this.hash = hashCode();
@@ -97,6 +99,14 @@ public class Sale implements Serializable {
 
     public void setLocationID(int locationID) {
         this.locationID = locationID;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getDescription() {

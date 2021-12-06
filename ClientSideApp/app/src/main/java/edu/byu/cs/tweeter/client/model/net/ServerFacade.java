@@ -9,6 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.byu.cs.tweeter.shared.model.domain.Location;
 import edu.byu.cs.tweeter.shared.model.domain.Sale;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
@@ -181,14 +182,17 @@ public class ServerFacade {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public FollowedSalesResponse getFollowedSales(FollowedSalesRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:getStatuses");
+        Location l1 = new Location("Sandy", "Utah", "8124 e 234 s");
+        Location l2 = new Location("Provo", "Utah", "1223 University Ave Apt 2");
+        Location l3 = new Location("Saratoga Springs", "Utah", "Behind the old Walmart");
         List<Sale> demo = new LinkedList<>();
-        demo.add(new Sale(1, "UserA", ZonedDateTime.now(), 0, "The best sale ever", "Yard Sale"));
-        demo.add(new Sale(2, "testUser", ZonedDateTime.now(), 0, "The bestest sale ever", "Yard Sale"));
-        demo.add(new Sale(3, "UserD", ZonedDateTime.now(), 0, "The bester sale ever", "Yard Sale"));
-        demo.add(new Sale(4, "testUser", ZonedDateTime.now(), 0, "The bestestest sale ever", "Yard Sale"));
-        demo.add(new Sale(5, "UserH", ZonedDateTime.now(), 0, "The besterest sale ever", "Yard Sale"));
-        demo.add(new Sale(6, "UserN", ZonedDateTime.now(), 0, "The besterier sale ever", "Yard Sale"));
-        demo.add(new Sale(7, "UserB", ZonedDateTime.now(), 0, "The best pie sale ever", "Pie Sale"));
+        demo.add(new Sale(1, "Jacob_Williams", ZonedDateTime.now().minusDays(50), 0, "My mom is having an estate sell.", "Estate Sale", l1));
+        demo.add(new Sale(2, "Caleb_Johnson", ZonedDateTime.now().minusDays(2).minusHours(3), 0, "Just inherited a Walmart, but need cash. Everything must go!!", "Yard Sale", l2));
+        demo.add(new Sale(3, "FatBunny66", ZonedDateTime.now().minusYears(3).minusDays(30), 0, "I am selling all of my old video games. Come and get it!", "Yard Sale", l3));
+        demo.add(new Sale(4, "Nathan*Poston", ZonedDateTime.now().minusWeeks(45), 0, "My American Doll collection is the largest in the state. Come get your very own today!", "Estate Sale", l1));
+        demo.add(new Sale(5, "Nathan$$$Cox", ZonedDateTime.now().minusMinutes(20), 0, "Primarily selling cars and Nintendo games.", "Yard Sale", l2));
+        demo.add(new Sale(6, "Benjamin!!White", ZonedDateTime.now().minusMonths(2).minusYears(1), 0, "Attic items, CHEAP!", "Yard Sale", l2));
+        demo.add(new Sale(7, "TheGreatPumpkinPatch", ZonedDateTime.now().minusDays(1).minusMonths(6), 0, "Quality bananas and antique oranges!", "Yard Sale", l3));
         return new FollowedSalesResponse(demo, false);
         /*FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
     this is dev
