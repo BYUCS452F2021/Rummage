@@ -191,7 +191,7 @@ public class ServerFacade {
         demo.add(new Sale(7, "UserB", ZonedDateTime.now(), 0, "The best pie sale ever", "Pie Sale"));
         return new FollowedSalesResponse(demo, false);
         /*FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
-
+    this is dev
         if(response.isSuccess()) {
             return response;
         } else {
