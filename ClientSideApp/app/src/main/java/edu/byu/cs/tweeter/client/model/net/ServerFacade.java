@@ -73,7 +73,7 @@ public class ServerFacade {
      */
     public LoginResponse signUp(RegisterUserRequest request, String urlPath) throws IOException, TweeterRemoteException {
         //Log.i(LOG_TAG, "serverFacade:signUp");
-        return new LoginResponse(new User("testUser","dummypass","1234"));
+        return new LoginResponse(new User("Caleb_Johnson","dummypass","1234"));
 
        /* LoginResponse response = clientCommunicator.doPost(urlPath, request, null, LoginResponse.class);
 
@@ -189,10 +189,10 @@ public class ServerFacade {
         demo.add(new Sale(1, "Jacob_Williams", ZonedDateTime.now().minusDays(50), 0, "My mom is having an estate sell.", "Estate Sale", l1));
         demo.add(new Sale(2, "Caleb_Johnson", ZonedDateTime.now().minusDays(2).minusHours(3), 0, "Just inherited a Walmart, but need cash. Everything must go!!", "Yard Sale", l2));
         demo.add(new Sale(3, "FatBunny66", ZonedDateTime.now().minusYears(3).minusDays(30), 0, "I am selling all of my old video games. Come and get it!", "Yard Sale", l3));
-        demo.add(new Sale(4, "Nathan*Poston", ZonedDateTime.now().minusWeeks(45), 0, "My American Doll collection is the largest in the state. Come get your very own today!", "Estate Sale", l1));
+        demo.add(new Sale(4, "Nathan*Poston", ZonedDateTime.now().minusWeeks(45), 0, "My American Doll collection is the largest in the state.", "Estate Sale", l1));
         demo.add(new Sale(5, "Nathan$$$Cox", ZonedDateTime.now().minusMinutes(20), 0, "Primarily selling cars and Nintendo games.", "Yard Sale", l2));
         demo.add(new Sale(6, "Benjamin!!White", ZonedDateTime.now().minusMonths(2).minusYears(1), 0, "Attic items, CHEAP!", "Yard Sale", l2));
-        demo.add(new Sale(7, "TheGreatPumpkinPatch", ZonedDateTime.now().minusDays(1).minusMonths(6), 0, "Quality bananas and antique oranges!", "Yard Sale", l3));
+        demo.add(new Sale(7, "Caleb_Johnson", ZonedDateTime.now().minusDays(1).minusMonths(6), 0, "Quality bananas and antique oranges!", "Yard Sale", l3));
         return new FollowedSalesResponse(demo, false);
         /*FollowedSalesResponse response = clientCommunicator.doPost(urlPath, request, null, FollowedSalesResponse.class);
     this is dev
