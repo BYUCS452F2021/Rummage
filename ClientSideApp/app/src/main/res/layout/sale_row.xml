@@ -49,5 +49,12 @@
         android:layout_alignEnd="@+id/statusContent"
         android:text="Delete" />
 
+    <Button
+        android:id="@+id/follow_sale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/statusContent"
+        android:text="Unfollow" />
+
 </RelativeLayout>
 

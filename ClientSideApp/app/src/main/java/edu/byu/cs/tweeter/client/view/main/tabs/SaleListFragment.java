@@ -182,6 +182,7 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
         private final TextView statusContent;
         private final Button edit;
         private final Button delete;
+        private final Button follow;
         private AlertDialog.Builder postDialogBuilder;
         private AlertDialog postAlertDialog;
         private int charsUsed = 0;
@@ -204,6 +205,7 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
 
             edit = itemView.findViewById(R.id.edit_sale);
             delete = itemView.findViewById(R.id.delete_sale);
+            follow = itemView.findViewById(R.id.follow_sale);
 
             //itemView.setOnClickListener(
             //        view -> Toast.makeText(StatusListHolder.this.statusesFragment.getContext(),
@@ -291,10 +293,28 @@ public class SaleListFragment extends Fragment implements SalesListPresenter.Vie
                     // finish setup on created dialog
                     postAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
                 });
+
+                delete.setOnClickListener(fabView -> {
+
+                    itemView.setVisibility(View.INVISIBLE);
+                });
+
+                follow.setVisibility(View.INVISIBLE);
             }
             else {
                 edit.setVisibility(View.INVISIBLE);
                 delete.setVisibility(View.INVISIBLE);
+
+                follow.setOnClickListener(fabView -> {
+                    CharSequence text = follow.getText();
+
+                    if (text.equals("Follow")) {
+                        follow.setText("Unfollow");
+                    }
+                    if (text.equals("Unfollow")) {
+                        follow.setText("Follow");
+                    }
+                });
             }
 
             //FIXME bind a delete to the delete button
