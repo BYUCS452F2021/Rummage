@@ -33,9 +33,9 @@
     <string name="hintPassword">password</string>
     <string name="samplePassword">badPassword</string>
     <string name="hintFirstName">First Name</string>
-    <string name="sampleFirstName">Mickey</string>
+    <string name="sampleFirstName">Caleb</string>
     <string name="hintLastName">Last Name</string>
-    <string name="sampleLastName">Mouse</string>
+    <string name="sampleLastName">Johnson</string>
     <string name="hintImageUrl">https://imageurl.com/duck.png</string>
     <string name="sampleImageUrl">https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png</string>
     <string name="signInSuccess">Signed in!</string>
