@@ -1,6 +1,6 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 
 /**
  * Contains all the information needed to make a request to have the server return the next page of
@@ -12,7 +12,7 @@ public class FollowingFollowersRequest {
     private int limit;
     private String lastFolloweeAlias;
     private boolean isFollowing;
-    private AuthToken authToken;
+    //private AuthToken authToken;
 
     public FollowingFollowersRequest() {}
 
@@ -90,11 +90,11 @@ public class FollowingFollowersRequest {
         isFollowing = following;
     }
 
-    public AuthToken getAuthToken() {
+    /*public AuthToken getAuthToken() {
         return authToken;
     }
 
     public void setAuthToken(AuthToken authToken) {
         this.authToken = authToken;
-    }
+    }*/
 }

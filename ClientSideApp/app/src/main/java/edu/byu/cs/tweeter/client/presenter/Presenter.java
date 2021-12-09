@@ -1,7 +1,7 @@
 package edu.byu.cs.tweeter.client.presenter;
 
-import edu.byu.cs.tweeter.client.model.service.CheckAuthorizedProxyService;
-import edu.byu.cs.tweeter.shared.model.service.CheckAuthorizedService;
+/*import edu.byu.cs.tweeter.client.model.service.CheckAuthorizedProxyService;
+import edu.byu.cs.tweeter.shared.model.service.CheckAuthorizedService;*/
 
 /*
  * Contains the business logic for a presenter class
@@ -26,6 +26,6 @@ public abstract class Presenter {
         // If needed, specify methods here that will be called on the view in response to model updates
     }
 
-    public CheckAuthorizedService getCheckAuthorizedService() { return new CheckAuthorizedProxyService(); }
-
+   /* public CheckAuthorizedService getCheckAuthorizedService() { return new CheckAuthorizedProxyService(); }
+*/
 }

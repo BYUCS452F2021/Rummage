@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.service;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +28,12 @@ class SignInProxyServiceTest {
     private LoginResponse successResponse;
     private LoginResponse failResponse;
 
-    /**
+    */
+/**
      * Create a SignInService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         spySignInService = Mockito.spy(new SignInProxyService());
@@ -48,12 +51,14 @@ class SignInProxyServiceTest {
         Mockito.when(mockServerFacade.signIn(invalidRequest, "/signin")).thenReturn(failResponse);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link SignInProxyService#doLoginOperation(SignInRequest)} (SignInRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     void testSignIn_whenValidRequest_thenValidResponse() throws IOException, TweeterRemoteException {
         LoginResponse actual = spySignInService.login(validRequest);
@@ -61,12 +66,14 @@ class SignInProxyServiceTest {
         Mockito.verify(mockServerFacade).signIn(validRequest, "/signin");
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link SignInProxyService#doLoginOperation(SignInRequest)} (SignInRequest)}
      * method returns the same result as the {@link ServerFacade}.
      *
      * @throws IOException if an IO error occurs.
-     */
+     *//*
+
     @Test
     void testSignIn_whenInvalidRequest_thenInvalidResponse() throws IOException, TweeterRemoteException {
         LoginResponse actual = spySignInService.login(invalidRequest);
@@ -75,3 +82,4 @@ class SignInProxyServiceTest {
     }
 
 }
+*/

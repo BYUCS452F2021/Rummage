@@ -6,8 +6,8 @@ import edu.byu.cs.tweeter.client.model.service.LoginProxyService;
 import edu.byu.cs.tweeter.client.model.service.SignInProxyService;
 import edu.byu.cs.tweeter.client.model.service.SignUpProxyService;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignUpRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.RegisterUserRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 
 /**
@@ -29,7 +29,7 @@ public class LoginPresenter extends Presenter {
      *
      * @param signInRequest the request.
      */
-    public LoginResponse login(SignInRequest signInRequest) throws IOException, TweeterRemoteException {
+    public LoginResponse login(LoginRequest signInRequest) throws IOException, TweeterRemoteException {
         LoginProxyService loginService = getLoginService(signInRequest);
         return loginService.login(signInRequest);
     }
@@ -41,8 +41,8 @@ public class LoginPresenter extends Presenter {
      *
      * @return the instance.
      */
-    public LoginProxyService getLoginService(SignInRequest request) {
-        if (request instanceof SignUpRequest) {
+    public LoginProxyService getLoginService(LoginRequest request) {
+        if (request instanceof RegisterUserRequest) {
             return new SignUpProxyService();
         } else {
             return new SignInProxyService();

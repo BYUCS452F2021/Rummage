@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tweeter</string>
+    <string name="app_name">Rummage</string>
 
     <string name="logoutMenuTitle">Logout</string>
 
@@ -9,12 +9,12 @@
     <string name="title_activity_main">Tweeter</string>
     <string name="title_activity_user_view">Tweeter</string>
     <string name="loadingData">Loading More Data…</string>
-    <string name="feedTabTitle">Feed</string>
-    <string name="storyTabTitle">Story</string>
-    <string name="followingTabTitle">Following</string>
-    <string name="followersTabTitle">Followers</string>
+    <string name="feedTabTitle">All Sales</string>
+    <string name="storyTabTitle">Sale Map</string>
+    <string name="followingTabTitle">Followed Sales</string>
+    <string name="followersTabTitle">Followed Map</string>
 
-    <string name="sampleAlias">"@UserAlias"</string>
+    <string name="sampleAlias">"Caleb_Johnson"</string>
     <string name="sampleUserName">The User</string>
     <string name="title_activity_login">Sign in</string>
     <string name="followeeCount">Following: %d</string>
@@ -23,19 +23,19 @@
     <string name="sampleTime">Sep 41 2020 10:49 PM</string>
 
     <!--  SignIn/SignUp Strings  -->
-    <string name="titleActivityLogin">Tweeter</string>
+    <string name="titleActivityLogin">Rummage</string>
     <string name="signInTabTitle">Sign In</string>
     <string name="signInButton">Sign In</string>
     <string name="signUpTabTitle">Sign Up</string>
     <string name="signUpButton">Sign Up</string>
     <string name="hintAlias">\@alias</string>
-    <string name="sampleSignInAlias">\@testMickey</string>
+    <string name="sampleSignInAlias">Caleb_Johnson</string>
     <string name="hintPassword">password</string>
     <string name="samplePassword">badPassword</string>
     <string name="hintFirstName">First Name</string>
-    <string name="sampleFirstName">Mickey</string>
+    <string name="sampleFirstName">Caleb</string>
     <string name="hintLastName">Last Name</string>
-    <string name="sampleLastName">Mouse</string>
+    <string name="sampleLastName">Johnson</string>
     <string name="hintImageUrl">https://imageurl.com/duck.png</string>
     <string name="sampleImageUrl">https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png</string>
     <string name="signInSuccess">Signed in!</string>
@@ -53,14 +53,14 @@
     <string name="signOutFail">Unable to sign out.</string>
 
     <!--Post Status Strings-->
-    <string name="postTitle">Create New Post</string>
-    <string name="postFullMessage">Use @ to mention users.\n(%d/%d characters used)</string>
+    <string name="postTitle">Create New Yard Sale</string>
+    <string name="postFullMessage">Describe your yard sale</string>
     <string name="postPosButton">Post</string>
     <string name="postNegButton">Cancel</string>
-    <string name="postCancelMessage">New post discarded.</string>
-    <string name="postSuccessMessage">Your recent status was posted successfully!</string>
-    <string name="postFailMessage">New post was lost, sorry about that.</string>
-    <string name="postStatusHint">Your status here…</string>
+    <string name="postCancelMessage">New sale discarded.</string>
+    <string name="postSuccessMessage">Your recent yard sale was posted successfully!</string>
+    <string name="postFailMessage">New yard sale was lost, sorry about that.</string>
+    <string name="postStatusHint">Describe sale here…</string>
 
     <!--Get User Strings-->
     <string name="userRetrieved">User was retrieved</string>

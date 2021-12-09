@@ -5,7 +5,7 @@ import java.io.IOException;
 import edu.byu.cs.tweeter.client.model.service.RelationshipChangeProxyService;
 import edu.byu.cs.tweeter.shared.model.net.TweeterRemoteException;
 import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeResponse;
 
 /**
@@ -28,7 +28,7 @@ public class RelationshipChangePresenter extends Presenter {
      * @return RelationshipChangeResponse.
      */
     public RelationshipChangeResponse changeRelationship(RelationshipChangeRequest request) throws Exception {
-        getCheckAuthorizedService().checkAuthorized(new SignOutRequest(request.getAuthToken()));
+        //getCheckAuthorizedService().checkAuthorized(new SignOutRequest(request.getAuthToken()));
         return getRelationshipChangeService().changeRelationship(request);
     }
 

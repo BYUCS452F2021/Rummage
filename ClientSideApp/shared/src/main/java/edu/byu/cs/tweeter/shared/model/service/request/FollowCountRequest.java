@@ -1,6 +1,6 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 
 /**
  * Contains all the information needed to make a request to have the server return the number
@@ -9,7 +9,7 @@ import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 public class FollowCountRequest {
 
     private String followerAlias;
-    private AuthToken authToken;
+    //private AuthToken authToken;
 
     public FollowCountRequest() {}
 
@@ -35,11 +35,11 @@ public class FollowCountRequest {
         this.followerAlias = followerAlias;
     }
 
-    public AuthToken getAuthToken() {
-        return authToken;
-    }
+    //public AuthToken getAuthToken() {
+    //    return authToken;
+    //}
 
-    public void setAuthToken(AuthToken authToken) {
-        this.authToken = authToken;
-    }
+    //public void setAuthToken(AuthToken authToken) {
+    //    this.authToken = authToken;
+    //}
 }

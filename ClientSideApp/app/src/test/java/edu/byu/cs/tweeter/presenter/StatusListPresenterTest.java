@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.presenter;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,10 +31,12 @@ public class StatusListPresenterTest {
     private StatusListRequest testRequest;
     private StatusListResponse expectedResponse;
 
-    /**
+    */
+/**
      * Create a StatusListPresenter spy that uses a mock service to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws Exception {
         User currentUser = new User("FirstName", "LastName", null);
@@ -59,9 +62,11 @@ public class StatusListPresenterTest {
         Mockito.when(spyPresenter.getCheckAuthorizedService()).thenReturn(mockCheckAuthorizedService);
     }
 
-    /*
+    */
+/*
      * Tests if the presenter returns the same response as the service
-     */
+     *//*
+
     @Test
     public void testGetStatusList_returnsServiceResult() throws Exception {
         // Assert that the presenter returns the same response as the service (it doesn't do
@@ -70,12 +75,15 @@ public class StatusListPresenterTest {
         Assertions.assertEquals(expectedResponse, actualResponse);
     }
 
-    /*
+    */
+/*
      * Tests if the presenter throws the same error as the service
-     */
+     *//*
+
     @Test
     public void testGetStatusList_serviceThrowsIOException_presenterThrowsIOException() throws IOException, TweeterRemoteException {
         Mockito.when(mockStatusListService.getStatuses(testRequest)).thenThrow(new IOException());
         Assertions.assertThrows(IOException.class, () -> spyPresenter.getStatusList(testRequest));
     }
 }
+*/

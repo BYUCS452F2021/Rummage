@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.presenter;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,10 +29,12 @@ class FollowingFollowerPresenterTest {
     private FollowingFollowersRequest testRequest;
     private FollowingFollowersResponse expectedResponse;
 
-    /**
+    */
+/**
      * Create a FollowingFollowerPresenter spy that uses a mock service to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws Exception {
         User currentUser = new User("FirstName", "LastName", null);
@@ -61,9 +64,11 @@ class FollowingFollowerPresenterTest {
         Mockito.when(spyPresenter.getCheckAuthorizedService()).thenReturn(mockCheckAuthorizedService);
     }
 
-    /*
+    */
+/*
      * Tests if the presenter returns the same response as the service
-     */
+     *//*
+
     @Test
     public void testGetFollowing_returnsServiceResult() throws Exception {
         // Assert that the presenter returns the same response as the service (it doesn't do
@@ -72,12 +77,15 @@ class FollowingFollowerPresenterTest {
         Assertions.assertEquals(expectedResponse, actualResponse);
     }
 
-    /*
+    */
+/*
      * Tests if the presenter throws the same error as the service
-     */
+     *//*
+
     @Test
     public void testGetFollowing_serviceThrowsIOException_presenterThrowsIOException() throws IOException, TweeterRemoteException {
         Mockito.when(mockFollowingFollowerService.getFollowingFollowers(testRequest)).thenThrow(new IOException());
         Assertions.assertThrows(IOException.class, () -> spyPresenter.getFollowList(testRequest));
     }
 }
+*/

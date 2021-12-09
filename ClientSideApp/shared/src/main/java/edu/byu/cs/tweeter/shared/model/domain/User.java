@@ -10,7 +10,7 @@ public class User implements Comparable<User>, Serializable {
 
     private String username;
     private String password;
-    private String contactID;
+    private String contactID; //FIXME consider getting the contact info object and storing it inside this object
 
     public User() {}
 

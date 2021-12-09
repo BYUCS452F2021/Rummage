@@ -1,17 +1,18 @@
 package edu.byu.cs.tweeter.server.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+//import org.junit.jupiter.api.Assertions;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+///import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import edu.byu.cs.tweeter.server.dao.FollowDAO;
-import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.FollowingFollowersResponse;
+//import edu.byu.cs.tweeter.server.dao.FollowDAO;
+//import edu.byu.cs.tweeter.shared.model.domain.User;
+//import edu.byu.cs.tweeter.shared.model.service.request.FollowingFollowersRequest;
+//import edu.byu.cs.tweeter.shared.model.service.response.FollowingFollowersResponse;
+/*
 
 public class FollowingFollowerServiceImplTest {
 
@@ -82,29 +83,35 @@ public class FollowingFollowerServiceImplTest {
         Mockito.when(spyFollowingFollowerService.getFollowDAO()).thenReturn(mockFollowDAO);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link FollowingFollowerServiceImpl#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)}
      * method returns the same result as the mockDAO.
-     */
+     *//*
+
     @Test
     public void testGetFollowees_validRequest_correctResponse() throws Exception {
         FollowingFollowersResponse actual = spyFollowingFollowerService.getFollowingFollowers(validRequest);
         Assertions.assertEquals(successResponse, actual);
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link FollowingFollowerServiceImpl#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)}
      * method it throws an exception.
-     */
+     *//*
+
     @Test
     public void testGetFollowees_invalidRequest_thenThrows() {
         Assertions.assertThrows(Exception.class, () -> spyFollowingFollowerService.getFollowingFollowers(invalidRequest));
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link FollowingFollowerServiceImpl#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)}
      * method returns the same result as the mockDAO.
-     */
+     *//*
+
     @Test
     public void testGetFollowers_validRequest_correctResponse() throws Exception {
 
@@ -112,13 +119,16 @@ public class FollowingFollowerServiceImplTest {
         Assertions.assertEquals(successResponse, actual);
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link FollowingFollowerServiceImpl#getFollowingFollowers(FollowingFollowersRequest)} (FollowingFollowersRequest)}
      * method it throws an exception.
-     */
+     *//*
+
     @Test
     public void testGetFollowers_invalidRequest_thenThrows() {
         Assertions.assertThrows(Exception.class, () -> spyFollowingFollowerService.getFollowingFollowers(invalidFollowerRequest));
     }
 
 }
+*/

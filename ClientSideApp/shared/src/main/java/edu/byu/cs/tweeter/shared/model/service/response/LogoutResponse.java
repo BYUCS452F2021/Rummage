@@ -3,16 +3,16 @@ package edu.byu.cs.tweeter.shared.model.service.response;
 /**
  * Contains all of the information about the result of signing out.
  */
-public class SignOutResponse extends Response {
+public class LogoutResponse extends Response {
 
-    public SignOutResponse() {
+    public LogoutResponse() {
     }
 
-    public SignOutResponse(String message) {
+    public LogoutResponse(String message) {
         super(false, message);
     }
 
-    public SignOutResponse(boolean isSuccess) {
+    public LogoutResponse(boolean isSuccess) {
         super(isSuccess);
     }
 

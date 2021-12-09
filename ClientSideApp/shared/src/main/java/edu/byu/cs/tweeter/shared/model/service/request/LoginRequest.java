@@ -3,12 +3,12 @@ package edu.byu.cs.tweeter.shared.model.service.request;
 /**
  * Contains all the information needed to make signIn requests.
  */
-public class SignInRequest {
+public class LoginRequest {
 
     private String username;
     private String password;
 
-    public SignInRequest() {}
+    public LoginRequest() {}
 
     /**
      * Creates an instance.
@@ -16,7 +16,7 @@ public class SignInRequest {
      * @param username the username of the user to be logged in.
      * @param password the password of the user to be logged in.
      */
-    public SignInRequest(String username, String password) {
+    public LoginRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }

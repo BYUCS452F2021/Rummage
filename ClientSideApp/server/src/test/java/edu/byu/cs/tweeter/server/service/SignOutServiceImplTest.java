@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.server.service;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,10 +27,12 @@ public class SignOutServiceImplTest {
     private SignOutResponse successResponse;
     private SignOutResponse failResponse;
 
-    /**
+    */
+/**
      * Create a SignOutServiceImpl spy that uses a mock DAO to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() {
         spySignOutServiceImpl = Mockito.spy(new SignOutServiceImpl());
@@ -47,10 +50,12 @@ public class SignOutServiceImplTest {
         Mockito.doThrow(Exception.class).when(mockSignOutDAO).delete(badAuth);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link SignOutServiceImpl#signOut(SignOutRequest)}
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     void testSignOut_whenValidRequest_thenValidResponse() {
         SignOutResponse actual = spySignOutServiceImpl.signOut(validRequest);
@@ -58,10 +63,12 @@ public class SignOutServiceImplTest {
         Mockito.verify(mockSignOutDAO).delete(validRequest.getSessionAuthToken());
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     void testSignOut_whenInvalidRequest_thenInvalidResponse() {
         Assertions.assertThrows(Exception.class, () -> {
@@ -69,3 +76,4 @@ public class SignOutServiceImplTest {
         });
     }
 }
+*/

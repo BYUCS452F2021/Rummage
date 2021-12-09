@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.client.view.main;
+/*
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,11 +41,13 @@ import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeRespon
 import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
 
 
+*/
 /**
  * The user view activity for the application.
  *
  * This could be used to show a list of sales
- */
+ *//*
+
 public class UserViewActivity  extends AppCompatActivity
         implements Presenter.View, SignOutTask.Observer, GetCountTask.Observer, RelationshipChangeTask.Observer {
     public static final String LOG_TAG = "USER_VIEW_LOGS";
@@ -92,10 +95,12 @@ public class UserViewActivity  extends AppCompatActivity
         //viewedUser = new User("", "", "https://faculty.cs.byu.edu" +
         //        "/~jwilkerson/cs340/tweeter/images/donald_duck.png");
 
-        /*userPresenter = new UserPresenter(this);
+        */
+/*userPresenter = new UserPresenter(this);
         GetUserTask userTask = new GetUserTask(userPresenter,  UserViewActivity.this);
         UserRequest userRequest = new UserRequest(viewedUserAlias);
-        userTask.execute(userRequest);*/
+        userTask.execute(userRequest);*//*
+
 
         followCountPresenter = new FollowCountPresenter(this);
         GetCountTask countTask = new GetCountTask(followCountPresenter, UserViewActivity.this);
@@ -210,7 +215,8 @@ public class UserViewActivity  extends AppCompatActivity
     // implement methods for GetUserTask
     // ---------------------------------
 
-    /*@Override
+    */
+/*@Override
     public void userRetrieved(UserResponse userResponse) {
 
         SectionsPagerAdapterUserView sectionsPagerAdapterUserView = new SectionsPagerAdapterUserView(this,
@@ -254,7 +260,8 @@ public class UserViewActivity  extends AppCompatActivity
             RelationshipChangeTask relationshipChangeTask = new RelationshipChangeTask(relationshipChangePresenter, UserViewActivity.this);
             relationshipChangeTask.execute(relationshipChangeRequest);
         });
-    }*/
+    }*//*
+
 
     // ---------------------------------
     // implement methods for GetFollowCountTask
@@ -296,3 +303,4 @@ public class UserViewActivity  extends AppCompatActivity
         }
     }
 }
+*/

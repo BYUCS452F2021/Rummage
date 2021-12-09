@@ -2,10 +2,10 @@ package edu.byu.cs.tweeter.shared.model.domain;
 
 import java.util.Objects;
 
-/**
- * Represents a follow relationship.
+/* *
+ * Represents a follow relationship. //FIXME consider using similar structure for the followed sales
  */
-public class Follow {
+/*public class Follow {
 
     private User follower;
     private User followee;
@@ -54,4 +54,4 @@ public class Follow {
                 ", followee=" + followee.getUsername() +
                 '}';
     }
-}
+}*/

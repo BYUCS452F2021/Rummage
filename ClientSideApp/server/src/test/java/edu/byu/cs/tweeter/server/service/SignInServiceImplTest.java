@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.server.service;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +28,12 @@ public class SignInServiceImplTest {
     private LoginResponse successResponse;
     private LoginResponse failResponse;
 
-    /**
+    */
+/**
      * Create a SignInServiceImpl spy that uses a mock DAO to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws Exception {
         spySignInServiceImpl = Mockito.spy(new SignInServiceImpl());
@@ -57,10 +60,12 @@ public class SignInServiceImplTest {
         Mockito.when(mockServiceSignInDAO.readUser(invalidRequest.getAlias())).thenReturn(pairFail);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     void testSignIn_whenValidRequest_thenValidResponse() throws Exception {
         LoginResponse actual = spySignInServiceImpl.doLoginOperation(validRequest);
@@ -68,10 +73,12 @@ public class SignInServiceImplTest {
         Mockito.verify(mockServiceSignInDAO).readUser(validRequest.getAlias());
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     void testSignIn_whenInvalidRequest_thenInvalidResponse() throws Exception {
         LoginResponse actual = spySignInServiceImpl.doLoginOperation(invalidRequest);
@@ -79,3 +86,4 @@ public class SignInServiceImplTest {
         Mockito.verify(mockServiceSignInDAO).readUser(invalidRequest.getAlias());
     }
 }
+*/

@@ -1,18 +1,19 @@
 package edu.byu.cs.tweeter.server.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+//import org.junit.jupiter.api.Assertions;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import edu.byu.cs.tweeter.server.dao.UserDAO;
-import edu.byu.cs.tweeter.shared.model.domain.FollowCount;
-import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.shared.model.service.request.FollowCountRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
+//import edu.byu.cs.tweeter.server.dao.UserDAO;
+//import edu.byu.cs.tweeter.shared.model.domain.FollowCount;
+//import edu.byu.cs.tweeter.shared.model.domain.User;
+//import edu.byu.cs.tweeter.shared.model.service.request.FollowCountRequest;
+//import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
+/*
 
 public class FollowCountServiceImplTest {
 
@@ -24,10 +25,12 @@ public class FollowCountServiceImplTest {
     private FollowCountResponse successResponse;
 
 
-    /**
+    */
+/**
      * Create a FollowCountImpl spy that uses a mock DAO to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() throws Exception {
         User currentUser = new User("FirstName", "LastName", "@testFollowCountService", null);
@@ -54,22 +57,27 @@ public class FollowCountServiceImplTest {
         Mockito.when(spyFollowCountServiceImpl.getUserDAO()).thenReturn(mockDAO);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link FollowCountServiceImpl#getFollowCount(FollowCountRequest)}
      * method returns the same result as the mockDAO.
-     */
+     *//*
+
     @Test
     public void testGetFollowCount_validRequest_correctResponse() throws Exception {
         FollowCountResponse response = spyFollowCountServiceImpl.getFollowCount(validRequest);
         Assertions.assertEquals(successResponse.getFollowCount(), response.getFollowCount());
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link FollowCountServiceImpl#getFollowCount(FollowCountRequest)}
      * method throws an exception.
-     */
+     *//*
+
     @Test
     public void testGetFollowCount_invalidRequest_returnsNoFollowees() {
         Assertions.assertThrows(Exception.class, () -> spyFollowCountServiceImpl.getFollowCount(invalidRequest));
     }
 }
+*/

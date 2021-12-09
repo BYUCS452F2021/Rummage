@@ -1,15 +1,16 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
+
 /**
  * Contains all the information needed to make signUp requests.
  */
-public class SignUpRequest extends SignInRequest {
-
+public class RegisterUserRequest extends LoginRequest {
     private String firstName;
     private String lastName;
     private String imageUrl;
 
-    public SignUpRequest() {}
+    public RegisterUserRequest() {}
 
     /**
      * Creates an instance.
@@ -20,7 +21,7 @@ public class SignUpRequest extends SignInRequest {
      * @param lastName  the last name of the new user
      * @param imageUrl  a url for the new user's profile image
      */
-    public SignUpRequest(String alias, String password, String firstName, String lastName, String imageUrl) {
+    public RegisterUserRequest(String alias, String password, String firstName, String lastName, String imageUrl) {
         super(alias, password);
         this.firstName = firstName;
         this.lastName = lastName;

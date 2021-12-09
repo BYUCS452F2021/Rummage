@@ -1,3 +1,4 @@
+
 package edu.byu.cs.tweeter.server.dao;
 
 import org.junit.jupiter.api.AfterEach;
@@ -9,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.RelationshipChangeResponse;
-
+/*
 class FollowDAOTest {
 
     private FollowDAO followDAOToTest;
@@ -180,3 +181,4 @@ class FollowDAOTest {
     }
 
 }
+*/

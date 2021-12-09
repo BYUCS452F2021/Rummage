@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -76,7 +76,7 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
 
         <com.google.android.material.tabs.TabLayout
@@ -101,6 +101,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:scaleType="center"
         app:backgroundTint="@color/white"
-        app:srcCompat="@drawable/feather" />
+        app:srcCompat="@drawable/plus" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

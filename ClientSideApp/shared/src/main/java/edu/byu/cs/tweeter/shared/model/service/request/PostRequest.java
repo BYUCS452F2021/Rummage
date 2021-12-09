@@ -1,6 +1,6 @@
 package edu.byu.cs.tweeter.shared.model.service.request;
 
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.User;
 
 /**
@@ -10,7 +10,7 @@ public class PostRequest {
 
     private String authorAlias;
     private String message;
-    private AuthToken authToken;
+    //private AuthToken authToken;
 
     public PostRequest() {}
 
@@ -35,11 +35,11 @@ public class PostRequest {
         this.message = message;
     }
 
-    public AuthToken getAuthToken() {
+    /*public AuthToken getAuthToken() {
         return authToken;
     }
 
     public void setAuthToken(AuthToken authToken) {
         this.authToken = authToken;
-    }
+    }*/
 }

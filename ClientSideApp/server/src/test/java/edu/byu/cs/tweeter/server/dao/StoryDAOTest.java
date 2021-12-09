@@ -1,21 +1,19 @@
 package edu.byu.cs.tweeter.server.dao;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Assertions;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
 
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+//import java.time.ZoneOffset;
+//import java.time.ZonedDateTime;
+//import java.time.format.DateTimeFormatter;
 
-import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SQSPostRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
+//import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
+//import edu.byu.cs.tweeter.shared.model.service.request.StatusListRequest;
+//import edu.byu.cs.tweeter.shared.model.service.response.StatusListResponse;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+//import static org.junit.jupiter.api.Assertions.assertNotNull;
+/*
 
 class StoryDAOTest {
 
@@ -50,7 +48,8 @@ class StoryDAOTest {
     void read_hasCorrectSize() throws Exception {
         // setup
         StatusListResponse statusListResponse = storyDAO.readStatuses(new StatusListRequest(validUserAlias, 10, null, false));
-        Assertions.assertEquals(9, statusListResponse.getStatusList().size());
+        Assertions.assertEquals(9, statusListResponse.getYardSaleList().size());
     }
 
 }
+*/

@@ -19,7 +19,7 @@ import edu.byu.cs.tweeter.client.view.asyncTasks.LoginTask;
 import edu.byu.cs.tweeter.client.presenter.LoginPresenter;
 import edu.byu.cs.tweeter.client.presenter.Presenter;
 import edu.byu.cs.tweeter.client.view.main.MainActivity;
-import edu.byu.cs.tweeter.shared.model.service.request.SignInRequest;
+import edu.byu.cs.tweeter.shared.model.service.request.LoginRequest;
 import edu.byu.cs.tweeter.shared.model.service.response.LoginResponse;
 
 /**
@@ -83,7 +83,7 @@ public class SignInFragment extends Fragment implements Presenter.View, LoginTas
 
         signInButton = view.findViewById(R.id.sign_up_button);
         signInButton.setOnClickListener((View view1) -> {
-            SignInRequest signInRequest = new SignInRequest(editTextAlias.getText().toString(),
+            LoginRequest signInRequest = new LoginRequest(editTextAlias.getText().toString(),
                     editTextPassword.getText().toString());
             LoginTask loginTask = new LoginTask(presenter, SignInFragment.this);
             loginTask.execute(signInRequest);
@@ -102,8 +102,8 @@ public class SignInFragment extends Fragment implements Presenter.View, LoginTas
         Intent intent = new Intent(this.getContext(), MainActivity.class);
 
         intent.putExtra(MainActivity.CURRENT_USER_KEY, loginResponse.getUser());
-        intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
-        intent.putExtra(MainActivity.AUTH_TOKEN_KEY, loginResponse.getAuthToken());
+        //intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
+        //intent.putExtra(MainActivity.AUTH_TOKEN_KEY, loginResponse.getAuthToken()); //FIXME maybe we should do auth tokens
 
         Toast.makeText(SignInFragment.this.getContext(), R.string.signInSuccess,
                 Toast.LENGTH_SHORT).show();

@@ -2,7 +2,9 @@ package edu.byu.cs.tweeter.shared.model.service.response;
 
 import java.util.Objects;
 
+/*
 import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+*/
 import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest;
 
 /**
@@ -10,7 +12,9 @@ import edu.byu.cs.tweeter.shared.model.service.request.RelationshipChangeRequest
  */
 public class RelationshipChangeResponse extends Response {
 
+/*
     AuthToken authToken;
+*/
 
     /**
      * true = the user is now following the other user
@@ -18,9 +22,11 @@ public class RelationshipChangeResponse extends Response {
      */
     boolean isFollowRelationship;
 
+/*
     public void setAuthToken(AuthToken authToken) {
         this.authToken = authToken;
     }
+*/
 
     public void setIsFollowRelationship(boolean followRelationship) {
         isFollowRelationship = followRelationship;
@@ -37,11 +43,13 @@ public class RelationshipChangeResponse extends Response {
     /**
      * Creates a response indicating that the corresponding request was successful.
      *
-     * @param authToken authToken for the logged in user
+     * @ param authToken authToken for the logged in user
      */
-    public RelationshipChangeResponse(AuthToken authToken, boolean isFollowRelationship) {
+    public RelationshipChangeResponse(/*AuthToken authToken, */boolean isFollowRelationship) {
         super(true, null);
+/*
         this.authToken = authToken;
+*/
         this.isFollowRelationship = isFollowRelationship;
     }
 
@@ -50,9 +58,11 @@ public class RelationshipChangeResponse extends Response {
      *
      * @return the  AuthToken object for the logged in user.
      */
+/*
     public AuthToken getAuthToken() {
         return this.authToken;
     }
+*/
 
     /**
      * Returns the relationship change
@@ -72,12 +82,12 @@ public class RelationshipChangeResponse extends Response {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RelationshipChangeResponse that = (RelationshipChangeResponse) o;
-        return isFollowRelationship == that.isFollowRelationship &&
-                Objects.equals(authToken, that.authToken);
+        return isFollowRelationship == that.isFollowRelationship /*&&
+                Objects.equals(authToken, that.authToken)*/;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authToken, isFollowRelationship);
+        return Objects.hash(/*authToken, */isFollowRelationship);
     }
 }

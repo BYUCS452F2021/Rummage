@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.server.service;
+/*
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +28,12 @@ public class StatusListServiceImplTest {
 
     StatusListServiceImpl statusListServiceImplSpy;
 
-    /**
+    */
+/**
      * Create a StatusListServiceImpl spy that uses a mock DAO to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     public void setup() {
         User currentUser = new User("FirstName", "LastName", "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
@@ -57,23 +60,28 @@ public class StatusListServiceImplTest {
         Mockito.when(statusListServiceImplSpy.getStoryDAO()).thenReturn(storyDAO);
     }
 
-    /**
+    */
+/**
      * Verify that for successful requests the {@link StatusListServiceImpl#getStatuses(StatusListRequest)}
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     public void testGetStatuses_validRequest_correctResponse() {
         StatusListResponse response = statusListServiceImplSpy.getStatuses(validRequest);
         Assertions.assertEquals(successResponse, response);
     }
 
-    /**
+    */
+/**
      * Verify that for failed requests the {@link StatusListServiceImpl#getStatuses(StatusListRequest)}
      * method returns the same result as the
-     */
+     *//*
+
     @Test
     public void testGetStatuses_invalidRequest_returnsNoStatuses() {
         StatusListResponse response = statusListServiceImplSpy.getStatuses(invalidRequest);
         Assertions.assertEquals(failureResponse, response);
     }
 }
+*/

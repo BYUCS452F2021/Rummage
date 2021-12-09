@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.model.integration;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,12 @@ public class PostIntegrationTest {
 
     private PostResponse successResponse;
 
-    /**
+    */
+/**
      * Create a PostService spy that uses a mock ServerFacade to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() throws IOException, TweeterRemoteException {
         postService = Mockito.spy(new PostProxyService());
@@ -47,3 +50,4 @@ public class PostIntegrationTest {
         postService.post(new PostRequest("@testMickey","bigtest"));
     }
 }
+*/

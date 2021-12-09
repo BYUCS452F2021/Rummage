@@ -1,0 +1,11 @@
+Services Needed:
+LoginService
+LogoutService
+RegisterUserService
+CreateSaleService
+GetSalesService (Filterable - for now gets all)
+DeleteSaleService
+GetSaleItemsService
+AddSaleItemService
+DeleteSaleItemService
+ToggleFollowSaleService

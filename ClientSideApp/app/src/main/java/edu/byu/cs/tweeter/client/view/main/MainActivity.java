@@ -1,5 +1,6 @@
 package edu.byu.cs.tweeter.client.view.main;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,28 +24,28 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.Objects;
 
 import edu.byu.cs.tweeter.R;
-import edu.byu.cs.tweeter.client.view.asyncTasks.GetCountTask;
+//import edu.byu.cs.tweeter.client.view.asyncTasks.GetCountTask;
 import edu.byu.cs.tweeter.client.view.asyncTasks.PostTask;
 import edu.byu.cs.tweeter.client.view.asyncTasks.SignOutTask;
 import edu.byu.cs.tweeter.client.view.util.ImageUtils;
-import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
+//import edu.byu.cs.tweeter.shared.model.domain.AuthToken;
 import edu.byu.cs.tweeter.shared.model.domain.User;
-import edu.byu.cs.tweeter.client.presenter.FollowCountPresenter;
+//import edu.byu.cs.tweeter.client.presenter.FollowCountPresenter;
 import edu.byu.cs.tweeter.client.presenter.PostPresenter;
 import edu.byu.cs.tweeter.client.presenter.Presenter;
 import edu.byu.cs.tweeter.client.presenter.SignOutPresenter;
 import edu.byu.cs.tweeter.shared.model.service.request.FollowCountRequest;
 import edu.byu.cs.tweeter.shared.model.service.request.PostRequest;
-import edu.byu.cs.tweeter.shared.model.service.request.SignOutRequest;
-import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
+import edu.byu.cs.tweeter.shared.model.service.request.LogoutRequest;
+//import edu.byu.cs.tweeter.shared.model.service.response.FollowCountResponse;
 import edu.byu.cs.tweeter.shared.model.service.response.PostResponse;
-import edu.byu.cs.tweeter.shared.model.service.response.SignOutResponse;
+import edu.byu.cs.tweeter.shared.model.service.response.LogoutResponse;
 
 /**
  * The main activity for the application.
  */
 public class MainActivity extends AppCompatActivity
-        implements Presenter.View, PostTask.Observer, SignOutTask.Observer, GetCountTask.Observer {
+        implements Presenter.View, PostTask.Observer, SignOutTask.Observer {
 
     public static final String LOG_TAG = "MAIN_LOGS";
 
@@ -53,15 +54,16 @@ public class MainActivity extends AppCompatActivity
     public static final String USER_IMAGE = "UserImage";
     public static final int STATUS_CHAR_LIMIT = 200;
 
-    private AuthToken authToken;
+    //private AuthToken authToken;
     private SignOutPresenter signOutPresenter;
     private PostPresenter postPresenter;
-    private FollowCountPresenter followCountPresenter;
+    //private FollowCountPresenter followCountPresenter;
 
     private AlertDialog.Builder postDialogBuilder;
     private AlertDialog postAlertDialog;
     private int charsUsed = 0;
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,17 +73,17 @@ public class MainActivity extends AppCompatActivity
         if (user == null) {
             throw new RuntimeException("User not passed to activity");
         }
-        user.setImageBytes((byte[]) getIntent().getSerializableExtra(USER_IMAGE));
+        //user.setImageBytes((byte[]) getIntent().getSerializableExtra(USER_IMAGE));
         //intent.putExtra(MainActivity.USER_IMAGE, loginResponse.getUser().getImageBytes());
 
-        authToken = (AuthToken) getIntent().getSerializableExtra(AUTH_TOKEN_KEY);
+        //authToken = (AuthToken) getIntent().getSerializableExtra(AUTH_TOKEN_KEY);
         signOutPresenter = new SignOutPresenter(this);
         postPresenter = new PostPresenter(this);
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this,
                 getSupportFragmentManager(),
-                user,
-                authToken);
+                user/*,
+                authToken*/);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
@@ -131,8 +133,8 @@ public class MainActivity extends AppCompatActivity
             postDialogBuilder.setPositiveButton(R.string.postPosButton, (dialogInterface, i) -> {
                 // do logic and dismiss
                 PostTask postTask = new PostTask(postPresenter, MainActivity.this);
-                PostRequest request = new PostRequest(user.getAlias(), statusInput.getText().toString());
-                request.setAuthToken(this.authToken);
+                PostRequest request = new PostRequest(user.getContactID(), statusInput.getText().toString());
+                //request.setAuthToken(this.authToken);
                 postTask.execute(request);
 
                 dialogInterface.dismiss();
@@ -150,21 +152,21 @@ public class MainActivity extends AppCompatActivity
             postAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
         });
 
-        TextView userName = findViewById(R.id.userName);
+        /*TextView userName = findViewById(R.id.userName);
         userName.setText(user.getName());
 
         TextView userAlias = findViewById(R.id.userAlias);
-        userAlias.setText(user.getAlias());
+        userAlias.setText(user.getAlias());*/
 
-        ImageView userImageView = findViewById(R.id.userImage);
-        userImageView.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
+        /*ImageView userImageView = findViewById(R.id.userImage);
+        userImageView.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));*/
 
         //with the current user, get their following and follower count
-        followCountPresenter = new FollowCountPresenter(this);
+        /*followCountPresenter = new FollowCountPresenter(this);
         GetCountTask countTask = new GetCountTask(followCountPresenter, MainActivity.this);
         FollowCountRequest countRequest = new FollowCountRequest(user.getAlias());
         countRequest.setAuthToken(this.authToken);
-        countTask.execute(countRequest);
+        countTask.execute(countRequest);*/
     }
 
     @Override
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity
             builder.setMessage(R.string.signOutConfirmText);
             builder.setPositiveButton(R.string.signOutConfirmYes, (dialogInterface, i) -> {
                 SignOutTask signOutTask = new SignOutTask(signOutPresenter, MainActivity.this);
-                SignOutRequest request = new SignOutRequest(authToken);
+                LogoutRequest request = new LogoutRequest(/*authToken*/);
                 signOutTask.execute(request);
 
                 dialogInterface.dismiss();
@@ -200,7 +202,7 @@ public class MainActivity extends AppCompatActivity
     // implement methods for signOutTask
     // ---------------------------------
     @Override
-    public void signOutSuccessful(SignOutResponse loginResponse) {
+    public void signOutSuccessful(LogoutResponse loginResponse) {
         Toast.makeText(this,
                 R.string.signOutSuccess,
                 Toast.LENGTH_SHORT).show();
@@ -208,7 +210,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void signOutUnsuccessful(SignOutResponse loginResponse) {
+    public void signOutUnsuccessful(LogoutResponse loginResponse) {
         Toast.makeText(this,
                 R.string.signOutFail,
                 Toast.LENGTH_SHORT).show();
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity
     // ------------------------------
     // implement methods for GetCountTask
     // ------------------------------
-    @Override
+    /*@Override
     public void followCountRetrieved(FollowCountResponse followCountResponse) {
         int numFollowees = followCountResponse.getFollowCount().getNumFollowing();
         int numFollowers = followCountResponse.getFollowCount().getNumFollowers();
@@ -258,14 +260,14 @@ public class MainActivity extends AppCompatActivity
 
         TextView followerCount = findViewById(R.id.followerCount);
         followerCount.setText(getString(R.string.followerCount, numFollowers));
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void handleException(Exception ex) {
         Log.e(LOG_TAG, ex.getMessage(), ex);
         Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
         if (Objects.equals(ex.getMessage(), "Unauthorized")) {
             finish();
         }
-    }
+    }*/
 }

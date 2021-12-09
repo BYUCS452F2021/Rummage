@@ -1,4 +1,5 @@
 package edu.byu.cs.tweeter.presenter;
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,12 @@ class SignOutPresenterTest {
     private SignOutRequest request;
     private SignOutResponse response;
 
-    /**
+    */
+/**
      * Create a SignOutPresenter spy that uses a mock service to return known responses to
      * requests.
-     */
+     *//*
+
     @BeforeEach
     void setUp() {
         spySignOutPresenter = Mockito.spy(new SignOutPresenter(new Presenter.View() {
@@ -39,9 +42,11 @@ class SignOutPresenterTest {
         request = new SignOutRequest(new AuthToken());
     }
 
-    /*
+    */
+/*
      * Tests if the presenter returns the same response as the service when signing up
-     */
+     *//*
+
     @Test
     void testSignOut_returnsServiceResult() throws IOException, TweeterRemoteException {
         Mockito.when(mockSignOutService.signOut(request)).thenReturn(response);
@@ -54,3 +59,4 @@ class SignOutPresenterTest {
     // but with dummy data it doesn't make sense to throw any exceptions for post yet
 
 }
+*/
